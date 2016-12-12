@@ -44,6 +44,25 @@ p{
 }
 /********************reset结束********************/
 
+/************************************字体属性参考
+  color:#096;/*字体颜色*/
+  /* font-size:35px;/*字号*/
+  /* font-style:normal;/*normal/italic斜体/oblique倾斜*/
+  /* font-weight:100;/*normal/bold粗体/bolder/lighter细/数值*/
+  /* font-variant:normal;/*normal/small-caps小写转换为小型的大写字母字体*/
+  /* font:font-style font-variant font-weight font-size font-family;*/
+  /* line-height:normal;/*行高：normal/长度值/百分比/数值*/
+  /* text-indent:2em;/*文本缩进 【长度值（2em）/百分比】*/
+  /* text-align:center;/*水平对齐方式 left/right/center/justify两端/*/
+  /* vertical-align:auto;/*垂直对齐方式 baseline默认与基线对齐/sub垂直对齐文本小标/super垂直对齐文本上标/top元素的顶端与行中最高文本的顶端对齐/text-top元素的顶端与行中最高文本的顶端对齐/middle垂直中部对齐/bottom元素顶端与行中最低原素的地段对齐/text-bottom元素顶端与行中最低文本的低端对齐/百分比/长度*/
+  /* text-transform:none;/*大小写none/capitalize第一个字母变成大写/uppercase每个单词转换为大写/lowercase每个单词转换为小写*/
+  /* word-spacing:normal;/*字符间距normal/长度/百分比*/
+  /* letter-spacing:normal;/*字符间隔 normal/长度/百分比*/
+  /* text-decoration:none;/*文本修饰 text-decoration:[text-decoration-line]|[text-decoration-style]|[text-decoration-color] 1.none/underline加下划线/overline上划线/line-through删除线/blink文本闪烁 2.solid实线/double双线/dotted电线/dashed虚线/wave波纹 3.颜色*/
+  /* text-shadow:none;/*文本阴影 none|<length水平><length垂直>[<length模糊度>][<color阴影颜色>]
+ 
+ ***************************************/
+
 /********************index.jsp********************/
 
 /*****菜单标签-代槿*****/
@@ -57,19 +76,14 @@ p{
 }
 .index-div-menu1 {	/*菜单居中框架*/
 	width: 950px;
+	height: 50px;
 	margin: 0px auto;
 	float: none;
 }
-#index-img-logo {	/*logo位置*/
-	width: 83px;
-	height: 80px;
-	float: left;
-	position: relative; top: 3px; left: 40px;
-}
 .index-div-ulmain {	/*ul加入div控制位置*/
-	width: 800px;
-	height: 80px;
-	float: right;
+	width: auto;
+	height: auto;
+	float: left;
 }
 #index-ul-mainNav {	/*菜单选项ul*/
 	/*position: absolute;
@@ -80,12 +94,14 @@ p{
 	list-style: none;
 }
 #index-ul-mainNav li {	/*菜单选项li*/
-	height: 80px;
-	padding: 0 28px;
+	padding: 0 10px;
 	float: left;
 	text-align: center;
-	font-size: 15px;
+	font-size: 20px;
 	list-style: none;
+}
+.index-a-logo {
+	font-weight:bold;	
 }
 #index-ul-mainNav li a {	/*菜单的超链接选项*/
     display: block;
@@ -96,6 +112,59 @@ p{
 }
 #index-ul-mainNav li a:hover {	/*菜单的超链接选项被选中时*/
     color: #fff;
+}
+
+.index-div-control1 {	/*搜索标签div*/
+	position: relative; top: 9px; left: 5px;
+	width: 179px;
+	display: inline-block;
+	margin-bottom: 0;
+	vertical-align: middle;
+}
+.index-form-control1 {	/*搜索标签表单控件*/
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.indec-div-ulmain2 {	/*登录注册按钮div*/
+	width: auto;
+	height: auto;
+	float: right;
+}
+#index-ul-reandlo {		/*登录注册按钮ul*/
+	width: 200px;
+	height: 50px;
+	list-style: none;
+}
+#index-ul-reandlo li {	/*登录注册按钮li*/
+	padding: 0 10px;
+	text-align: center;
+	float: left;
+	font-size: 16px;
+}
+#index-ul-reandlo li a {	/*登录注册按钮a*/
+	display: block;
+    height: 50px;
+    line-height: 50px;
+    margin-left: 6px;
+    color: #9d9d9d;
+}
+#index-ul-reandlo li a:hover {
+	color: #fff;
 }
 /*****菜单标签-代槿*****/
 
