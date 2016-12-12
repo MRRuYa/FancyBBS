@@ -1,4 +1,4 @@
-/*reset*/
+/********************reset********************/
 body,div,dl,dt,dd,ul,ol,li,pre,h1,h2,h3,h4,h5,h6, 
 form,fieldset,input,textarea,p,blockquote,th,td { 
   padding: 0; 
@@ -42,4 +42,62 @@ h1{
 p{
   text-align:left;
 }
-/*reset结束*/
+/********************reset结束********************/
+
+/********************index.jsp********************/
+
+/*****菜单标签-代槿*****/
+.index-div-menu {	/*菜单框架*/
+	width: 100%;
+  	height: 50px;
+	box-shadow: 1px 1px 1px #999;
+	box-sizing: content-box;
+	position: fixed;
+	background: #333;
+}
+.index-div-menu1 {	/*菜单居中框架*/
+	width: 950px;
+	margin: 0px auto;
+	float: none;
+}
+#index-img-logo {	/*logo位置*/
+	width: 83px;
+	height: 80px;
+	float: left;
+	position: relative; top: 3px; left: 40px;
+}
+.index-div-ulmain {	/*ul加入div控制位置*/
+	width: 800px;
+	height: 80px;
+	float: right;
+}
+#index-ul-mainNav {	/*菜单选项ul*/
+	/*position: absolute;
+	left: 470px;
+	top: 0;
+	width: 870px;
+	height: 80px;*/
+	list-style: none;
+}
+#index-ul-mainNav li {	/*菜单选项li*/
+	height: 80px;
+	padding: 0 28px;
+	float: left;
+	text-align: center;
+	font-size: 15px;
+	list-style: none;
+}
+#index-ul-mainNav li a {	/*菜单的超链接选项*/
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    margin-left: 6px;
+    color: #9d9d9d;
+}
+#index-ul-mainNav li a:hover {	/*菜单的超链接选项被选中时*/
+    color: #fff;
+}
+/*****菜单标签-代槿*****/
+
+
+/********************index.jsp********************/
