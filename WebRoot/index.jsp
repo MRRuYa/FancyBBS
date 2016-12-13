@@ -62,6 +62,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
     </div>
     <!--菜单层 end-->
+    
+    <!--内容 start-->
+    
+    <!--内容 end-->
+    <div class="index-content-div">
+    </div>
+
+	<!--底部	 start-->    
+    <div class="index-div-bottommian">
+        <div class="index-div-bottom">
+         	Copyright &copy 2016 <br/>	
+           <a href="#">关于我们FancyBBS</a> 
+           <a href="#">免责声明</a> 
+           <a href="#">付费服务</a>  
+           <a href="#">联系我们</a> 
+           <a href="#">商业授权</a>  
+           <a href="#">赞助开发</a><br/>
+           FancyBBS<a href="#">网站统计</a>
+           QQ群XXXX鲁IC备XXX号<br/>
+           Powered by FancyBBS 页面执行时间
+        </div>
+	</div>
+	<!--底部	 end-->   
 
   </body>
 </html>

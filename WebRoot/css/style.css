@@ -168,5 +168,32 @@ p{
 }
 /*****菜单标签-代槿*****/
 
+/*****内容空余-朱振宗*****/
+.index-content-div {    /*内容      删除**** */
+	text-align:center;
+	margin:0 auto;
+	width:950px; 
+	height:1000px;
+} 
 
+/*****底部标签-朱振宗*****/
+.index-div-bottommian {
+	width: 100%;
+	float: none;
+	margin: 0 auto;	
+	background: #333;
+}
+.index-div-bottom {    /*底部*/
+	text-align: center;
+	margin: 0 auto;
+	width: 950px; 
+	height: 100px;
+	color: #68696d;
+} 
+.index-div-bottom a {
+	color: #68696d;
+}
+.index-div-bottom a:hover {
+	color: #CCC;
+}
 /********************index.jsp********************/
