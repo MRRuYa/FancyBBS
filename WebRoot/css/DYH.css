@@ -1,0 +1,133 @@
+/********************reset********************/
+body,div,dl,dt,dd,ul,ol,li,pre,h1,h2,h3,h4,h5,h6, 
+form,fieldset,input,textarea,p,blockquote,th,td { 
+  padding: 0; 
+  margin: 0; 
+} 
+table { 
+  border-collapse: collapse; 
+  border-spacing: 0; 
+} 
+fieldset,img { 
+  border: 0; 
+} 
+address,caption,cite,code,dfn,em,strong,th,var { 
+  font-weight: normal; 
+  font-style: normal; 
+} 
+ol,ul { 
+  list-style: none; 
+} 
+caption,th { 
+  text-align: left; 
+} 
+h2,h3,h5,h6 { 
+  font-weight: normal; 
+  font-size: 100%; 
+} 
+h4{
+  font-size:16px;
+  font-weight: normal;
+}
+q:before,q:after { 
+  content:”; 
+} 
+abbr,acronym { 
+  border: 0; 
+}
+a{
+  background-color:transparent;
+  color:#003399;
+  text-decoration:none;
+}
+h1{
+  font:normal normal normal 40px "华文行楷";
+  text-align:center;
+  text-shadow: 1px 1px 7px #999;
+}
+p{
+  text-align:left;
+  padding:0px;
+  margin:0px;
+  color:black;
+}
+/********************reset结束********************/
+
+/*****页面中盒子-杜宇浩*****/
+.div-main{    /*主盒子*/
+    background-color:#fff;
+    border:1px solid transparent;
+    border-radius:4px;
+    border-color:#ddd;
+    box-shadow:0 1px 1px rgba(0,0,0,.05);
+    margin-bottom:20px;
+}
+.div-main-head1{      /*主盒子的上部（第一类灰色部分）*/
+    height:17.6px;
+    background-color:#f5f5f5;
+    border-bottom:1px solid #eee;
+    font-size:16px;
+    padding:10px 15px;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+}
+
+.div-main-head2{        /*主盒子的上部（第一类灰色部分）*/
+    height:17.6px;
+    border-bottom:1px solid #eee;
+    font-size:16px;
+    padding:10px 15px;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+}
+.div-main-body{       /*主盒子的下部*/
+    height:200px;    
+    padding:15px;
+    font-size:14px;
+}
+/*****页面中盒子-杜宇浩*****/
+
+/*****节点页面盒子内部版块-杜宇浩*****/
+.div-JD-list{     /*整个列表框架*/
+    padding-left:0px;
+    list-style:none;
+}
+.div-JD-section-first{   /*第一个版块设定*/
+	margin-top:0px;
+	padding-bottom:10px;
+	border-bottom:1px solid #eee;
+}
+.div-JD-section{   /*其余版块设定*/
+	margin-top:10px;
+	padding-bottom:10px;
+	border-bottom:1px solid #eee;
+}
+.div-JD-section-left{    /*版块左部设定*/
+	float:left !important;
+}
+.div-JD-section-right{    /*版块右部设定*/
+	float:right !important;
+}
+.div-JD-section-text-right{    /*版块文本右部设定*/
+	text-align：right;
+}
+.div-JD-section-body{     /*版块中间大文本设定*/
+	 display:table-cell;
+	 vertical-align:top;
+}
+.div-JD-section-body-head{     /*版块中间大文本上部设定*/
+	margin-top:0px;
+	margin-bottom:5px;
+}
+.div-JD-section-body-bottom{     /*版块中间大文本下部设定*/
+    color:#777;
+}
+.div-JD-img{    /*版块图片设定*/
+	width:50px;
+	height:50px;
+	border-radius:6px;
+	vertical-align:middle;
+	background-color:#777;
+	padding-right:10px;
+}
+/*****节点页面盒子内部版块-杜宇浩*****/
