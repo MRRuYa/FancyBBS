@@ -1,3 +1,27 @@
+/*****底部标签-朱振宗*****/
+.register-div-bottommian {	/**底部框架*/
+	width: 100%;
+	float: none;
+	margin: 0 auto;	
+	background: #333;
+	position: absolute;	bottom: 0px;
+	box-shadow: 1px 1px 1px #999;
+	z-index: 100;
+}
+.register-div-bottom {    /*底部*/
+	text-align: center;
+	margin: 0 auto;
+	width: 950px; 
+	height: 100px;
+	color: #68696d;
+} 
+.register-div-bottom a {
+	color: #68696d;
+}
+.register-div-bottom a:hover {
+	color: #CCC;
+}
+/*****底部标签-朱振宗*****/
 
 .div-container {	/*loginin.html/register.html div框架*/
 	width: 460px;
