@@ -9,7 +9,7 @@ public class Configuration {
 	public static final String hostName = "localhost";
 	public static final String databaseName = "fancybbs";
 	public static final String userName = "root";
-	public static final String userPassword = "Yue";
+	public static final String userPassword = "123456";
 	public static final int connectionSecond1 = 60;
 
 	// ///////////////// 默认用户信息配置////////////////////////////
