@@ -1,12 +1,22 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>登录</title>
+    <base href="<%=basePath%>">
+    <title>FancyBBS|登录</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
 	
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <link rel="shortcut icon" href="img/logo.png" /> 
+	<link rel="shortcut icon" href="img/logo.png" /> 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/login-register.css" />
 
@@ -22,7 +32,6 @@
 	<!-- 表单验证js -->
     <script type="text/javascript">
 		function checklogin() {
-			var form = document.getElementById("form1");	
 			var account = document.getElementById("login-account").value;		//记录用户名
 			var password = document.getElementById("login-password").value;		//记录密码
 			var vcode = document.getElementById("login-vcode").value;		//记录验证码
@@ -30,29 +39,26 @@
 			var message = document.getElementById("tipmessage");
 			
           	if(account == null || account == '') {
-          		return false;
           		alert("请输入用户名!");
-				document.getElementById("tipmessage").value = "未输入用户名";
-				doucment.form1.value = "未输入用户名";
-                form.account.focus();
-                
-                
+          		return false;              
            	} else {
            		if(password == null || password == '') {
-           			return false;
-	                alert("请输入登录密码!");
-					doucment.getElementById("tipmessage").value = "未输入密码";
-	                form.password.focus();
-	                
+           			alert("请输入登录密码!");
+           			return false;	                
          		} else {
 	         		if(vcode == null || vcode == '') {
-	         			return false;
 	         			alert("请输入验证码!");
-						doucment.getElementById("tipmessage").value = "未输入验证码";
-		                doucment.getElementById("vcode").focus();
-		                
+	         			return false;
 					} else {
 						return true;
+						//备注
+						if(vcode != <%=(String)session.getAttribute("vcode")%>) {
+							alert("验证码不正确!");
+		                	return false;
+		                } else {
+		                	return true;
+		                }
+		           
 					}
          		}
            	}
@@ -109,7 +115,7 @@
     <div class="div-container">	 <!--container 框架-->
    		<div class="div-loginandregister-adiv">
     		<a id="a-header">登录</a>           
-        	<a id="a-header1" href="register.html">注册</a>
+        	<a id="a-header1" href="register.jsp">注册</a>
         </div>
         
     	<div class="div-loginandregister-main">		<!--form控件-->
@@ -127,10 +133,12 @@
             
             <div class="div-logininandregister-inputmain" >	<!--验证码-->
             	<label id="loginlable1">验证码</label>
-                <input id="login-vcode" width="80px"  type="text" placeholder="点击图片刷新" />
-                <a href="login.html"><img src="GetCaptcha" /></a>
+                <input name="vcode" id="login-vcode" width="80px"  type="text" placeholder="点击图片刷新" />
                 
-                <p name="tipmessage" id="tipmessage" class="p-landr-tipmessage">test</p>	<!--提示信息-->
+                <a href="login.jsp"><img id="rc" src="GetCaptcha" nclick="changeCode()" title="看不清？单击换一张图片" alt="点击更换"/></a>
+                <div id="yzm1" style="width:10" style="display:none"></div>	<!-- 隐藏层 -->            
+				
+                <p name="tipmessage" id="tipmessage" class="p-landr-tipmessage"><%=(String)session.getAttribute("vcode")%>test</p>	<!--提示信息-->
             </div>
             
             <div class="div-logininandregister-other">	<!--记住密码-->
@@ -139,7 +147,6 @@
             
             <div class="div-loginin-submit">	<!--提交按钮-->
             	<button name="submit" id="div-loginin-submit1" type="submit">登&nbsp;&nbsp;录</button>
-                <button name="submit" id="div-loginin-submit1" type="button" onclick="check()">登&nbsp;&nbsp;录</button>
             </div>
             
         </form>
@@ -163,7 +170,6 @@
         </div>
 	</div>
 	<!--底部	 end-->  
-    
-
+  
   </body>
 </html>

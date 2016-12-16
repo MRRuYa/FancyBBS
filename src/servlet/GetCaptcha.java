@@ -11,7 +11,9 @@ import java.awt.*;
 import java.awt.image.*;  
 import javax.imageio.*;  
 
+
 public class GetCaptcha extends HttpServlet {  
+  
     private static final long serialVersionUID = 1L;  
   
     /** 
@@ -57,7 +59,7 @@ public class GetCaptcha extends HttpServlet {
             int xl = random.nextInt(12);  
             int yl = random.nextInt(12);  
             g.drawLine(x, y, x + xl, y + yl);  
-        }  
+        }
         // 取随机产生的认证码(4位数字)  
         String sRand = "";  
         for (int i = 0; i < 4; i++) {  
@@ -70,9 +72,9 @@ public class GetCaptcha extends HttpServlet {
             g.drawString(rand, 13 * i + 14, 20);  
         }  
   
-        // 将认证码存入SESSION  
+        // 将认证码存入SESSION 
+         
         session.setAttribute("vcode", sRand);  
-  
         // 图象生效  
         g.dispose();  
         // 输出图象到页面  

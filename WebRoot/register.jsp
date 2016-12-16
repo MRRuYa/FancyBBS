@@ -1,12 +1,22 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>注册</title>
-	
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3" />
-    <meta http-equiv="description" content="this is my page" />
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link rel="shortcut icon" href="img/logo.png" /> 
+    <base href="<%=basePath%>">
+    
+    <title>FancyBBS|注册</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<link rel="shortcut icon" href="img/logo.png" /> 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/login-register.css" />
     <style>
@@ -17,7 +27,62 @@
 			position: relative; top: 10px;
 		}
 	</style>
-
+	<!-- 表单验证js -->
+    <script type="text/javascript">
+		function checkregister() {	
+			var account = document.getElementById("register-account").value;		//记录用户名
+			var password = document.getElementById("register-password").value;		//记录密码
+			var password1 = document.getElementById("register-password1").value;	
+			var vcode = document.getElementById("register-vcode").value;		//记录验证码
+			
+			var message = document.getElementById("tipmessage");
+			
+			var caccount = /^[a-zA-Z][a-zA-Z0-9]{4,20}$/;	//英文字母和数字组成的4-16位字符,以字母开头
+			var cpassword = /^(?![\d]+$)(?![a-zA-Z]+$)(?![!#$%^&*]+$)[\da-zA-Z!#$%^&*]{6,20}$/;		//6-20位字符；数字、字母、特殊字符（除空格）,特殊字符的范围为 !#$%^&*
+			var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+			var username = $("account").value;
+          	if(account == null || account == '') {
+          		if (!caccount.test(username)) {
+          			alert("用户名以英文字母和数字组成的4-16位字符,以字母开头!");
+          			return false; 
+          		} else {
+	          		alert("请输入用户名!");
+	          		return false;  
+          		}        		            
+           	} else {
+           		if(password == null || password == '') {
+           			alert("请输入登录密码!");
+           			return false;	                
+         		} else {
+         			if (password1 == null || password1 == '') {
+         				alert("请输入确认密码!");
+           				return false;
+         			} else {
+         				if (password1 != password) {
+         					alert("两次密码不相同!");
+           					return false;
+         				} else {
+         					if(vcode == null || vcode == '') {
+			         			alert("请输入验证码!");
+			         			return false;
+							} else {
+								return true;
+								//备注
+								if(vcode != <%=(String)session.getAttribute("vcode")%>) {
+									alert("验证码不正确!");
+				                	return false;
+				                } else {
+				                	return true;
+				                }
+			           
+							}
+         				}
+         			}
+         		}
+           	}
+        };
+    </script>
+    <!-- 表单验证js -->
   </head>
   
   <body>
@@ -67,20 +132,20 @@
     <!--注册 start-->
     <div class="div-container">		 <!--container 框架-->
         <div class="div-loginandregister-adiv">
-            <a id="a-header1" href="login.html" >登录</a>           
+            <a id="a-header1" href="login.jsp" >登录</a>           
             <a id="a-header">注册</a>
         </div>
-        <form method="post" action="CheckRegister">
+        <form method="post" action="CheckRegister" onSubmit="return checkregister()">
         <div class="div-loginandregister-main">
             
             <div class="div-logininandregister-inputmain">		<!--用户名-->
                 <label id="loginlable1">用户名</label>
-                <input name="account" id="register-account" type="text" name="BUAccount" placeholder="英文数字组合，大写字母开头最长18个字符" />
+                <input name="account" id="register-account" type="text" name="BUAccount" placeholder="英文字母和数字组成的4-16位字符,以字母开头" />
             </div>
             
             <div class="div-logininandregister-inputmain" >		<!--密码-->
                 <label id="loginlable1">密码</label>                
-                <input name="password" id="register-password" type="password" placeholder="5-20位英、数字、符号组合，区分大小写" />
+                <input name="password" id="register-password" type="password" placeholder="6-20位英、数字、符号组合，区分大小写" />
             </div>
             
             <div class="div-logininandregister-inputmain" >		<!--确认密码-->
@@ -91,8 +156,8 @@
             <div class="div-logininandregister-inputmain" >		<!--验证码-->
                 <label id="loginlable1">验证码</label>
                 <input name="vcode" id="register-vcode" width="80px" type="text" placeholder="点击图片刷新" />
-                <a href="register.html"><img src="GetCaptcha" /></a>
-                
+               
+                <a href="register.jsp"><img id="rc" src="GetCaptcha" title="看不清？单击换一张图片" alt="点击更换"/></a>
                 <p class="p-landr-tipmessage">test</p>	<!--提示信息-->
             </div>
             
@@ -125,27 +190,6 @@
         </div>
     </div>
     <!--底部	 end-->  
-    
-    <!-- 表单验证js -->
-    <script type="text/javascript">
-		$('form').submit(function(){
-			var email = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test($(this).find('#email').val());
-			var password = $(this).find('#password').val();
-			var repwd = $(this).find('#repwd').val();
-			if (!email) {
-				alert("邮箱有误");
-				return false;
-			};
-			if (password.length<6 || password.length>12 ) {
-				alert("请检查密码位数");
-				return false;
-			};
-			if (password != repwd) {
-				alert("与原密码不符");
-				return false;
-			};
-    	});
-    </script>
-    <!-- 表单验证js -->
+
   </body>
 </html>

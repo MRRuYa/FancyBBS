@@ -25,7 +25,7 @@
 
 .div-container {	/*loginin.html/register.html div框架*/
 	width: 460px;
-	height: 100%;
+	height: auto;
 	margin: 0px auto;
 	box-sizing: content-box;
 	float: none;
@@ -45,7 +45,8 @@
 /****login and register start*****/
 .div-loginandregister-main {
 	width: 460px;
-	min-height: 100%;
+	height: auto;
+	/*min-height: 100%;*/
 	box-sizing: border-box;
 	margin: 0px auto;
 	margin-top: -5px;	/*取消间隙*/
@@ -55,7 +56,6 @@
 	border-left: 1px solid #e4ecf3;
 	border-right: 1px solid #e4ecf3;
 	border-bottom: 1px solid #e4ecf3;
-	float: none;
 }
 .div-loginandregister-adiv {
 	width: 458px;
@@ -122,7 +122,8 @@
 }
 /*lable*/
 /*input*/
-#login-input1 {		/*正常提交按钮*/
+
+#login-input1, #login-password, #login-account, #register-account, #register-password, #register-password1 {		/*正常控件按钮*/
 	width: 338px;
 	height: 40px;
 	color: #616161;
@@ -163,7 +164,7 @@
 	
 	font-size: 14px;
 }
-#login-input2 {		/**验证码**/
+#login-vcode, #register-vcode {		/**验证码**/
 	width: 169px;
 	height: 40px;
 	color: #616161;
@@ -269,22 +270,6 @@
 /****login end*****/
 
 /****register start*****/
-
-.div-register-callnumber-message {	/*register-callnumber-message*/
-	margin: 0px auto;
-}
-
-.div-register-uesername-message {	/*register-username-message*/
-	margin: 0px auto;
-}
-
-.div-register-password1-message {	/*register-password1-message*/
-	margin: 0px auto;
-}
-
-.div-register-password2-message {	/*register-password2-message*/
-	margin: 0px auto;
-}
 
 #a-register-agreement {
 	color: #333;
