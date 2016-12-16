@@ -85,6 +85,8 @@ create table topic(
  clickCount int,
  lastReplyUseID int unsigned,
  lastReplayTime datetime,
+ blank_1 text,
+ blank_2 text,
  foreign key(sId) references user(id),
  foreign key(uId) references session(id),
  foreign key(lastReplyUseID) references user(id)
@@ -114,6 +116,8 @@ create table reply(
  uId int unsigned,
  content text,
  time datetime,
+ blank_1 text,
+ blank_2 text,
  foreign key(tId) references topic(id),
  foreign key(uId) references user(id)
 );
