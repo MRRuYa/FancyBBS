@@ -30,25 +30,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- 表单验证js -->
     <script type="text/javascript">
 		function checkregister() {	
-			var account = document.getElementById("register-account").value;		//记录用户名
+			var account = document.getElementById("register-account").value;	//记录用户名
 			var password = document.getElementById("register-password").value;		//记录密码
-			var password1 = document.getElementById("register-password1").value;	
-			var vcode = document.getElementById("register-vcode").value;		//记录验证码
+			var password1 = document.getElementById("register-password1").value;	//记录再次验证的密码
+			var vcode = document.getElementById("register-vcode").value;	//记录验证码
 			
 			var message = document.getElementById("tipmessage");
 			
-			var caccount = /^[a-zA-Z][a-zA-Z0-9]{4,20}$/;	//英文字母和数字组成的4-16位字符,以字母开头
+			var caccount = /^[a-zA-Z][a-zA-Z0-9]{4,20}$/;	//英文字母和数字组成的4-16位字符,以字母开头,允许纯英文
 			var cpassword = /^(?![\d]+$)(?![a-zA-Z]+$)(?![!#$%^&*]+$)[\da-zA-Z!#$%^&*]{6,20}$/;		//6-20位字符；数字、字母、特殊字符（除空格）,特殊字符的范围为 !#$%^&*
-			var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-			var username = $("account").value;
+			//var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+			
+			if (caccount.test(account) != true) {	//验证用户名是否满足要求
+				alert("用户名以英文字母和数字组成的4-16位字符,以字母开头,允许纯英文!");
+				return false;
+			}
+			
+			if (cpassword.test(password) != true) {	//验证密码是否满足要求
+				alert("密码为6-20位字符；数字、字母、特殊字符（除空格）,特殊字符的范围为 !#$%^&*!");
+				return false;
+			}
+			
           	if(account == null || account == '') {
-          		if (!caccount.test(username)) {
-          			alert("用户名以英文字母和数字组成的4-16位字符,以字母开头!");
-          			return false; 
-          		} else {
-	          		alert("请输入用户名!");
-	          		return false;  
-          		}        		            
+				alert("请输入用户名!");
+				return false;    		            
            	} else {
            		if(password == null || password == '') {
            			alert("请输入登录密码!");
@@ -67,14 +72,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			         			return false;
 							} else {
 								return true;
-								//备注
-								if(vcode != <%=(String)session.getAttribute("vcode")%>) {
-									alert("验证码不正确!");
-				                	return false;
-				                } else {
-				                	return true;
-				                }
-			           
 							}
          				}
          			}
@@ -140,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
             <div class="div-logininandregister-inputmain">		<!--用户名-->
                 <label id="loginlable1">用户名</label>
-                <input name="account" id="register-account" type="text" name="BUAccount" placeholder="英文字母和数字组成的4-16位字符,以字母开头" />
+                <input name="account" id="register-account" type="text" placeholder="英文字母和数字组成的4-16位字符,以字母开头，允许纯英" />
             </div>
             
             <div class="div-logininandregister-inputmain" >		<!--密码-->

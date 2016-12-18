@@ -91,23 +91,22 @@ public class CheckRegister extends HttpServlet {
 		user.setPassword(password);
 		
 		String vcode1 = (String)session.getAttribute("vcode");		//获取后台生成验证码
-		
+		/*
 		if (vcod == vcode1) {	//判断验证码是否正确
 			out.println("验证码不正确");
 			out.println("<br />");
 			out.println("3秒后刷新跳转到登录页面");
 			response.setHeader("Refresh", "3;url=/FancyBBS/register.jsp");
-		}
+		}*/
+		
 		if (OperatingUser.verificationAUserName(user)) {		//检测用户名是否存在
-			out.println("用户名已经存在");
-			out.println("<br />");
-			out.println("3秒后刷新跳转到登录页面");
-			response.setHeader("Refresh", "3;url=/FancyBBS/register.jsp");
+			session.setAttribute("error",	"用户名已经存在");
+			response.sendRedirect("error.jsp");
 		} else {		//插入用户
+			response.sendRedirect("index.jsp");		//跳转到主页
+			request.setAttribute("user", user);		//传递用户对象
 			OperatingUser.insertAUser(user);
 		}
-		
-		
 		
 		out.flush();
 		out.close();

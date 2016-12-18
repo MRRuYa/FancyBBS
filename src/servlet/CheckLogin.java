@@ -100,22 +100,16 @@ public class CheckLogin extends HttpServlet {
 		}
 		
 		if (OperatingUser.verificationAUserName(user)) {		//判断用户名是否存在
-			if (OperatingUser.verificationAUser(user)) {		//密码是否则正确
-				session.setAttribute("user", user);		//session保存user
-				session.setAttribute("account", account);		//session保存user
-				
+			if (OperatingUser.verificationAUser(user)) {		//密码是否则正确			
+				request.setAttribute("user", user);		//传递用户对象
 				response.sendRedirect("index.jsp");		//跳转到主页
 			} else {
-				out.println("密码不正确");
-				out.println("<br />");
-				out.println("3秒后刷新跳转到登录页面");
-				response.setHeader("Refresh", "3;url=/FancyBBS/login.html");
+				session.setAttribute("error",	"密码不正确");
+				response.sendRedirect("error.jsp");
 			}
 		} else {
-			out.println("用户名不存在");
-			out.println("<br />");
-			out.println("3秒后刷新跳转到登录页面");
-			response.setHeader("Refresh", "3;url=/FancyBBS/login.html");
+			session.setAttribute("error",	"用户名不存在");
+			response.sendRedirect("error.jsp");
 		}
 	}
 
