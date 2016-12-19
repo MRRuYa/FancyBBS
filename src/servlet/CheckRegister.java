@@ -105,7 +105,7 @@ public class CheckRegister extends HttpServlet {
 		} else {		//插入用户
 			response.sendRedirect("index.jsp");		//跳转到主页
 			request.setAttribute("user", user);		//传递用户对象
-			OperatingUser.insertAUser(user);
+			OperatingUser.insertAUser(user);			//注册用户
 		}
 		
 		out.flush();

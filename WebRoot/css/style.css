@@ -83,32 +83,27 @@ body {
 	box-sizing: border-box;
 	position: relative; top: 65px;
 	
-	height: 1000px;
-	background: #CCC;
-	
+	height: 1000px;	
 }
 .div-contentleft {		/*页面框体左边部分*/
-	width: 600px;
+	width: 650px;
 	margin: 0px auto;
-	padding: 0px 5px;
-	box-sizing: content-box;
+	padding: 0px 10px;
+	box-sizing: border-box;
 	position: relative;
 	float: left;
 	
 	height: 1000px;
-	background: #F00;
 }
 .div-contentright {		/*页面框体右边部分*/
-	width: 350px;
+	width: 320px;
 	margin: 0px auto;
-	padding: 0px 5px;
-	box-sizing: content-box;
+	padding: 0px 10px;
+	box-sizing: border-box;
 	position: relative;
 	float: right;
 	
 	height: 1000px;
-	background: #0F0;
-	
 }
 /********************页面通用元素********************/
 
@@ -144,7 +139,10 @@ body {
 	list-style: none;
 }
 #index-ul-mainNav li {	/*菜单选项li*/
-	padding: 0 10px;
+	padding-top: 0px;
+	padding-right: 15px;
+	padding-bottom: 0px;
+	padding-left: 0px;
 	float: left;
 	text-align: center;
 	font-size: 18px;
@@ -227,7 +225,7 @@ body {
 	margin: 0 auto;	
 	margin-top: 80px;
 	background: #333;
-	position: absolute; bottom: 0px;
+	position: relative; bottom: 0px;
 	box-shadow: 1px 1px 1px #999;
 	z-index: 100;
 }

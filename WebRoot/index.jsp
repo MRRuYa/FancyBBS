@@ -29,8 +29,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <li> <a href="#">首页</a> </li>
                 <li> <a href="#">版块</a> </li>
                 <li> <a href="#">发表</a> </li>
-                <li> <a href="#">菜单5</a> </li>
-                <li> <a href="#">菜单6</a> </li>
             </ul>
         </div>
         <div class="index-div-control1"> <!--搜索按钮-->
@@ -81,8 +79,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<!--底部	 end-->
 </div>
-
-
-
 </body>
 </html>
