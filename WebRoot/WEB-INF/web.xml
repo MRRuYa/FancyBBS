@@ -23,6 +23,13 @@
     <servlet-name>CheckRegister</servlet-name>
     <servlet-class>servlet.CheckRegister</servlet-class>
   </servlet>
+  <servlet>
+    <description>AddTopic</description>
+    <display-name>AddTopic</display-name>
+    <servlet-name>AddTopic</servlet-name>
+    <servlet-class>servlet.AddTopic</servlet-class>
+  </servlet>
+
 
 
 
@@ -38,6 +45,10 @@
   <servlet-mapping>
     <servlet-name>CheckRegister</servlet-name>
     <url-pattern>/CheckRegister</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddTopic</servlet-name>
+    <url-pattern>/AddTopic</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

@@ -93,7 +93,8 @@ body {
 	position: relative;
 	float: left;
 	
-	height: 1000px;
+	min-height: 1000px;
+	background:#F00;
 }
 .div-contentright {		/*页面框体右边部分*/
 	width: 320px;
@@ -103,7 +104,8 @@ body {
 	position: relative;
 	float: right;
 	
-	height: 1000px;
+	min-height: 1000px;
+	background:#0F0;
 }
 /********************页面通用元素********************/
 
@@ -253,3 +255,30 @@ body {
 }
 /*****底部标签-朱振宗*****/
 /********************index.jsp********************/
+
+/********************add.jsp********************/
+.add-form-group {	/*表单*/
+    margin-bottom: 15px;
+}
+.add-form-control {	/*表单控件*/
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+textarea.add-form-control {
+    height: auto;
+}
+/********************add.jsp********************/
