@@ -21,10 +21,15 @@ ol,ul {
 caption,th { 
   text-align: left; 
 } 
-h2,h3,h5,h6 { 
+h2,h5,h6 { 
   font-weight: normal; 
   font-size: 100%; 
 } 
+h3{
+  font-family:inherit;
+  font-weight:500;
+  line-height:1.1;
+}
 h4{
   font-size:16px;
   font-weight: normal;
@@ -54,6 +59,46 @@ p{
 /********************reset结束********************/
 
 /*****页面中盒子-杜宇浩*****/
+.div-fixed{     /*位置固定*/
+	width:66.66666667%;
+	float:left;
+	position:relative;
+	min-height:1px;
+	padding-right:15px;
+	padding-left:15px;
+}
+.div-container{    /*盒子限制*/
+	max-width:970px;
+	width:1170px;
+	padding-right:15px;
+	padding-left:15px;
+	margin-right:auto;
+	margin-left:auto;
+}
+.div-title{    /*标题设置*/
+	margin-top:0px;
+	margin-bottom:0px;
+	font-size:16px;
+	color:inherit;
+}
+.div-badge{     /*灰色圆弧长条*/
+    display:inline-block;
+	min-width:10px;
+	padding:3px 7px;
+	font-size:12px;
+	font-weight:700
+	line-height:1;
+	text-align:center;
+	white-space:nowrap;
+	vertical-align:baseline;
+	border-radius:10px;
+	background-color:#777;
+	color:#fff;
+}
+.div-badge-node{    /*节点页面圆弧长条*/
+    background-color:#AAB0C6;
+	color:white;
+}
 .div-main{    /*主盒子*/
     background-color:#fff;
     border:1px solid transparent;
@@ -71,7 +116,6 @@ p{
     border-top-left-radius:3px;
     border-top-right-radius:3px;
 }
-
 .div-main-head2{        /*主盒子的上部（第一类灰色部分）*/
     height:17.6px;
     border-bottom:1px solid #eee;
@@ -80,8 +124,7 @@ p{
     border-top-left-radius:3px;
     border-top-right-radius:3px;
 }
-.div-main-body{       /*主盒子的下部*/
-    height:200px;    
+.div-main-body{       /*主盒子的下部*/    
     padding:15px;
     font-size:14px;
 }
