@@ -56,6 +56,18 @@ p{
   margin:0px;
   color:black;
 }
+small{
+  font-weight:400;
+  line-height:1;
+  color:#777;
+  font-size:65%;
+}
+p1{
+    text-align:center;
+    padding:0px;
+    margin:0px;
+    color:black;
+}
 /********************reset结束********************/
 
 /*****页面中盒子-杜宇浩*****/
@@ -174,3 +186,84 @@ p{
 	padding-right:10px;
 }
 /*****节点页面盒子内部版块-杜宇浩*****/
+
+/*****节点分页面板块-杜宇浩*****/
+.div-article-badge{     /*灰色圆弧长条*/
+	background-color:#333;
+	color:#f5f5f5;
+}
+.div-lable{
+    display:inherit;
+    padding:.2em .6em .3em;
+    font-size:75%;
+    font-weight:700;
+    line-height:1;
+    color:#fff;
+    text-align:center;
+    white-space:nowrap;
+    vertical-align:baseline;
+    border-radius:.25em;
+}
+.div-article-lable{
+    background-color:#5cb85c;
+}
+.div-main-footer{
+    padding:10px 15px;
+    background-color:#f5f5f5;
+    border-top:1px solid #ddd;
+    border-bottom-right-radius:3px;
+    border-bottom-left-radius:3px;
+}
+.col-md-1{
+    width:41.66666667%;
+	position:relative;
+    min-height:1px;
+    padding-right:15px;
+    padding-left:15px;
+	float:left;
+	display:inherit;
+	box-sizing: border-box;
+}
+.div-row{
+	height:100px;
+    margin-right:-15px;
+    margin-left:-15px;
+}
+.div-article-img{
+	width:100px;
+	height:100px;
+	border-radius:6px;
+}
+.col-md-2{
+	width:58.33333333%;
+	float:right;
+	position:relative;
+    min-height:1px;
+    padding-right:15px;
+    padding-left:15px;
+	box-sizing:border-box;
+}
+.div-list-unstyled{
+    padding-left:0;
+    list-style:none;
+}
+.div-text-center{
+    text-align:center;
+}
+.div-row2{
+	height:38px;
+    margin-right:-15px;
+    margin-left:-15px;
+}
+.col-md-3{
+    width:50%;
+	float:left;
+	position:relative;
+    min-height:1px;
+    padding-right:15px;
+    padding-left:15px;
+	box-sizing:border-box;
+	text-align:center;
+}
+
+/*****节点分页面板块-杜宇浩*****/
