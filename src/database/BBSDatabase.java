@@ -29,7 +29,8 @@ public class BBSDatabase {
 			this.time = Configuration.connectionSecond1;
 			return;
 		}
-		this.connection = this.getConnection(Configuration.hostName, Configuration.databaseName, Configuration.userName,
+		this.connection = this.getConnection(Configuration.hostName,
+				Configuration.databaseName, Configuration.userName,
 				Configuration.userPassword);
 		if (this.connection == null) {
 			return;
@@ -42,7 +43,7 @@ public class BBSDatabase {
 			@Override
 			public void run() {
 				if (--time <= 0) {
-					BBSDatabase.database.closeDatabase();
+					BBSDatabase.database.closeDatabase(); // bug
 					timerTask.cancel();
 					timer.cancel();
 					timerTask = null;
@@ -53,10 +54,12 @@ public class BBSDatabase {
 		timer.schedule(timerTask, 0, 1000);
 	}
 
-	private Connection getConnection(String hostName, String databaseName, String userName, String password) {
+	private Connection getConnection(String hostName, String databaseName,
+			String userName, String password) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://" + hostName + "/" + databaseName, userName, password);
+			return DriverManager.getConnection("jdbc:mysql://" + hostName + "/"
+					+ databaseName, userName, password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

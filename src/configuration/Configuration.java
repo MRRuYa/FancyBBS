@@ -18,7 +18,7 @@ public class Configuration {
 	public static final String nickname = "Pink";
 	public static final String email = "";
 	public static final String photo = "";
-	public static final String sex = "女";
+	public static final String sex = "男";
 
 	// 初始化时执行的代码块
 	static {
@@ -27,6 +27,12 @@ public class Configuration {
 		defaultUser.setEmail(email);
 		defaultUser.setPhoto(photo);
 		defaultUser.setSex(sex);
+	}
+	
+	public User getDefultUser() {
+		User user=new User();
+		user.setNickname(nickname);
+		return user;
 	}
 
 }

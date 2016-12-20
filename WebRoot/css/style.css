@@ -13,7 +13,7 @@ fieldset,img {
 } 
 address,caption,cite,code,dfn,em,strong,th,var { 
   font-weight: normal; 
-  font-style: normal; 
+  font-style: normal;
 } 
 ol,ul { 
   list-style: none; 
@@ -109,7 +109,7 @@ body {
 }
 /********************页面通用元素********************/
 
-/********************index.jsp********************/
+/********************welcome.jsp********************/
 
 /*****菜单标签-代槿*****/
 .index-div-menu {	/*菜单框架*/
@@ -254,7 +254,89 @@ body {
 	color: #CCC;
 }
 /*****底部标签-朱振宗*****/
-/********************index.jsp********************/
+
+/***************index.jsp***************/
+.navbar-right {
+    float: right;
+    margin-right: -15px;
+}
+.navbar-nav {
+    float: left;
+    margin: 0;
+}
+.navbar-nav {
+    margin: 7.5px -15px;
+}
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+/**/
+.navbar-nav > li {
+    float: left;
+}
+.nav > li {
+    position: relative;
+    display: block;
+}
+.dropdown {
+    position: relative;
+}
+/**/
+.navbar-inverse .navbar-nav > li > a {
+    color: #9d9d9d;
+}
+.navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+}
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+/**/
+.navbar-nav > li > .dropdown-menu {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.navbar-right .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    /*display: none;*/
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+/***************index.jsp***************/
+
+/********************welcome.jsp********************/
 
 /********************add.jsp********************/
 .add-form-group {	/*表单*/

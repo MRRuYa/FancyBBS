@@ -1,4 +1,5 @@
-<%@page import="operating.OperatingSession"%>
+<%@page import="entity.Topic"%>
+<%@page import="operating.OperatingTopic"%>
 <%@page import="entity.Session"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.mysql.jdbc.Connection"%>
@@ -7,6 +8,11 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+int sId = Integer.parseInt(request.getParameter("sId"));
+Session session2 = new Session();
+session2.setId(sId);
+
+List<Topic> list = OperatingTopic.getTopicBySession(session2);
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -70,28 +76,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="div-main-head2">版块列表</div>
                 <div class="div-main-body">
                     <%
-                    List<Session> list=OperatingSession.getAllSession();
-                    for(int i=0;i<list.size();i++){
-                    	Session session2 = list.get(i);
-                    %>
+                    for (Topic topic:list) {
+		            %>
                     <div class="div-JD-list">
                         <div class="div-JD-section-first"> 
-                        	<a class="div-JD-section-left" href="article.jsp?sId=<%=session2.getId()%>"> <img class="div-JD-img" src="img/node/<%=session2.getId() %>.jpg" alt="<%=session2.getName()%>"> </a> 
+                        	<a class="div-JD-section-left" href="#"> <img class="div-JD-img" src="img/node/" alt="<%=topic.getTopic()%>"> </a> 
                         	<span class="div-JD-section-right div-JD-section-text-right">                            
-                            	<p><%=session2.getTopicCount() %>个帖子/</p>
-                            	<p><%=session2.getClickCount() %>点击量</p>
+                            <p><%=topic.getReplyCount() %>个回复</p>
+                            <p><%=topic.getClickCount() %>点击量</p>
                             </span>
                             <div class="div-JD-section-body">
-                                <h4 class="div-JD-section-body-head"> <a href="article.jsp?sId=<%=session2.getId()%>"><%=session2.getName() %></a> </h4>
-                                <p class="div-JD-section-body-bottom"> <%=session2.getProfile() %></p>
+                                <h4 class="div-JD-section-body-head"> <a href="#"><%=topic.getTopic() %></a> </h4>
+                                <p class="div-JD-section-body-bottom"> <%=topic.getContents() %></p>
                                 <p class="div-JD-section-body-bottom"> 版主:K,元芳 </p>
                             </div>
                         </div>
                     </div>
                     <%
-               		 }                	
+               		 }
            			%>
                 </div>
+            </div>
+            
+            <div class="div-main">	<!-- 回帖区域 -->
+                <div class="div-main-head1">139回复</div>
+                <div class="div-main-body">biaoti</div>
+            </div>
+            
+            <div class="div-main">	<!-- 回复编辑 -->
+                <div class="div-main-head1">回复</div>
+                <div class="div-main-body">biaoti</div>
             </div>
         </div>
         <!--中层框架左边 end--> 

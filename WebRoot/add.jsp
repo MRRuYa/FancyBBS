@@ -1,7 +1,13 @@
+<%@page import="operating.OperatingSession"%>
+<%@page import="entity.Session"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.mysql.jdbc.Connection"%>
+<%@page import="database.BBSDatabase"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+List<Session> list=OperatingSession.getAllSession();
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -18,9 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/login-register.css" />
 <link rel="stylesheet" type="text/css" href="css/DYH.css" />
-
-<script type="text/javascript" src="fckeditor/fckeditor.js"></script>		<!--FCKEditor-->
-<script type="text/javascript">
+<script type="text/javascript" src="fckeditor/fckeditor.js"></script><!--FCKEditor-->
+<script type="text/javascript"><!--FCKEditor-->
 	window.onload = function()	{
 		// Automatically calculates the editor base path based on the _samples directory.
 		// This is usefull only for these samples. A real application should use something like this:
@@ -34,6 +39,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		oFCKeditor.BasePath	= sBasePath ;
 		oFCKeditor.ReplaceTextarea() ;
 	}
+</script>
+<script type="text/javascript">
+	function checkadd() {	
+		var topic = document.getElementById("topic").value;		//记录帖子标题
+		var	 node_id = document.getElementById("node_id").value;		//记录帖子所在版块id		
+		//var contnet = document.getElementById("contents");	//记录帖子内容
+		//var contents = content.innerText;
+		//var contnets = document.getElementById("contents").innerText;
+		//var ctopic = ;		//标题约束规则
+		//var content = ；		//内容约束规则
+
+		if (topic == null || topic == '') {
+			alert("请输入帖子标题");
+			return false;		
+		} else {
+			if (node_id == -1) {
+				alert("请选择帖子所在版块");
+				return false;
+			} else {
+				if (document.getElementById("contents").value.length == 0) {
+					alert("请输入帖子内容");
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+	};
 </script>
 
 <body>
@@ -69,47 +102,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--中层框架左边 start-->
     <div class="div-contentleft">
         <div class="div-main"> <!-- 发表主题框架 -->
-            <div class="div-main-head1">创建新主题</div>
+            <div class="div-main-head1">发表帖子</div>
             <div class="div-main-body">
-                <form action="AddTopic" id="addtopic" method="post" name="addtopic" >
+                <form action="AddTopic" method="post" onSubmit="return checkadd()">
                     <div class="add-form-group">
-                        <label>标题</label>
-                        <input class="add-form-control" id="topic" name="topic" value="" type="text" />
-                        <span class="help-block red"></span> 
+                        <label>帖子标题</label>
+                        <input class="add-form-control" id="topic" name="topic"  type="text" />                        
                     </div>
                     <div class="add-form-group">
-                        <label>版块</label>
+                        <label>版块所在版块</label>
                         <select name="node_id" id="node_id" class="add-form-control" >
-                            <option selected="selected" value="">请选择分类</option>
-                            <optgroup label="&nbsp;&nbsp;官方专区">
-                            <option value="1"> 程序发布 </option>
-                            <option value="4"> 开发动态 </option>
-                            <option value="15"> 商业用户专区 </option>
-                            <option value="16"> StartBBS Team </option>
-                            </optgroup>
-                            <optgroup label="&nbsp;&nbsp;STB使用">
-                            <option value="2"> bug反馈见议 </option>
-                            <option value="3"> 程序讨论 </option>
-                            <option value="5"> 模板风格 </option>
-                            <option value="6"> 插件模块开发 </option>
-                            <option value="8"> 教程帮助 </option>
-                            <option value="17"> STB@net </option>
-                            </optgroup>
-                            <optgroup label="&nbsp;&nbsp;其它版区">
-                            <option value="7"> 站长交流 </option>
-                            <option value="9"> 网站展示 </option>
-                            <option value="10"> 唠叨 </option>
-                            <option value="11"> PHP/mysql技术 </option>
-                            <option value="18"> Laravel </option>
-                            <option value="19"> CodeIgniter </option>
+                            <option selected="selected" value="-1">请选择分类</option>
+                            <optgroup label="&nbsp;&nbsp;话题列表">
+                            <% 
+                            for(int i=0;i<list.size();i++){
+                    			Session session2 = list.get(i);
+                         
+                            %>
+                            <option value="<%=session2.getId()%>"> <%=session2.getName() %> </option>
+                            <%
+                            }
+                            %>
                             </optgroup>
                         </select>
                     </div>
-                    <div class="add-form-group"> 
-                    	<label>内容</label>            
-                        <textarea class="add-form-control" id="contents" name="contents" placeholder="话题内容" rows="10"></textarea>
+                    <div class="add-form-group">
+                        <label>内容</label>
+                        <textarea class="add-form-control" id="contents" name="contents"  rows="10" ></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">创建</button>
+                    <button type="submit" >创建</button>
                 </form>
             </div>
         </div>

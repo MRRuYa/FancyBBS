@@ -56,7 +56,7 @@ public class ToolTopic {
 
 	// 使用默认信息补全一个信息不完整的话题
 	public static Topic completionTopic(Topic topic) {
-
+		topic.setTopic(topic.getTopic()==null?"":topic.getTopic());
 		return topic;
 	}
 

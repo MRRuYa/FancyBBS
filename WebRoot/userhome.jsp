@@ -17,6 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="shortcut icon" href="img/logo.png" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/login-register.css" />
+<link rel="stylesheet" type="text/css" href="css/DYH.css" />
 </head>
 
 <body>
@@ -36,20 +37,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="index-form-control1" type="text" placeholder="输入关键字回车"/>
             </form>
         </div>
-        
         <div class="indec-div-ulmain2">
-        	<ul class="nav navbar-nav navbar-right">
- 				<li><a href=""><span class="glyphicon glyphicon-envelope"></span> </a></li>
-            	<li class="dropdown">
-              		<a href="" class="dropdown-toggle"  onMouseOver="document.getElementById("dropdown-menu").style.display = "none"" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Dj7511 <b class="caret"></b></a>
-	              	<ul class="dropdown-menu" id="dropdown-menu">
-	                	<li><a href="http://bbs.startbbs.com/user/profile/7226">个人主页</a></li>
-	                	<li><a href="http://bbs.startbbs.com/message">站内信</a></li>
-	                	<li><a href="http://bbs.startbbs.com/settings">设置</a></li>
-	                	<li><a href="http://bbs.startbbs.com/user/logout">退出</a></li>
-	              	</ul>
-            	</li>
-			</ul>
+            <ul id="index-ul-reandlo">
+                <!--登录注册-->
+                <li><a href="login.jsp">登录</a></li>
+                <li><a href="register.jsp">注册</a></li>
+            </ul>
         </div>
     </div>
 </div>
@@ -60,6 +53,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="div-content"> 
         <!--中层框架左边 start-->
         <div class="div-contentleft"> 
+        
+        	<div class="div-main">	<!-- 用户信息 -->
+                
+                <div class="div-main-body">biaoti</div>
+            </div>
+            
+            <div class="div-main">	<!-- 最近创建的主题 -->
+                <div class="div-main-head1">最近创建的主题</div>
+                <div class="div-main-body">biaoti</div>
+            </div>
+            
+            <div class="div-main">	<!--最近回复的主题  -->
+                <div class="div-main-head1">最近回复的主题</div>
+                <div class="div-main-body">biaoti</div>
+            </div>
         </div>
         <!--中层框架左边 end--> 
         

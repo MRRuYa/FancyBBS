@@ -7,6 +7,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import operating.OperatingTopic;
+
+import entity.Topic;
+import entity.User;
 
 public class AddTopic extends HttpServlet {
 
@@ -53,20 +59,7 @@ public class AddTopic extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the GET method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+		this.doPost(request, response);
 	}
 
 	/**
@@ -81,20 +74,33 @@ public class AddTopic extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the POST method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+		request.setCharacterEncoding("GBK");		//设置编码格式
+		response.setCharacterEncoding("GBK");		//设置编码格式
+		response.setContentType("text/html;charset=utf-8");		
+		PrintWriter out = response.getWriter();		//获取输出流
+		HttpSession session = request.getSession();		//获取session对象
+		//User user = (User)session.getAttribute("user");		//获取用户对象
+		
+		String topic = request.getParameter("topic");		//获取帖子标题
+		String node_id = request.getParameter("node_id");		//获取帖子所在版块id
+		int sId = Integer.parseInt(node_id);
+		//int uId = user.getId();		//获取发帖人id
+		String contents = request.getParameter("contents");		//获取帖子内容
+		
+		Topic Topic = new Topic();
+		Topic.setTopic(topic);
+		Topic.setsId(sId);
+		//Topic.setuId(uId);
+		
+		//OperatingTopic.insertATopic(Topic);
+		
+		out.println(topic);
+		out.println("<br />");
+		out.println(sId);
+		out.println("<br />");
+		out.println(contents);
+		
+		//response.sendRedirect("index.jsp");		//跳转到主页
 	}
 
 	/**
