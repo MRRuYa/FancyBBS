@@ -38,12 +38,13 @@ public class OperatingSession {
 		return null;
 	}
 
-	//通过id值获取session
+	//通过topic值获取session
 	public static Session getSessionById(int i) {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from session where id=" + i  +";");
 		List<Session> list = ToolSession.resultSetToList(resultSet);
 		return list.isEmpty() ? null : list.get(0);
 	}
+	
 	// 获取系统所有会话信息
 	public static List<Session> getAllSession() {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from session;");

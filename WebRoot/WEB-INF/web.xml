@@ -35,6 +35,13 @@
     <servlet-name>LoginOut</servlet-name>
     <servlet-class>servlet.LoginOut</servlet-class>
   </servlet>
+  <servlet>
+    <description>AddReply</description>
+    <display-name>AddReply</display-name>
+    <servlet-name>AddReply</servlet-name>
+    <servlet-class>servlet.AddReply</servlet-class>
+  </servlet>
+
 
 
 
@@ -60,6 +67,10 @@
   <servlet-mapping>
     <servlet-name>LoginOut</servlet-name>
     <url-pattern>/LoginOut</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddReply</servlet-name>
+    <url-pattern>/AddReply</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>welcome.jsp</welcome-file>

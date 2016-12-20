@@ -6,6 +6,7 @@ import java.util.List;
 import database.BBSDatabase;
 import entity.Session;
 import entity.Topic;
+import tool.ToolSession;
 import tool.ToolTopic;
 
 public class OperatingTopic {
@@ -40,6 +41,12 @@ public class OperatingTopic {
 	public static List<Topic> getAllTopic() {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic;");
 		return ToolTopic.resultSetToList(resultSet);
+	}
+	// 通过id值获取topic
+	public static Topic getAllTopicById(int i) {
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where id=" + i + ";");
+		List<Topic> list = ToolTopic.resultSetToList(resultSet);
+		return list.isEmpty() ? null : list.get(0);
 	}
 	//获取板块id号为i的所有帖子
 	public static List<Topic> getTopicBySession(Session session) {

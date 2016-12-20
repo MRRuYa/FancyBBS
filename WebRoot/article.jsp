@@ -18,8 +18,7 @@
 	
 	//User user = (User)session.getAttribute("user");		//获取当前USER对象
 	
-	Session session2 = OperatingSession.getSessionById(sId); 		//通过url的id值获取session
-	
+	Session session2 = OperatingSession.getSessionById(sId); 		//通过url的id值获取session	
 	List<Topic> list = OperatingTopic.getTopicBySession(session2);
 %>
 
@@ -38,7 +37,14 @@
 <link rel="stylesheet" type="text/css" href="css/login-register.css" />
 <link rel="stylesheet" type="text/css" href="css/DYH.css" />
 </head>
-
+<script type="text/javascript">
+	function xianshi() {
+		document.getElementById("uldown").style.display = "inline";
+	}
+	function yincang() {
+		document.getElementById("uldown").style.display = "none";
+	}
+</script>
 <body>
 	<!--菜单层 start-->
 	<div class="index-div-menu">
@@ -112,7 +118,7 @@
 						<div class="div-JD-list">
 							<div class="div-JD-section-first">
 								<a class="div-JD-section-left" href="userhome.jsp?uId=<%=user.getId()%>"> 
-									<img class="div-JD-img" src="<%=user.getPhoto() %>" alt="admin" /> 	<!-- 用户头像 -->
+									<img class="div-JD-img" src="<%=user.getPhoto() %>" alt="<%=user.getNickname() %>" /> 	<!-- 用户头像 -->
 								</a>
 								<div class="div-JD-section-body">
 									<h4 class="div-JD-section-body-head">
