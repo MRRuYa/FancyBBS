@@ -29,6 +29,13 @@
     <servlet-name>AddTopic</servlet-name>
     <servlet-class>servlet.AddTopic</servlet-class>
   </servlet>
+  <servlet>
+    <description>LoginOut</description>
+    <display-name>LoginOut</display-name>
+    <servlet-name>LoginOut</servlet-name>
+    <servlet-class>servlet.LoginOut</servlet-class>
+  </servlet>
+
 
 
 
@@ -49,6 +56,10 @@
   <servlet-mapping>
     <servlet-name>AddTopic</servlet-name>
     <url-pattern>/AddTopic</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginOut</servlet-name>
+    <url-pattern>/LoginOut</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>welcome.jsp</welcome-file>

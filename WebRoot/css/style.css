@@ -284,24 +284,16 @@ body {
     position: relative;
 }
 /**/
-.navbar-inverse .navbar-nav > li > a {
-    color: #9d9d9d;
-}
-.navbar-nav > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-.navbar-nav > li > a {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    line-height: 20px;
-}
-.nav > li > a {
-    position: relative;
+.dropdown-toggle {	/*a±êÇ©*/
+	position: relative;
     display: block;
     padding: 10px 15px;
+	background-color: transparent;
+	color: #9d9d9d;
 }
-/**/
+.dropdown-toggle:hover {	/**/
+	color: #fff;
+}
 .navbar-nav > li > .dropdown-menu {
     margin-top: 0;
     border-top-left-radius: 0;
@@ -316,9 +308,9 @@ body {
     top: 100%;
     left: 0;
     z-index: 1000;
-    /*display: none;*/
+    display: none;
     float: left;
-    min-width: 160px;
+    min-width: 100px;
     padding: 5px 0;
     margin: 2px 0 0;
     font-size: 14px;
@@ -333,7 +325,42 @@ body {
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
-
+.dropdown-menu a {
+	color: black;
+	font-size:15px;
+	position: relative;
+    display: block;
+    padding: 10px 15px;
+	background-color: transparent;
+}
+.dropdown-menu a:hover {
+	color: #262626;
+	text-decoration: none;
+	background-color: #f5f5f5;	
+}
+.dropdown-menu a:linked {
+	color: black;
+}
+/**/
+.dropdown {
+    position: relative;
+}
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.divider {
+    height: 1px;
+    margin: 1px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
 /***************index.jsp***************/
 
 /********************welcome.jsp********************/

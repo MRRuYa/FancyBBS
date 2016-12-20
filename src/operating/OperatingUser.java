@@ -60,7 +60,14 @@ public class OperatingUser {
 		List<User> list = ToolUser.resultSetToList(resultSet);
 		return list.isEmpty() ? user : list.get(0);
 	}
-
+	
+	// 根据用户id获取一个详细的用户信息
+	public static User getAUserById(int i) {
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from user where id='" + i + "';");
+		List<User> list = ToolUser.resultSetToList(resultSet);
+		return list.isEmpty() ? null : list.get(0);
+	}
+	
 	// 获取系统所有用户信息
 	public static List<User> getAllUser() {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from user;");
