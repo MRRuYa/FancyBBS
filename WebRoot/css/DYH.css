@@ -21,10 +21,18 @@ ol,ul {
 caption,th { 
   text-align: left; 
 } 
-h2,h5,h6 { 
+h6 { 
   font-weight: normal; 
   font-size: 100%; 
 } 
+h2{
+  font-family:inherit;
+  font-weight:500;
+  line-height:1.1;
+  color:inherit;
+  font-size: 22px;
+  margin: 5px 0;
+}
 h3{
   font-family:inherit;
   font-weight:500;
@@ -33,6 +41,15 @@ h3{
 h4{
   font-size:16px;
   font-weight: normal;
+}
+h5{
+	font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+	font-size:14px;
+	padding:0px;
+	margin:0px;
 }
 q:before,q:after { 
   content:”; 
@@ -129,16 +146,18 @@ p1{
     border-top-right-radius:3px;
 }
 .div-main-head2{        /*主盒子的上部（第一类灰色部分）*/
-    height:17.6px;
+
     border-bottom:1px solid #eee;
     font-size:16px;
     padding:10px 15px;
     border-top-left-radius:3px;
     border-top-right-radius:3px;
+	
 }
 .div-main-body{       /*主盒子的下部*/    
     padding:15px;
     font-size:14px;
+	min-height:50px;
 }
 /*****页面中盒子-杜宇浩*****/
 
@@ -267,3 +286,55 @@ p1{
 }
 
 /*****节点分页面板块-杜宇浩*****/
+
+/*****节点topic板块-杜宇浩*****/
+.div-topic-heading{
+	background-color:#fff;
+}
+.div-topic-img{
+	vertical-align:middle;
+	width:64px;
+	height:64px;
+	border:0;
+}
+.div-topic-title{
+    font-size: 22px;
+    margin: 5px 0;
+}
+.div-reply{
+    color:#23527c;
+    text-decoration:underline;
+}
+.div-topic-tag{
+    padding:0px;
+    margin:10px 0px 0px 0px;
+    color:#CCC;
+}
+.col-md-4{
+	width: 8.33333333%;
+	float: left;
+	position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+	box-sizing:border-box;
+}
+.div-topic-img{
+	width:48px;
+	height:48px;
+	border-radius:6px;
+	box-sizing:border-box;
+}
+.col-md-5{
+    width: 91.66666667%;
+	float: left;
+	position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+	box-sizing:border-box;
+}
+.div-topic-reply-body {
+    padding-left: 20px;
+}
+/*****节点topic板块-杜宇浩*****/
