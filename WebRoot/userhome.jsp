@@ -92,9 +92,9 @@
 								<img class="div-xx-img div-xx-img-responsive" src="#" alt="#">
 							</div>
 							<div class="col-md-7">
-								<h4>Dj7511</h4>
+								<h4><%=user.getNickname() %></h4>
 								<p class="div-JD-section-body-bottom">
-									<small>Dj7511是第7226号会员，加入于2016-12-06 13:37</small>
+									<small><%=user.getNickname() %>是第<%=user.getId() %>号会员，加入于<%=user.getRegistrationdate() %></small>
 								</p>
 								<p>签名：</p>
 								<p>
@@ -113,7 +113,7 @@
 				<div class="div-main">	<!-- 中div -->
 					<div class="div-main-head1">
 						<h3 class="div-title">
-							<small>最近添加的主题</small>
+							<small>最近发表的帖子</small>
 						</h3>
 					</div>
 					<div class="div-main-body">
@@ -137,11 +137,10 @@
 				</div>	<!-- 中div -->
 				
 
-				<div class="div-main">
-					<!-- 下div -->
+				<div class="div-main">	<!-- 下div -->					
 					<div class="div-main-head1">
 						<h3 class="div-title">
-							<small>最近添加的主题</small>
+							<small>最近的回复</small>
 						</h3>
 					</div>
 					<div class="div-main-body">
@@ -158,8 +157,8 @@
 								</div></li>
 						</ul>
 					</div>
-				</div>
-				<!-- 下div -->
+				</div>	<!-- 下div -->
+				
 			</div>
 			<!--中层框架左边 end-->
 

@@ -77,6 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ul class="div-xx-pagination"></ul>
       </div>
     </div>                                    <!-- 中div -->
+    
     <div class="div-main">                   <!-- 下div -->
       <div class="div-main-head1">
         <h3 class="div-title">
@@ -102,6 +103,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </li>
         </ul>
       </div>
-    </div>                        <!-- 下div -->
+    </div> <!-- 下div -->
   </body>
 </html>

@@ -67,6 +67,15 @@ p{
 body {
 	background: #E0E0E0;
 }
+.kuangjia-div-main {
+	width: 970px;
+	margin: 0px auto;	
+	box-sizing: border-box;
+	position: relative; top: 65px;
+	
+	background:#F00;
+	min-height: 1000px;	
+}
 .div-maincontener {  /*Ò³Ãæ¿òÌå+µ×²¿*/
 	height: auto;
 	widtth: 100%;
