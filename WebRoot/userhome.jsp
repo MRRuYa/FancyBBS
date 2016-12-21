@@ -1,5 +1,5 @@
-<%@page import="operating.OperatingUser"%>
-<%@page import="entity.User"%>
+<%@page import="operating.*"%>
+<%@page import="entity.*"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
@@ -9,6 +9,9 @@
 
 	User user = OperatingUser.getAUserById(1); //test user
 	//User user = (User) session.getAttribute("user");
+	
+	List<Topic> topics = OperatingTopic.getATopicByAUser(user);
+	List<Reply> replies = OperatingReply.getAllReplyByAUser(user);
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -89,18 +92,17 @@
 					<div class="div-main-body">
 						<div class="div-xx-row">
 							<div class="col-md-6">
-								<img class="div-xx-img div-xx-img-responsive" src="#" alt="#">
+								<img class="div-xx-img div-xx-img-responsive" src="<%=user.getPhoto() %>" />
 							</div>
 							<div class="col-md-7">
 								<h4><%=user.getNickname() %></h4>
 								<p class="div-JD-section-body-bottom">
 									<small><%=user.getNickname() %>是第<%=user.getId() %>号会员，加入于<%=user.getRegistrationdate() %></small>
 								</p>
-								<p>签名：</p>
-								<p>
-									个人主页： <a href=""></a>
-								</p>
-								<p>所在地：</p>
+								<p>昵称：<%=user.getNickname() %></p>
+								<p>性别：<%=user.getSex() %></p>
+								<p>email：<%=user.getEmail() %></p>
+								
 							</div>
 							<div class="col-md-8"></div>
 							<div class="col-md-9">
@@ -111,12 +113,16 @@
 				</div>	<!-- 上div -->
 
 				<div class="div-main">	<!-- 中div -->
-					<div class="div-main-head1">
+					<div class="div-main-head1">		<!-- 标题 -->
 						<h3 class="div-title">
 							<small>最近发表的帖子</small>
 						</h3>
-					</div>
-					<div class="div-main-body">
+					</div>	<!-- 标题 -->
+					<%
+						for (Topic topic:topics) {
+					%>
+					
+					<div class="div-main-body">	<!-- 帖子内容 -->
 						<ul class="div-JD-list">
 							<li class="div-JD-section-first">
 								<div class="div-JD-section-right">
@@ -133,7 +139,11 @@
 								</div></li>
 						</ul>
 						<ul class="div-xx-pagination"></ul>
-					</div>
+					</div>	<!-- 帖子内容 -->
+					
+					<% 
+						}
+					 %>
 				</div>	<!-- 中div -->
 				
 

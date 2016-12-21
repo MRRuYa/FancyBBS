@@ -28,43 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			position: relative; top: 10px;
 		}
 	</style>
-	
-	<!-- 表单验证js -->
-    <script type="text/javascript">
-		function checklogin() {
-			var account = document.getElementById("login-account").value;		//记录用户名
-			var password = document.getElementById("login-password").value;		//记录密码
-			var vcode = document.getElementById("login-vcode").value;		//记录验证码
-			
-			var message = document.getElementById("tipmessage");
-			
-          	if(account == null || account == '') {
-          		alert("请输入用户名!");
-          		return false;              
-           	} else {
-           		if(password == null || password == '') {
-           			alert("请输入登录密码!");
-           			return false;	                
-         		} else {
-	         		if(vcode == null || vcode == '') {
-	         			alert("请输入验证码!");
-	         			return false;
-					} else {
-						return true;
-						//备注
-						if(vcode != <%=(String)session.getAttribute("vcode")%>) {
-							alert("验证码不正确!");
-		                	return false;
-		                } else {
-		                	return true;
-		                }
-		           
-					}
-         		}
-           	}
-        };
-    </script>
-    <!-- 表单验证js -->
   </head>
   
   <body>
@@ -118,7 +81,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="div-logininandregister-inputmain" >	<!--验证码-->
             	<label id="loginlable1">验证码</label>
                 <input name="vcode" id="login-vcode" width="80px"  type="text" placeholder="点击图片刷新" />
-                
                 <a href="login.jsp"><img id="rc" src="GetCaptcha" nclick="changeCode()" title="看不清？单击换一张图片" alt="点击更换"/></a>
                 <div id="yzm1" style="width:10" style="display:none"></div>	<!-- 隐藏层 -->            
 				
@@ -157,3 +119,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   </body>
 </html>
+
+<script type="text/javascript">
+		function checklogin() {
+			var vcode="";		  
+			 //发送 ajax get方式的请求
+			 //1、创建xhr
+			 var xhr;
+			 if(window.XMLHttpRequest){
+			 //webkit
+			 xhr = new XMLHttpRequest();
+			 }else{
+			 xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			 }
+			 //2.发送请求并传递参数
+			 
+			 xhr.open("GET","getSession");
+			 xhr.send();
+			 //3.处理响应
+			 xhr.onreadystatechange=function(){
+			 //处理正确且完整响应
+
+				if(xhr.readyState==4 && xhr.status==200){
+				vcode= xhr.responseText;
+				alert(vcode);
+				}			 
+			 }
+		
+			var account = document.getElementById("login-account").value;		//记录用户名
+			var password = document.getElementById("login-password").value;		//记录密码
+			var vcodeget = document.getElementById("login-vcode").value;		//记录验证码
+			
+			var message = document.getElementById("tipmessage");
+			alert(vcodeget + "huoqu");
+          	if(account == null || account == '') {
+          		alert("请输入用户名!");
+          		return false;              
+           	} else {
+           		if(password == null || password == '') {
+           			alert("请输入登录密码!");
+           			return false;	                
+         		} else {
+	         		if(vcodeget == null || vcodeget == '') {
+	         			alert("请输入验证码!");
+	         			return false;
+					} else {
+						if(vcodeget.is(vcodet)) {
+							alert("验证码不正确!");
+		                	return false;
+		                } else {
+		                	return true;
+		                }
+		           
+					}
+         		}
+           	}
+           	
+
+           	
+        };
+    </script>
