@@ -47,7 +47,7 @@ public class OperatingReply {
 	//获取对应topic的reply
 	public static List<Reply> getReplyByTopic(Topic topic) {
 		int tId = topic.getId();
-		ResultSet resultSet = bbsDatabase.executeQuery("select * from reply where tId=" + tId  +";");
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from reply where tId=" + tId  +" order by id;");
 		return ToolReply.resultSetToList(resultSet);
 	}
 }

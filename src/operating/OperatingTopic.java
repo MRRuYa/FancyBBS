@@ -39,18 +39,20 @@ public class OperatingTopic {
 
 	// 获取系统所有话题信息
 	public static List<Topic> getAllTopic() {
-		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic;");
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic order by id desc;");	//降序
 		return ToolTopic.resultSetToList(resultSet);
 	}
+	
 	// 通过id值获取topic
-	public static Topic getAllTopicById(int i) {
+	public static Topic getATopicById(int i) {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where id=" + i + ";");
 		List<Topic> list = ToolTopic.resultSetToList(resultSet);
 		return list.isEmpty() ? null : list.get(0);
 	}
+	
 	//获取板块id号为i的所有帖子
 	public static List<Topic> getTopicBySession(Session session) {
-		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where sId="+session.getId()+";");
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where sId="+session.getId()+" order by id desc;");
 		return ToolTopic.resultSetToList(resultSet);
 	}
 }

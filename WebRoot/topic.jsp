@@ -14,7 +14,7 @@
 	+ path + "/";
 
 	int id = Integer.parseInt(request.getParameter("id"));		//传递帖子的id
-	Topic topic1 = OperatingTopic.getAllTopicById(id);	//获取当前topic对象
+	Topic topic1 = OperatingTopic.getATopicById(id);	//通过id获取帖子
 	Session session1 = OperatingSession.getSessionById(topic1.getsId());		//获取帖子所在版块
 	User user1 = OperatingUser.getAUserById(topic1.getuId());	//获取发帖人user
 	User user2 = OperatingUser.getAUserById(topic1.getLastReplyUseID());	//获取最后回复发帖人user
@@ -37,13 +37,15 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+<link rel="shortcut icon" href="img/logo.png" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/login-register.css" />
 <link rel="stylesheet" type="text/css" href="css/DYH.css" />
 
 <script type="text/javascript" src="fckeditor/fckeditor.js"></script>
 <!--FCKEditor-->
-<script type="text/javascript">	window.onload = function()	{
+<script type="text/javascript">	
+window.onload = function()	{
 		// Automatically calculates the editor base path based on the _samples directory.
 		// This is usefull only for these samples. A real application should use something like this:
 		// oFCKeditor.BasePath = '/fckeditor/' ;	// '/fckeditor/' is the default value.
@@ -66,6 +68,41 @@
 		document.getElementById("uldown").style.display = "none";
 	}
 </script>
+<script type="text/javascript">
+	function checkadd() {	
+		if (document.getElementById("contents").value.length == 0) {
+					alert("请输入帖子内容");
+					return false;
+				} else {
+					return true;
+				}
+			/*
+		var topic = document.getElementById("topic").value;		//记录帖子标题
+		var	 node_id = document.getElementById("node_id").value;		//记录帖子所在版块id		
+		//var contnet = document.getElementById("contents");	//记录帖子内容
+		//var contents = content.innerText;
+		//var contnets = document.getElementById("contents").innerText;
+		//var ctopic = ;		//标题约束规则
+		//var content = ；		//内容约束规则
+
+		if (topic == null || topic == '') {
+			alert("请输入帖子标题");
+			return false;		
+		} else {
+			if (node_id == -1) {
+				alert("请选择帖子所在版块");
+				return false;
+			} else {
+				if (document.getElementById("contents").value.length == 0) {
+					alert("请输入帖子内容");
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}*/
+	};
+</script>
 <body>
 	<!--菜单层 start-->
 	<div class="index-div-menu">
@@ -74,7 +111,7 @@
 			<div class="index-div-ulmain">
 				<ul id="index-ul-mainNav">
 					<li><a class="index-a-logo">FancyBBS</a></li>
-					<li><a href="index.jsp.">首页</a></li>
+					<li><a href="index.jsp">首页</a></li>
 					<li><a href="node.jsp">版块</a></li>
 					<li><a href="add.jsp">发表</a></li>
 				</ul>
@@ -108,124 +145,99 @@
 		</div>
 	</div>
 	<!--菜单层 end-->
+
 	<div class="div-maincontainer">
 		<!--中层框架 start-->
 		<div class="div-content">
+			<!--中层框架左边 start-->
 			<div class="div-contentleft">
-				<!--中层框架左边 start-->
-				<div class="div-main">
-					<div class="div-main-head2">
-						<!-- 顶部标题 -->
-						<div class="div-JD-section-right">	<!-- 用户头像 -->
-							<a href="userhome.jsp?uId=<%=user1.getId()%>"> <img class="div-topic-img" src="<%=user1.getPhoto() %>" alt="<%=user1.getNickname() %>">
+
+
+				<div class="div-main">	<!-- div上 -->
+					<div class="div-main-head2">	<!-- 标题 -->
+						<div class="div-JD-section-right">
+							<a href="userhome.jsp?uId=<%=user1.getId()%>"> <img class="div-topic-img" src="<%=user1.getPhoto() %>" alt="admin">
 							</a>
-							</div>
-							<p>	<!-- 所在版块 -->
-							<a href="index.jsp">首页</a> / <a href="article.jsp?sId=<%=session1.getId()%>"><%=session1.getName() %></a>
+						</div>
+						<p>
+							<a href="index,jsp">首页</a> / <a href="article.jsp?sId=<%=session1.getId()%>"><%=session1.getName() %></a>
 						</p>
-						<h2 class="div-title div-topic-title"><%=topic1.getTopic() %></h2>	<!-- 帖子标题 -->
+						<h2 class="div-title div-topic-title"><%=topic1.getTopic() %></h2>
 						<small class="div-JD-section-body-bottom"> 
-							<span>By	<!-- 发帖人昵称 -->
-								<a href="userhome.jsp?uId=<%=user1.getId()%>"><%=user1.getNickname() %></a> 
+							<span>By
+								<a href="userhome.jsp?uId=<%=topic1.getLastReplyUseID()%>"><%=user1.getNickname() %></a> 
 							</span>&nbsp;•&nbsp; 
-							<span><%=topic1.getTime() %></span>&nbsp;•&nbsp; <!-- 发帖时间 -->
-							<span><%=topic1.getClickCount() %></span> 	<!-- 点击量 -->
-							<span>• <a href="#" class="div-reply">回复</a> </span> <span> <a href="#"
-								title="点击收藏">收藏</a> </span> </small>
-					</div>
-
-					<div class="div-main-body">
-						<!-- 内容 -->
+							<span><%=topic1.getLastReplayTime() %></span>&nbsp;•&nbsp; 	<!-- 最后回复时间 -->
+							<span><%=topic1.getClickCount() %>次点击</span> 	<!-- 点击次数 -->
+							<!--  <span>• 
+								<a	href="#" class="div-reply">回复</a> 
+							</span> 
+							<span> 
+								<a href="#" title="点击收藏">收藏</a> 
+							</span> -->
+							</small>
+					</div>		<!-- 标题 -->
+					
+					<div class="div-main-body">	<!-- 内容 -->
 						<p><%=topic1.getContents() %></p>
-						<p class="div-topic-tag">
-						
-							<a href="#">undefined</a>&nbsp; <a href="#">下一步</a>&nbsp; <a
-								href="#">收件箱</a>&nbsp; <a href="#">用户组</a>&nbsp;
-						</p>
-					</div>
-
+					</div>	<!-- 内容 -->
 					<div class="div-main-footer"></div>
-				</div>
-
-
-				<div class="div-main">
-					<!-- 回复表 -->
+				</div>	<!-- div上 -->
+				
+				
+				<div class="div-main">	<!-- div中 -->
 					<div class="div-main-head1">		<!-- 标题 -->
 						<h5>
-							<span><%=topic1.getReplyCount() %></span> 
-							<span> 回复 | 直到<%=topic1.getLastReplayTime() %></span> 
-							<a	href="#" class="div-JD-section-right"> 
-								<span	class="div-JD-section-body-bottom">添加回复</span> 
-							</a>
+							<span>139</span> <span> 回复 | 直到2016-12-20 20:20</span> <a
+								href="#" class="div-JD-section-right"> <span
+								class="div-JD-section-body-bottom">添加回复</span> </a>
 						</h5>
-					</div>
-					
-					<div class="div-main-body">		<!-- 内容 -->
-						<%
-						User usertemp = new User();	//用于保存回复表中的用户
+					</div>		<!-- 标题 -->
+					<%
+						User usertemp = new User();
+						int floor = 1;
 						for (Reply reply : replylist) {
-							usertemp = OperatingUser.getAUserById(reply.getuId());
-						%>
-						
+							usertemp = OperatingUser.getAUserById(reply.getuId());	//获取此回复的用户
+					%>
+					<div class="div-main-body">
 						<div class="div-row">
-							<div class="col-md-4">	<!-- 用户头像 -->
-								<a href="userhome.jsp?uId=<%=usertemp.getId()%>"> <img class="div-topic-img" src="<%=user1.getPhoto() %>"	 alt="<%=user1.getNickname() %>"> </a>
+							<div class="col-md-4">
+								<a href="userhome.jsp?uId=<%=usertemp.getId()%>"> <img class="div-topic-img" src="<%=usertemp.getPhoto() %>"	 alt="<%=usertemp.getNickname()%>"> </a>
 							</div>
 							<div class="col-md-5 div-topic-reply-body">
 								<h5>
-									<span> 
-										<a href="userhome.jsp?uId=<%=usertemp.getId()%>"><%=usertemp.getNickname() %></a><!-- 回复人 -->
-										&nbsp;&nbsp;
-										<%=reply.getTime() %> <!-- 回复时间 -->
-									</span> 
-									<span	class="div-JD-section-right">#1 - 
-										<a href="#"	class="clickable">回复</a> </span>
+									<span> <a href="userhome.jsp?uId=<%=usertemp.getId()%>"><%=usertemp.getNickname() %></a>&nbsp;&nbsp;<%=reply.getTime() %> </span> <span
+										class="div-JD-section-right"># - <%=floor %><a href="#"
+										class="clickable">回复</a> </span>
 								</h5>
 								<p><%=reply.getContent() %></p>
 							</div>
 						</div>
-						<%						
-						}
-						%>
-						
-						
-						<div class="div-row">
-							<div class="col-md-4">
-								<a href="#"> <img class="div-topic-img" src="#"	alt="diguotravel_avatar"> </a>
-							</div>
-							<div class="col-md-5 div-topic-reply-body">
-								<h5>
-									<span> <a href="#">diguotravel</a>&nbsp;&nbsp;8 天前 </span> <span
-										class="div-JD-section-right">#1 - <a href="#"
-										class="clickable">回复</a> </span>
-								</h5>
-								<p>确实不错的一个系统。希望能够一直更新下去。。。。</p>
-							</div>
-						</div>
-						
 					</div>
-				</div>
-
-				<div class="div-main">
-					<!-- 回复框 -->
-					<div class="div-main-head1">
+					
+					<%
+					floor++;
+						}
+					 %>
+				</div>	<!-- div中 -->
+				
+				<div class="div-main">	<!-- div下 -->
+					<div class="div-main-head1">		<!-- 标题 -->
 						<h5>
 							<span>回复</span>
 						</h5>
-					</div>
-					<div class="div-main-body">
-						<form action="AddReply" method="post" onSubmit="return checkadd()">
+					</div>		<!-- 标题 -->
+					
+					<div class="div-main-body">		<!-- 内容 -->
+						<form action="AddReply?tId=<%=topic1.getId() %>" method="post" onSubmit="return checkadd()">
 							<div class="add-form-group">
-								<textarea class="add-form-control" id="contents" name="contents"
-									rows="10"></textarea>
-								<button type="submit">创建</button>
-							</div>
-
-						</form>
-					</div>
-				</div>
-
-			</div>
+	                        	<textarea class="add-form-control" id="contents" name="contents"  rows="10" ></textarea>
+	                   	 	</div>
+	                   	 	<button type="submit" >创建</button>
+	                   	 </form>							
+					</div>		
+				</div>	<!-- 内容 -->
+			</div><!-- div下 -->
 			<!--中层框架左边 end-->
 
 			<!--中层框架右边 start-->
@@ -233,17 +245,6 @@
 			<!--中层框架右边 end-->
 		</div>
 		<!--中层框架 end-->
-
-		<!--底部	 start-->
-		<div class="index-div-bottommian1">
-			<div class="index-div-bottom">
-				Copyright &copy 2016 <br /> <span><a href="#">关于我们FancyBBS</a>
-				</span>| <span><a href="#">免责声明</a> </span>| <span><a href="#">付费服务</a>
-				</span>| <span><a href="#">联系我们</a> </span>| <span><a href="#">商业授权</a>
-				</span>| <span><a href="#">赞助开发</a> </span>| <br /> FancyBBS<a href="#">网站统计</a>|
-				QQ群XXXX鲁IC备XXX号<br /> Powered by FancyBBS 页面执行时间
-			</div>
-		</div>
-		<!--底部	 end-->
+	</div>
 </body>
 </html>

@@ -15,7 +15,7 @@ public class ToolTopic {
 		try {
 			while (resultSet.next()) {
 				Topic topic = new Topic();
-				topic.setuId(resultSet.getInt("id"));
+				topic.setId(resultSet.getInt("id"));
 				topic.setsId(resultSet.getInt("sId"));
 				topic.setuId(resultSet.getInt("uId"));
 				topic.setReplyCount(resultSet.getInt("replyCount"));

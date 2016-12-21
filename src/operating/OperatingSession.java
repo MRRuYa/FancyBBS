@@ -38,7 +38,7 @@ public class OperatingSession {
 		return null;
 	}
 
-	//通过topic值获取session
+	//通过id值获取session
 	public static Session getSessionById(int i) {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from session where id=" + i  +";");
 		List<Session> list = ToolSession.resultSetToList(resultSet);

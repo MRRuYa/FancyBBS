@@ -52,28 +52,38 @@
 			<!--菜单栏-->
 			<div class="index-div-ulmain">
 				<ul id="index-ul-mainNav">
-					<li><a class="index-a-logo" href="#">FancyBBS</a></li>
-					<li><a href="#">首页</a></li>
-					<li><a href="#">版块</a></li>
-					<li><a href="#">发表</a></li>
-					<li><a href="#">菜单5</a></li>
-					<li><a href="#">菜单6</a></li>
+					<li><a class="index-a-logo">FancyBBS</a>
+					</li>
+					<li><a href="index.jsp">首页</a>
+					</li>
+					<li><a href="node.jsp">版块</a>
+					</li>
+					<li><a href="add.jsp">发表</a>
+					</li>
 				</ul>
 			</div>
 			<div class="index-div-control1">
 				<!--搜索按钮-->
 				<form>
-					<input class="index-form-control1" type="text"
-						placeholder="输入关键字回车" />
+					<input class="index-form-control1" type="text" placeholder="输入关键字回车" />
 				</form>
 			</div>
 			<div class="indec-div-ulmain2">
-				<ul id="index-ul-reandlo">
-					<!--登录注册-->
-					<li><a href="login.html">登录</a>
-					</li>
-					<li><a href="register.html">注册</a>
-					</li>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href=""><span class="glyphicon glyphicon-envelope"></span>
+					</a></li>
+					<li class="dropdown" onMouseMove="xianshi()" onMouseOut="yincang()">
+						<a href="index.jsp" class="dropdown-toggle"> <%=user.getAccount()%>
+							<b class="caret"></b> </a>
+						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"
+							onMouseOver="xianshi()">
+							<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a></li>
+							<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a>
+							</li>
+							<li class="divider"></li>
+							<li><a href="LoginOut">退出</a>
+							</li>
+						</ul>
 				</ul>
 			</div>
 		</div>
@@ -112,6 +122,7 @@
 
 					<%
 						for (Topic topic : list) {
+							if (topic.getFlag() == 1) {
 					%>
 					<div class="div-main-body">
 						<!-- 内容 -->
@@ -122,8 +133,14 @@
 								</a>
 								<div class="div-JD-section-body">
 									<h4 class="div-JD-section-body-head">
-										<a href="topic.jsp"><%=topic.getTopic() %></a> <!-- 帖子标题 -->
+										<a href="topic.jsp?id=<%=topic.getId()%>"><%=topic.getTopic() %></a> <!-- 帖子标题 -->
+										<%
+											if (topic.getFlag() == 1) {
+										%>
 										<span	class="div-badge div-badge-node">置顶</span>
+										<%
+											}
+										 %>
 									</h4>
 									<p class="div-JD-section-body-bottom">
 										<span> 
@@ -132,7 +149,7 @@
 										<span>
 											<a href="userhome.jsp?uId=<%=user.getId()%>"><%=user.getNickname() %></a> <!-- 用户 -->
 										</span>&nbsp;•&nbsp; 
-										<span>7 天前</span>&nbsp;•&nbsp;<!-- 最后用户 -->
+										<span><%=topic.getLastReplayTime() %></span>&nbsp;•&nbsp;<!-- 最后用户 -->
 										<span>最后回复来自 <a href="userhome.jsp?uId=<%=topic.getLastReplyUseID() %>"><%=OperatingUser.getAUserById(topic.getLastReplyUseID()).getNickname() %></a> </span>
 									</p>
 								</div>
@@ -140,6 +157,47 @@
 						</div>
 					</div>
 					<%
+					}
+						}
+					%>
+					<%
+						for (Topic topic : list) {
+							if (topic.getFlag() == 0) {
+					%>
+					<div class="div-main-body">
+						<!-- 内容 -->
+						<div class="div-JD-list">
+							<div class="div-JD-section-first">
+								<a class="div-JD-section-left" href="userhome.jsp?uId=<%=user.getId()%>"> 
+									<img class="div-JD-img" src="<%=user.getPhoto() %>" alt="<%=user.getNickname() %>" /> 	<!-- 用户头像 -->
+								</a>
+								<div class="div-JD-section-body">
+									<h4 class="div-JD-section-body-head">
+										<a href="topic.jsp?id=<%=topic.getId()%>"><%=topic.getTopic() %></a> <!-- 帖子标题 -->
+										<%
+											if (topic.getFlag() == 1) {
+										%>
+										<span	class="div-badge div-badge-node">置顶</span>
+										<%
+											}
+										 %>
+									</h4>
+									<p class="div-JD-section-body-bottom">
+										<span> 
+											<a href="article.jsp?sId=<%=sId%>"><%=session2.getName() %></a> 	<!-- 版块标题 -->
+										</span>&nbsp;•&nbsp; 
+										<span>
+											<a href="userhome.jsp?uId=<%=user.getId()%>"><%=user.getNickname() %></a> <!-- 用户 -->
+										</span>&nbsp;•&nbsp; 
+										<span><%=topic.getLastReplayTime() %></span>&nbsp;•&nbsp;<!-- 最后用户 -->
+										<span>最后回复来自 <a href="userhome.jsp?uId=<%=topic.getLastReplyUseID() %>"><%=OperatingUser.getAUserById(topic.getLastReplyUseID()).getNickname() %></a> </span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<%
+					}
 						}
 					%>
 				</div>
