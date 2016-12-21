@@ -84,47 +84,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <!--菜单层 start-->
-  	<div class="index-div-menu">
-		<div class="index-div-menu1">	<!--菜单栏-->
-            <div class="index-div-ulmain">
-			<ul id="index-ul-mainNav">
-				<li>
-					<a class="index-a-logo" href="#">FancyBBS</a>
-				</li>
-				<li>
-					<a href="#">首页</a>
-				</li>
-				<li>
-					<a href="#">版块</a>
-				</li>
-				<li>
-					<a href="#">发表</a>
-				</li>
-				<li>
-					<a href="#">菜单5</a>
-				</li>
-				<li>
-					<a href="#">菜单6</a>
-				</li>
-			</ul>
-            </div>
-            
-            <div class="index-div-control1">	<!--搜索按钮-->
-            	<form>
-                	<input class="index-form-control1" type="text" placeholder="输入关键字回车"/>
-                </form>
-            </div>
-            
-            <div class="indec-div-ulmain2">
-                <ul id="index-ul-reandlo">		<!--登录注册-->
-                    <li><a href="login.jsp">登录</a></li>
-                    <li><a href="register.jsp">注册</a></li>
-                </ul>
-            </div>
-            
-		</div>
-    </div>
-    <!--菜单层 end-->
+	<div class="index-div-menu">
+	    <div class="index-div-menu1"> <!--菜单栏-->
+	        <div class="index-div-ulmain">
+	            <ul id="index-ul-mainNav">
+	                <li> <a class="index-a-logo" href="#">FancyBBS</a> </li>
+	                <li> <a href="index.jsp">首页</a> </li>
+	                <li> <a href="node.jsp">版块</a> </li>
+	                <li> <a href="add.jsp">发表</a> </li>
+	            </ul>
+	        </div>
+	        <div class="index-div-control1"> <!--搜索按钮-->
+	            <form>
+	                <input class="index-form-control1" type="text" placeholder="输入关键字回车"/>
+	            </form>
+	        </div>
+	        <div class="indec-div-ulmain2">
+	            <ul id="index-ul-reandlo">
+	                <!--登录注册-->
+	                <li><a href="login.jsp">登录</a></li>
+	                <li><a href="register.jsp">注册</a></li>
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+	<!--菜单层 end--> 
     
     <!--注册 start-->
     <div class="div-container">		 <!--container 框架-->
@@ -156,10 +140,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                
                 <a href="register.jsp"><img id="rc" src="GetCaptcha" title="看不清？单击换一张图片" alt="点击更换"/></a>
                 <p class="p-landr-tipmessage">test</p>	<!--提示信息-->
-            </div>
-            
-            <div class="div-logininandregister-other">		<!--同意条款-->
-                <input type="checkbox" name="agreement" />我已阅读并同意<a id="a-register-agreement" href="#"><<服务条款>></a>
             </div>
            	
             <div class="div-loginin-submit">	<!--提交按钮-->

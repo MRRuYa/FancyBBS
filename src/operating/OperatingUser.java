@@ -63,7 +63,7 @@ public class OperatingUser {
 	
 	// 根据用户id获取一个详细的用户信息
 	public static User getAUserById(int i) {
-		ResultSet resultSet = bbsDatabase.executeQuery("select * from user where id='" + i + "';");
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from user where id=" + i + ";");
 		List<User> list = ToolUser.resultSetToList(resultSet);
 		return list.isEmpty() ? null : list.get(0);
 	}

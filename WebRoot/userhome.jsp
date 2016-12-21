@@ -1,5 +1,5 @@
-<%@page import="operating.OperatingUser"%>
-<%@page import="entity.User"%>
+<%@page import="operating.*"%>
+<%@page import="entity.*"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
@@ -9,6 +9,9 @@
 
 	User user = OperatingUser.getAUserById(1); //test user
 	//User user = (User) session.getAttribute("user");
+	
+	List<Topic> topics = OperatingTopic.getATopicByAUser(user);
+	List<Reply> replies = OperatingReply.getAllReplyByAUser(user);
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -43,7 +46,7 @@
 			<!--菜单栏-->
 			<div class="index-div-ulmain">
 				<ul id="index-ul-mainNav">
-					<li><a class="index-a-logo" >FancyBBS</a></li>
+					<li><a class="index-a-logo">FancyBBS</a></li>
 					<li><a href="index.jsp.">首页</a></li>
 					<li><a href="node.jsp">版块</a></li>
 					<li><a href="add.jsp">发表</a></li>
@@ -52,7 +55,8 @@
 			<div class="index-div-control1">
 				<!--搜索按钮-->
 				<form>
-					<input class="index-form-control1" type="text" placeholder="输入关键字回车" />
+					<input class="index-form-control1" type="text"
+						placeholder="输入关键字回车" />
 				</form>
 			</div>
 			<div class="indec-div-ulmain2">
@@ -61,16 +65,15 @@
 					</a>
 					</li>
 					<li class="dropdown" onMouseMove="xianshi()" onMouseOut="yincang()">
-					<a href="index.jsp" class="dropdown-toggle" >
-						<%=user.getAccount() %>
-						<b class="caret"></b>
-					</a>
-						<ul id="uldown" class="dropdown-menu" id="dropdown-menu" onMouseOver="xianshi()">
+						<a href="index.jsp" class="dropdown-toggle"> <%=user.getAccount()%>
+							<b class="caret"></b> </a>
+						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"
+							onMouseOver="xianshi()">
 							<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a>
 							</li>
 							<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a>
 							</li>
-                            <li class="divider"></li>
+							<li class="divider"></li>
 							<li><a href="LoginOut">退出</a></li>
 						</ul>
 				</ul>
@@ -85,23 +88,87 @@
 			<!--中层框架左边 start-->
 			<div class="div-contentleft">
 
-				<div class="div-main">
-					<!-- 用户信息 -->
+				<div class="div-main">	<!-- 上div -->					
+					<div class="div-main-body">
+						<div class="div-xx-row">
+							<div class="col-md-6">
+								<img class="div-xx-img div-xx-img-responsive" src="<%=user.getPhoto() %>" />
+							</div>
+							<div class="col-md-7">
+								<h4><%=user.getNickname() %></h4>
+								<p class="div-JD-section-body-bottom">
+									<small><%=user.getNickname() %>是第<%=user.getId() %>号会员，加入于<%=user.getRegistrationdate() %></small>
+								</p>
+								<p>昵称：<%=user.getNickname() %></p>
+								<p>性别：<%=user.getSex() %></p>
+								<p>email：<%=user.getEmail() %></p>
+								
+							</div>
+							<div class="col-md-8"></div>
+							<div class="col-md-9">
+								<p></p>
+							</div>
+						</div>
+					</div>
+				</div>	<!-- 上div -->
 
-					<div class="div-main-body">biaoti</div>
-				</div>
+				<div class="div-main">	<!-- 中div -->
+					<div class="div-main-head1">		<!-- 标题 -->
+						<h3 class="div-title">
+							<small>最近发表的帖子</small>
+						</h3>
+					</div>	<!-- 标题 -->
+					<%
+						for (Topic topic:topics) {
+					%>
+					
+					<div class="div-main-body">	<!-- 帖子内容 -->
+						<ul class="div-JD-list">
+							<li class="div-JD-section-first">
+								<div class="div-JD-section-right">
+									<span class="div-badge div-badge-node">2</span>
+								</div>
+								<div class="div-JD-section-body">
+									<h4 class="div-JD-section-body-head">
+										<a href="#" class="div-xinxi-mune">新会员TEXT</a>
+									</h4>
+									<p class="div-small">
+										<span> <a href="#">程序发布</a> </span>&nbsp;•&nbsp; <span>15
+											天前</span>&nbsp;•&nbsp; <span>最后回复来自 <a href="#">Dj7511</a> </span>
+									</p>
+								</div></li>
+						</ul>
+						<ul class="div-xx-pagination"></ul>
+					</div>	<!-- 帖子内容 -->
+					
+					<% 
+						}
+					 %>
+				</div>	<!-- 中div -->
+				
 
-				<div class="div-main">
-					<!-- 最近创建的主题 -->
-					<div class="div-main-head1">最近创建的主题</div>
-					<div class="div-main-body">biaoti</div>
-				</div>
-
-				<div class="div-main">
-					<!--最近回复的主题  -->
-					<div class="div-main-head1">最近回复的主题</div>
-					<div class="div-main-body">biaoti</div>
-				</div>
+				<div class="div-main">	<!-- 下div -->					
+					<div class="div-main-head1">
+						<h3 class="div-title">
+							<small>最近的回复</small>
+						</h3>
+					</div>
+					<div class="div-main-body">
+						<ul class="div-JD-list">
+							<li class="div-JD-section-first div-xinxi-reply">
+								<div class="div-JD-section-body">
+									<h4 class="div-JD-section-body-head">
+										<small>回复了 </small> <a href="#" title="DJ7511">DJ7511</a> <small>创建的主题
+										</small> <a href="#">新会员TEXT</a>
+									</h4>
+									<blockquote>
+										text<br /> <small>--15天前</small>
+									</blockquote>
+								</div></li>
+						</ul>
+					</div>
+				</div>	<!-- 下div -->
+				
 			</div>
 			<!--中层框架左边 end-->
 

@@ -67,8 +67,16 @@ p{
 body {
 	background: #E0E0E0;
 }
+.kuangjia-div-main {
+	width: 970px;
+	margin: 0px auto;	
+	box-sizing: border-box;
+	position: relative; top: 65px;
+	
+	background:#F00;
+	min-height: 1000px;	
+}
 .div-maincontener {  /*页面框体+底部*/
-	min-height: 100%;
 	height: auto;
 	widtth: 100%;
 	margin: 0px auto;
@@ -87,6 +95,7 @@ body {
 }
 .div-contentleft {		/*页面框体左边部分*/
 	width: 650px;
+	height: auto;
 	margin: 0px auto;
 	padding: 0px 10px;
 	box-sizing: border-box;
@@ -98,6 +107,7 @@ body {
 }
 .div-contentright {		/*页面框体右边部分*/
 	width: 320px;
+	height: auto;
 	margin: 0px auto;
 	padding: 0px 10px;
 	box-sizing: border-box;

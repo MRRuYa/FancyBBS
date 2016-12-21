@@ -1,5 +1,5 @@
-<%@page import="operating.OperatingSession"%>
-<%@page import="entity.Session"%>
+<%@page import="operating.*"%>
+<%@page import="entity.*"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.mysql.jdbc.Connection"%>
 <%@page import="database.BBSDatabase"%>
@@ -7,6 +7,14 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	User user = OperatingUser.getAUserById(1);	//test user
+	/*
+	try {
+		user = (User) session.getAttribute("user");
+	} catch(Exception e) {
+		session.setAttribute("error", "未登录");
+		response.sendRedirect("login.jsp");
+	}*/
 List<Session> list=OperatingSession.getAllSession();
 %>
 
@@ -68,34 +76,59 @@ List<Session> list=OperatingSession.getAllSession();
 		}
 	};
 </script>
+<script type="text/javascript">
+	function xianshi() {
+		document.getElementById("uldown").style.display = "inline";
+	}
+	function yincang() {
+		document.getElementById("uldown").style.display = "none";
+	}
+</script>
 
 <body>
 <!--菜单层 start-->
 <div class="index-div-menu">
-    <div class="index-div-menu1"> <!--菜单栏-->
-        <div class="index-div-ulmain">
-            <ul id="index-ul-mainNav">
-                <li> <a class="index-a-logo" href="#">FancyBBS</a> </li>
-                <li> <a href="#">首页</a> </li>
-                <li> <a href="#">版块</a> </li>
-                <li> <a href="#">发表</a> </li>
-            </ul>
-        </div>
-        <div class="index-div-control1"> <!--搜索按钮-->
-            <form>
-                <input class="index-form-control1" type="text" placeholder="输入关键字回车"/>
-            </form>
-        </div>
-        <div class="indec-div-ulmain2">
-            <ul id="index-ul-reandlo">
-                <!--登录注册-->
-                <li><a href="login.html">登录</a></li>
-                <li><a href="register.html">注册</a></li>
-            </ul>
-        </div>
-    </div>
+	<div class="index-div-menu1">
+		<!--菜单栏-->
+		<div class="index-div-ulmain">
+			<ul id="index-ul-mainNav">
+				<li><a class="index-a-logo">FancyBBS</a>
+				</li>
+				<li><a href="index.jsp">首页</a>
+				</li>
+				<li><a href="node.jsp">版块</a>
+				</li>
+				<li><a href="add.jsp">发表</a>
+				</li>
+			</ul>
+		</div>
+		<div class="index-div-control1">
+			<!--搜索按钮-->
+			<form>
+				<input class="index-form-control1" type="text" placeholder="输入关键字回车" />
+			</form>
+		</div>
+		<div class="indec-div-ulmain2">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href=""><span class="glyphicon glyphicon-envelope"></span>
+				</a></li>
+				<li class="dropdown" onMouseMove="xianshi()" onMouseOut="yincang()">
+					<a href="index.jsp" class="dropdown-toggle"> <%=user.getAccount()%>
+						<b class="caret"></b> </a>
+					<ul id="uldown" class="dropdown-menu" id="dropdown-menu"
+						onMouseOver="xianshi()">
+						<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a></li>
+						<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a>
+						</li>
+						<li class="divider"></li>
+						<li><a href="LoginOut">退出</a>
+						</li>
+					</ul>
+			</ul>
+		</div>
+	</div>
 </div>
-<!--菜单层 end--> 
+<!--菜单层 end-->
 
 <!--中层框架 start-->
 <div class="div-content"> 

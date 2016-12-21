@@ -155,7 +155,7 @@ p1{
 	
 }
 .div-main-body{       /*主盒子的下部*/    
-    padding:15px;
+    padding:15px 15px 0px 15px;
     font-size:14px;
 	min-height:50px;
 }

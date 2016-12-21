@@ -26,9 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="index-div-ulmain">
             <ul id="index-ul-mainNav">
                 <li> <a class="index-a-logo" href="#">FancyBBS</a> </li>
-                <li> <a href="#">首页</a> </li>
-                <li> <a href="#">版块</a> </li>
-                <li> <a href="#">发表</a> </li>
+                <li> <a href="index.jsp">首页</a> </li>
+                <li> <a href="node.jsp">版块</a> </li>
+                <li> <a href="add.jsp">发表</a> </li>
             </ul>
         </div>
         <div class="index-div-control1"> <!--搜索按钮-->
