@@ -17,26 +17,26 @@ public class OperatingReply {
 	// 插入一个回复
 	public static boolean insertAReply(Reply reply) {
 		reply = ToolReply.completionTopic(reply);
-		int i = bbsDatabase.executeUpdate(ToolReply.entityToString(reply).toString());
+		int i = bbsDatabase.executeUpdate(ToolReply.entityToStringInsert(reply).toString());
 		return i > 0;
 	}
 
 	// 删除一个回复
 	public static boolean deleteAReply(Reply reply) {
-
-		return false;
+		int i = bbsDatabase.executeUpdate("delete form user where session='" + reply.getId() + "';");
+		return i > 0;
 	}
 
 	// 修改一个回复
 	public static boolean modifyAReply(Reply reply) {
-
-		return false;
+		int i = bbsDatabase.executeUpdate(ToolReply.entityToStringModify(reply).toString());
+		return i > 0;
 	}
 
-	// 根据一个简单的回复信息获取一个详细的回复信息
-	public static Topic getAReply(Reply reply) {
-
-		return null;
+	// 根据ID获取一个详细的回复信息
+	public static Reply getAReplyById(Reply reply) {
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from reply where id='" + reply.getId() + "';");
+		return ToolReply.resultSetToList(resultSet).get(0);
 	}
 
 	// 获取系统所有回复信息

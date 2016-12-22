@@ -41,12 +41,8 @@
     <servlet-name>AddReply</servlet-name>
     <servlet-class>servlet.AddReply</servlet-class>
   </servlet>
-  <servlet>
-    <description>getSession</description>
-    <display-name>getSession</display-name>
-    <servlet-name>getSession</servlet-name>
-    <servlet-class>servlet.getSession</servlet-class>
-  </servlet>
+
+
 
 
 
@@ -79,10 +75,7 @@
     <servlet-name>AddReply</servlet-name>
     <url-pattern>/AddReply</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>getSession</servlet-name>
-    <url-pattern>/getSession</url-pattern>
-  </servlet-mapping>	
+
   <welcome-file-list>
     <welcome-file>welcome.jsp</welcome-file>
   </welcome-file-list>

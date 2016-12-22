@@ -29,9 +29,8 @@ public class BBSDatabase {
 			this.time = Configuration.connectionSecond1;
 			return;
 		}
-		this.connection = this.getConnection(Configuration.hostName,
-				Configuration.databaseName, Configuration.userName,
-				Configuration.userPassword);
+		this.connection = this.getConnection(Configuration.databaseHostName, Configuration.databaseName, Configuration.databaseUserName,
+				Configuration.databaseUserPassword);
 		if (this.connection == null) {
 			return;
 		}
@@ -43,7 +42,7 @@ public class BBSDatabase {
 			@Override
 			public void run() {
 				if (--time <= 0) {
-					BBSDatabase.database.closeDatabase(); // bug
+					BBSDatabase.database.closeDatabase();
 					timerTask.cancel();
 					timer.cancel();
 					timerTask = null;
@@ -54,12 +53,10 @@ public class BBSDatabase {
 		timer.schedule(timerTask, 0, 1000);
 	}
 
-	private Connection getConnection(String hostName, String databaseName,
-			String userName, String password) {
+	private Connection getConnection(String hostName, String databaseName, String userName, String password) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://" + hostName + "/"
-					+ databaseName, userName, password);
+			return DriverManager.getConnection("jdbc:mysql://" + hostName + "/" + databaseName, userName, password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -115,7 +112,7 @@ public class BBSDatabase {
 
 	@Override
 	public String toString() {
-		return "这是：" + Configuration.name;
+		return "这是：" + Configuration.databaseChineseName;
 	}
 
 }

@@ -16,26 +16,26 @@ public class OperatingTopic {
 	// 插入一个话题
 	public static boolean insertATopic(Topic topic) {
 		topic = ToolTopic.completionTopic(topic);
-		int i = bbsDatabase.executeUpdate(ToolTopic.entityToString(topic).toString());
+		int i = bbsDatabase.executeUpdate(ToolTopic.entityToStringInsert(topic).toString());
 		return i > 0;
 	}
 
 	// 删除一个话题
 	public static boolean deleteATopic(Topic topic) {
-
-		return false;
+		int i = bbsDatabase.executeUpdate("delete form topic where id='" + topic.getId() + "';");
+		return i > 0;
 	}
 
 	// 修改一个话题
 	public static boolean modifyATopic(Topic topic) {
-
-		return false;
+		int i = bbsDatabase.executeUpdate(ToolTopic.entityToStringModify(topic).toString());
+		return i > 0;
 	}
 
-	// 根据一个简单的话题信息获取一个详细的话题信息
-	public static Topic getATopic(Topic topic) {
-
-		return null;
+	// 根据ID查询话题
+	public static Topic getATopicById(Topic topic) {
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where id='" + topic.getId() + "';");
+		return ToolTopic.resultSetToList(resultSet).get(0);
 	}
 
 	// 获取系统所有话题信息
@@ -52,11 +52,11 @@ public class OperatingTopic {
 	}
 	
 	// 通过一个用户获取topic 倒序
-		public static List<Topic> getATopicByAUser(User user) {
-			int i = user.getId();
-			ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where uId=" + i + "order by id desc;");
-			return ToolTopic.resultSetToList(resultSet);
-		}
+	public static List<Topic> getATopicByAUser(User user) {
+		int i = user.getId();
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where uId=" + i + "order by id desc;");
+		return ToolTopic.resultSetToList(resultSet);
+	}
 	
 	//获取板块id号为i的所有帖子
 	public static List<Topic> getTopicBySession(Session session) {

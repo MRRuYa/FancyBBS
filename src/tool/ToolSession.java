@@ -5,9 +5,45 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import configuration.Configuration;
 import entity.Session;
 
 public class ToolSession {
+
+	// 使用默认信息补全一个信息不完整的会话
+	public static Session completionTopic(Session session) {
+		Session session2 = Configuration.getDefaultSession();
+		session.setName(session.getName() == null ? session2.getName() : session.getName());
+		session.setProfile(session.getProfile() == null ? session2.getProfile() : session.getProfile());
+		return session;
+	}
+
+	// 将实体类转化为String
+	public static StringBuilder entityToStringInsert(Session session) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("insert into session (databaseChineseName,masterId,profile,topicCount,clickCount values(");
+		stringBuilder.append("'" + session.getName() + "',");
+		stringBuilder.append("'" + session.getMasterId() + "',");
+		stringBuilder.append("'" + session.getProfile() + "',");
+		stringBuilder.append("'" + session.getTopicCount() + "',");
+		stringBuilder.append("'" + session.getClickCount() + "'");
+		stringBuilder.append(");");
+		return stringBuilder;
+	}
+
+	// 将实体类转化为String
+	public static StringBuilder entityToStringModify(Session session) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("update user set ");
+		stringBuilder.append(" name='" + session.getName() + "',");
+		stringBuilder.append(" profile='" + session.getProfile() + "',");
+		stringBuilder.append(" masterId='" + session.getMasterId() + "',");
+		stringBuilder.append(" topicCount='" + session.getTopicCount() + "',");
+		stringBuilder.append(" clickCount='" + session.getClickCount() + "',");
+		stringBuilder.append(" where id='" + session.getId() + "';");
+		return stringBuilder;
+	}
+
 	// 把一个ResultSet转化为一个List<Session>
 	public static List<Session> resultSetToList(ResultSet resultSet) {
 		List<Session> list = new ArrayList<Session>();
@@ -16,7 +52,7 @@ public class ToolSession {
 				Session session = new Session();
 				session.setId(resultSet.getInt("id"));
 				session.setMasterId(resultSet.getInt("masterId"));
-				session.setName(resultSet.getString("name"));
+				session.setName(resultSet.getString("databaseChineseName"));
 				session.setProfile(resultSet.getString("profile"));
 				session.setTopicCount(resultSet.getInt("topicCount"));
 				session.setClickCount(resultSet.getInt("clickCount"));
@@ -28,22 +64,4 @@ public class ToolSession {
 		return list;
 	}
 
-	// 将实体类转化为String
-	public static StringBuilder entityToString(Session session) {
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("insert into session (name,masterId,profile,topicCount,clickCount values(");
-		stringBuilder.append("'" + session.getName() + "',");
-		stringBuilder.append("'" + session.getMasterId() + "',");
-		stringBuilder.append("'" + session.getProfile() + "',");
-		stringBuilder.append("'" + session.getTopicCount() + "',");
-		stringBuilder.append("'" + session.getClickCount() + "'");
-		stringBuilder.append(");");
-		return stringBuilder;
-	}
-
-	// 使用默认信息补全一个信息不完整的会话
-	public static Session completionTopic(Session session) {
-
-		return session;
-	}
 }

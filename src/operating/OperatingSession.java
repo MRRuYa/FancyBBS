@@ -16,28 +16,33 @@ public class OperatingSession {
 	// 插入一个会话
 	public static boolean insertASession(Session session) {
 		session = ToolSession.completionTopic(session);
-		int i = bbsDatabase.executeUpdate(ToolSession.entityToString(session).toString());
+		int i = bbsDatabase.executeUpdate(ToolSession.entityToStringInsert(session).toString());
 		return i > 0;
 	}
 
 	// 删除一个会话
 	public static boolean deleteASession(Session session) {
-
-		return false;
+		int i = bbsDatabase.executeUpdate("delete form user where session='" + session.getId() + "';");
+		return i > 0;
 	}
 
 	// 修改一个会话
 	public static boolean modifyASession(Session session) {
-
-		return false;
+		int i = bbsDatabase.executeUpdate(ToolSession.entityToStringModify(session).toString());
+		return i > 0;
 	}
 
-	// 根据一个简单的会话信息获取一个详细的会话信息
-	public static Topic getASession(Session session) {
-
-		return null;
+	// 根据ID获取回话信息
+	public static Session getASessionById(Session session) {
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from session where id='" + session.getId() + "';");
+		return ToolSession.resultSetToList(resultSet).get(0);
 	}
 
+	public static Session getASessionByName(Session session) {
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from session where id='" + session.getName() + "';");
+		return ToolSession.resultSetToList(resultSet).get(0);
+	}
+	
 	//通过id值获取session
 	public static Session getSessionById(int i) {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from session where id=" + i  +";");

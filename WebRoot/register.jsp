@@ -139,7 +139,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input name="vcode" id="register-vcode" width="80px" type="text" placeholder="点击图片刷新" />
                
                 <a href="register.jsp"><img id="rc" src="GetCaptcha" title="看不清？单击换一张图片" alt="点击更换"/></a>
-                <p class="p-landr-tipmessage">test</p>	<!--提示信息-->
             </div>
            	
             <div class="div-loginin-submit">	<!--提交按钮-->

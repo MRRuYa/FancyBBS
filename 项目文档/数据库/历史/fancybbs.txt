@@ -8,6 +8,7 @@ drop database if exists fancybbs;
 create database fancybbs;
 
 
+
 /*************************创建FancyBBS数据库中的表******************/
 #使用FancyBBS数据库
 use fancybbs;
@@ -29,20 +30,19 @@ create table user(
  blank_1 text,
  blank_2 text
 );
-
-#尝试插入user表一条数据admin超级用户
+#尝试插入user表一条数据
 insert into user 
 (account,password,nickname,email,photo,sex,grade,registrationdate,point) 
 values(
- 'admin',
- 'admin',
- 'admin',
- '751152833@qq.com',
- 'img/UserPhoto/admin.jpg',
- '男',
- 3,
+ 'account',
+ 'password',
+ 'nickname',
+ '1451915139@qq.com',
+ 'photo',
+ 'M',
+ 1,
  now(),
- 9999
+ 200
 );
 
 #删除可能存在的session表
@@ -57,7 +57,17 @@ create table session(
  clickCount int,
  blank_1 text,
  blank_2 text,
- foreign key(masterId) references user(id) on delete cascade
+ foreign key(masterId) references user(id)
+);
+#尝试插入session表一条数据
+insert into session 
+(name,masterId,profile,topicCount,clickCount) 
+values(
+ 'name',
+ 1,
+ 'profile',
+ 1,
+ 2
 );
 
 #删除可能存在的topic表
@@ -75,9 +85,26 @@ create table topic(
  clickCount int,
  lastReplyUseID int unsigned,
  lastReplayTime datetime,
- foreign key(sId) references user(id) on delete cascade,
- foreign key(uId) references session(id) on delete cascade,
- foreign key(lastReplyUseID) references user(id) on delete cascade
+ blank_1 text,
+ blank_2 text,
+ foreign key(sId) references user(id),
+ foreign key(uId) references session(id),
+ foreign key(lastReplyUseID) references user(id)
+);
+#尝试插入topic表一条数据
+insert into topic 
+(sId,uId,replyCount,topic,contents,time,flag,clickCount,lastReplyUseID,lastReplayTime) 
+values(
+ 1,
+ 1,
+ 12,
+ 'topic',
+ 'contents',
+ now(),
+ 1,
+ 23,
+ 1,
+ now()
 );
 
 #删除可能存在的reply表
@@ -89,7 +116,18 @@ create table reply(
  uId int unsigned,
  content text,
  time datetime,
- foreign key(tId) references topic(id) on delete cascade,
- foreign key(uId) references user(id) on delete cascade
+ blank_1 text,
+ blank_2 text,
+ foreign key(tId) references topic(id),
+ foreign key(uId) references user(id)
+);
+#尝试插入topic表一条数据
+insert into reply 
+(tId,uId,content,time) 
+values(
+ 1,
+ 1,
+ 'content',
+ now()
 );
 
