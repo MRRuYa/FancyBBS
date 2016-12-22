@@ -89,15 +89,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div class="index-div-ulmain">
 	            <ul id="index-ul-mainNav">
 	                <li> <a class="index-a-logo" href="#">FancyBBS</a> </li>
-	                <li> <a href="index.jsp">首页</a> </li>
-	                <li> <a href="node.jsp">版块</a> </li>
-	                <li> <a href="add.jsp">发表</a> </li>
+	                <li> <a href="#">首页</a> </li>
+	                <li> <a href="#">版块</a> </li>
+	                <li> <a href="#">发表</a> </li>
 	            </ul>
-	        </div>
-	        <div class="index-div-control1"> <!--搜索按钮-->
-	            <form>
-	                <input class="index-form-control1" type="text" placeholder="输入关键字回车"/>
-	            </form>
 	        </div>
 	        <div class="indec-div-ulmain2">
 	            <ul id="index-ul-reandlo">
@@ -150,7 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <!--注册 end--> 
     
-    <!--底部	 start-->    
+    <!--底部	   
     <div class="register-div-bottommian">
         <div class="register-div-bottom">
             Copyright &copy 2016 <br/>	
@@ -165,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            Powered by FancyBBS 页面执行时间
         </div>
     </div>
-    <!--底部	 end-->  
+    	 end-->  
 
   </body>
 </html>

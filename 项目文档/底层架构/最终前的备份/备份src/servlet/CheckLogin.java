@@ -91,42 +91,30 @@ public class CheckLogin extends HttpServlet {
 		user.setPassword(password);
 		
 		String vcode1 = (String)session.getAttribute("vcode");		//获取后台生成验证码
-		//System.out.print(vcod.equals(vcode1));
+		System.out.print(vcod.equals(vcode1));
 		
 		if (vcod.equals(vcode1) == false) {	//判断验证码是否正确
 			session.setAttribute("error",	"验证码不正确");
 			request.setAttribute("lastpage", "login.jsp");
-			
-			response.getWriter().print("forward:<br />");
-			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-			//response.sendRedirect("error.jsp");
+			response.sendRedirect("error.jsp");
 		}
 		
-		//if (OperatingUser.verificationAUserName(user)) {		//判断用户名是否存在
+		if (OperatingUser.verificationAUserName(user)) {		//判断用户名是否存在
 			if (OperatingUser.verificationAUser(user)) {		//密码是否则正确			
 				// 根据一个简单的用户信息获取一个详细的用户信息
 				User user2 = OperatingUser.getAUser(user);
 				session.setAttribute("user", user2);		//传递用户对象
-				
-				response.getWriter().print("forward:<br />");
-				getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-				//response.sendRedirect("http://localhost:8080/FancyBBS/index.jsp");		//跳转到主页
+				response.sendRedirect("http://localhost:8080/FancyBBS/index.jsp");		//跳转到主页
 			} else {
 				session.setAttribute("error",	"密码不正确");
 				request.setAttribute("lastpage", "login.jsp");
-				
-				response.getWriter().print("forward:<br />");
-				getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-				//response.sendRedirect("http://localhost:8080/FancyBBS/error.jsp");
+				response.sendRedirect("http://localhost:8080/FancyBBS/error.jsp");
 			}
-		/*} else {
+		} else {
 			session.setAttribute("error",	"用户名不存在");
 			request.setAttribute("lastpage", "login.jsp");
-			
-			response.getWriter().print("forward:<br />");
-			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-			//response.sendRedirect("http://localhost:8080/FancyBBS/error.jsp");
-		}*/
+			response.sendRedirect("http://localhost:8080/FancyBBS/error.jsp");
+		}
 	}
 
 	/**

@@ -38,16 +38,21 @@ public class OperatingSession {
 		return ToolSession.resultSetToList(resultSet).get(0);
 	}
 
+	//根据帖子获取Session
+	public static Session getASessionByATopic(Topic topic) {
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from session where id='" + topic.getsId() + "';");
+		return ToolSession.resultSetToList(resultSet).get(0);
+	}
+	
 	public static Session getASessionByName(Session session) {
-		ResultSet resultSet = bbsDatabase.executeQuery("select * from session where id='" + session.getName() + "';");
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from session where name ='" + session.getName() + "';");
 		return ToolSession.resultSetToList(resultSet).get(0);
 	}
 	
 	//通过id值获取session
 	public static Session getSessionById(int i) {
-		ResultSet resultSet = bbsDatabase.executeQuery("select * from session where id=" + i  +";");
-		List<Session> list = ToolSession.resultSetToList(resultSet);
-		return list.isEmpty() ? null : list.get(0);
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from session where id='" + i  +"';");
+		return ToolSession.resultSetToList(resultSet).get(0);
 	}
 	
 	// 获取系统所有会话信息

@@ -9,16 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import operating.OperatingUser;
+import operating.OperatingTopic;
 
+import entity.Topic;
 import entity.User;
 
-public class CheckLogin extends HttpServlet {
+public class AddTopic extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public CheckLogin() {
+	public AddTopic() {
 		super();
 	}
 
@@ -73,60 +74,33 @@ public class CheckLogin extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		request.setCharacterEncoding("GBK");		//设置编码格式
 		response.setCharacterEncoding("GBK");		//设置编码格式
-		
 		response.setContentType("text/html;charset=utf-8");		
-		
-		User user=new User();		//创建用户对象，用于判断
 		PrintWriter out = response.getWriter();		//获取输出流
 		HttpSession session = request.getSession();		//获取session对象
+		//User user = (User)session.getAttribute("user");		//获取用户对象
 		
-		String account = request.getParameter("account");	//获取用户输入的用户名
-		String password = request.getParameter("password");	//获取用户输入的密码
-		String vcod = request.getParameter("vcode");		//获取用户输入验证码
+		String topic = request.getParameter("topic");		//获取帖子标题
+		String node_id = request.getParameter("node_id");		//获取帖子所在版块id
+		int sId = Integer.parseInt(node_id);
+		//int uId = user.getId();		//获取发帖人id
+		String contents = request.getParameter("contents");		//获取帖子内容
 		
-		user.setAccount(account);
-		user.setPassword(password);
+		Topic Topic = new Topic();
+		Topic.setTopic(topic);
+		Topic.setsId(sId);
+		//Topic.setuId(uId);
 		
-		String vcode1 = (String)session.getAttribute("vcode");		//获取后台生成验证码
-		//System.out.print(vcod.equals(vcode1));
+		//OperatingTopic.insertATopic(Topic);
 		
-		if (vcod.equals(vcode1) == false) {	//判断验证码是否正确
-			session.setAttribute("error",	"验证码不正确");
-			request.setAttribute("lastpage", "login.jsp");
-			
-			response.getWriter().print("forward:<br />");
-			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-			//response.sendRedirect("error.jsp");
-		}
+		out.println(topic);
+		out.println("<br />");
+		out.println(sId);
+		out.println("<br />");
+		out.println(contents);
 		
-		//if (OperatingUser.verificationAUserName(user)) {		//判断用户名是否存在
-			if (OperatingUser.verificationAUser(user)) {		//密码是否则正确			
-				// 根据一个简单的用户信息获取一个详细的用户信息
-				User user2 = OperatingUser.getAUser(user);
-				session.setAttribute("user", user2);		//传递用户对象
-				
-				response.getWriter().print("forward:<br />");
-				getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-				//response.sendRedirect("http://localhost:8080/FancyBBS/index.jsp");		//跳转到主页
-			} else {
-				session.setAttribute("error",	"密码不正确");
-				request.setAttribute("lastpage", "login.jsp");
-				
-				response.getWriter().print("forward:<br />");
-				getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-				//response.sendRedirect("http://localhost:8080/FancyBBS/error.jsp");
-			}
-		/*} else {
-			session.setAttribute("error",	"用户名不存在");
-			request.setAttribute("lastpage", "login.jsp");
-			
-			response.getWriter().print("forward:<br />");
-			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-			//response.sendRedirect("http://localhost:8080/FancyBBS/error.jsp");
-		}*/
+		//response.sendRedirect("index.jsp");		//跳转到主页
 	}
 
 	/**
@@ -161,7 +135,6 @@ public class CheckLogin extends HttpServlet {
 	 * @throws ServletException if an error occurs
 	 */
 	public void init() throws ServletException {
-		super.init();
 		// Put your code here
 	}
 

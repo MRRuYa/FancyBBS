@@ -42,20 +42,13 @@ p.p-landr-tipmessage { /*提示消息*/
 				<ul id="index-ul-mainNav">
 					<li><a class="index-a-logo" href="#">FancyBBS</a>
 					</li>
-					<li><a href="index.jsp">首页</a>
+					<li><a href="#">首页</a>
 					</li>
-					<li><a href="node.jsp">版块</a>
+					<li><a href="#">版块</a>
 					</li>
-					<li><a href="add.jsp">发表</a>
+					<li><a href="#">发表</a>
 					</li>
 				</ul>
-			</div>
-			<div class="index-div-control1">
-				<!--搜索按钮-->
-				<form>
-					<input class="index-form-control1" type="text"
-						placeholder="输入关键字回车" />
-				</form>
 			</div>
 			<div class="indec-div-ulmain2">
 				<ul id="index-ul-reandlo">
@@ -87,9 +80,9 @@ p.p-landr-tipmessage { /*提示消息*/
 
 				<div class="div-logininandregister-inputmain">
 					<!--密码-->
-					<label id="loginlable1">密码</label> <a id="a-loginin-password"
-						href="#">忘记密码?</a> <input name="password" id="login-password"
-						type="password" placeholder="请输入密码" />
+					<label id="loginlable1">密码</label> 
+					<!-- <a id="a-loginin-password"href="#">忘记密码?</a>--> 
+					<input name="password" id="login-password"	type="password" placeholder="请输入密码" />
 				</div>
 
 				<div class="div-logininandregister-inputmain">
@@ -99,11 +92,6 @@ p.p-landr-tipmessage { /*提示消息*/
 					<a href="login.jsp">
 					<img id="rc" src="GetCaptcha" title="看不清？单击换一张图片" alt="点击更换" /> </a>
 				</div>
-				<!--  
-            <div class="div-logininandregister-other">	
-            	<input type="checkbox" name="rememberpassword" />记住密码
-            </div>
-            -->
 				<div class="div-loginin-submit">
 					<!--提交按钮-->
 					<button name="submit" id="div-loginin-submit1" type="submit">登&nbsp;&nbsp;录</button>
@@ -114,7 +102,7 @@ p.p-landr-tipmessage { /*提示消息*/
 	</div>
 	<!--登录 end-->
 
-	<!--底部	 start-->
+	<!--底部	 start
 	<div class="index-div-bottommian">
 		<div class="index-div-bottom">
 			Copyright &copy 2016 <br /> <span><a href="#">关于我们FancyBBS</a>
@@ -124,7 +112,7 @@ p.p-landr-tipmessage { /*提示消息*/
 			QQ群XXXX鲁IC备XXX号<br /> Powered by FancyBBS 页面执行时间
 		</div>
 	</div>
-	<!--底部	 end-->
+	底部	 end-->
 
 </body>
 </html>
@@ -152,4 +140,4 @@ p.p-landr-tipmessage { /*提示消息*/
          		}
            	}	
         };
-    </script>
+</script>

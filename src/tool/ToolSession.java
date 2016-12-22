@@ -52,7 +52,7 @@ public class ToolSession {
 				Session session = new Session();
 				session.setId(resultSet.getInt("id"));
 				session.setMasterId(resultSet.getInt("masterId"));
-				session.setName(resultSet.getString("databaseChineseName"));
+				session.setName(resultSet.getString("name"));
 				session.setProfile(resultSet.getString("profile"));
 				session.setTopicCount(resultSet.getInt("topicCount"));
 				session.setClickCount(resultSet.getInt("clickCount"));

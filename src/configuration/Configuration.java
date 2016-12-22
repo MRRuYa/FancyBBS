@@ -14,18 +14,18 @@ public class Configuration {
 	public static String databaseHostName = "localhost";
 	public static String databaseName = "fancybbs";
 	public static String databaseUserName = "root";
-	public static String databaseUserPassword = "Yue";
+	public static String databaseUserPassword = "123456";
 	public static int connectionSecond1 = 60;
 	/////////////////// FancyBBS数据库配置结束////////////////////////////
 
 	/////////////////// 默认User信息配置开始////////////////////////////
 	private static int userId;
-	private static String userAccount = "123456";
+	private static String userAccount = "account";
 	private static String userPassword = "123456";
-	private static String userNickname = "Pink";
+	private static String userNickname = "nickname";
 	private static String userEmail = "";
-	private static String userPhoto = "";
-	private static String userSex = "女";
+	private static String userPhoto = "img/UserPhoto/default.jpg";
+	private static String userSex = "男";
 	private static int userGrade;
 	private static int userPoint;
 	private static Timestamp userRegistrationdate;

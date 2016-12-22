@@ -13,12 +13,12 @@ import operating.OperatingUser;
 
 import entity.User;
 
-public class CheckLogin extends HttpServlet {
+public class CheckRegister extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public CheckLogin() {
+	public CheckRegister() {
 		super();
 	}
 
@@ -73,13 +73,13 @@ public class CheckLogin extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		request.setCharacterEncoding("GBK");		//设置编码格式
 		response.setCharacterEncoding("GBK");		//设置编码格式
 		
 		response.setContentType("text/html;charset=utf-8");		
 		
-		User user=new User();		//创建用户对象，用于判断
+		User user=new User();		//创建用户对象，用于保存
 		PrintWriter out = response.getWriter();		//获取输出流
 		HttpSession session = request.getSession();		//获取session对象
 		
@@ -91,42 +91,25 @@ public class CheckLogin extends HttpServlet {
 		user.setPassword(password);
 		
 		String vcode1 = (String)session.getAttribute("vcode");		//获取后台生成验证码
-		//System.out.print(vcod.equals(vcode1));
+		/*
+		if (vcod == vcode1) {	//判断验证码是否正确
+			out.println("验证码不正确");
+			out.println("<br />");
+			out.println("3秒后刷新跳转到登录页面");
+			response.setHeader("Refresh", "3;url=/FancyBBS/register.jsp");
+		}*/
 		
-		if (vcod.equals(vcode1) == false) {	//判断验证码是否正确
-			session.setAttribute("error",	"验证码不正确");
-			request.setAttribute("lastpage", "login.jsp");
-			
-			response.getWriter().print("forward:<br />");
-			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-			//response.sendRedirect("error.jsp");
+		if (OperatingUser.verificationAUserName(user)) {		//检测用户名是否存在
+			session.setAttribute("error",	"用户名已经存在");
+			response.sendRedirect("error.jsp");
+		} else {		//插入用户
+			response.sendRedirect("index.jsp");		//跳转到主页
+			request.setAttribute("user", user);		//传递用户对象
+			OperatingUser.insertAUser(user);			//注册用户
 		}
 		
-		//if (OperatingUser.verificationAUserName(user)) {		//判断用户名是否存在
-			if (OperatingUser.verificationAUser(user)) {		//密码是否则正确			
-				// 根据一个简单的用户信息获取一个详细的用户信息
-				User user2 = OperatingUser.getAUser(user);
-				session.setAttribute("user", user2);		//传递用户对象
-				
-				response.getWriter().print("forward:<br />");
-				getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-				//response.sendRedirect("http://localhost:8080/FancyBBS/index.jsp");		//跳转到主页
-			} else {
-				session.setAttribute("error",	"密码不正确");
-				request.setAttribute("lastpage", "login.jsp");
-				
-				response.getWriter().print("forward:<br />");
-				getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-				//response.sendRedirect("http://localhost:8080/FancyBBS/error.jsp");
-			}
-		/*} else {
-			session.setAttribute("error",	"用户名不存在");
-			request.setAttribute("lastpage", "login.jsp");
-			
-			response.getWriter().print("forward:<br />");
-			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-			//response.sendRedirect("http://localhost:8080/FancyBBS/error.jsp");
-		}*/
+		out.flush();
+		out.close();
 	}
 
 	/**
@@ -161,7 +144,6 @@ public class CheckLogin extends HttpServlet {
 	 * @throws ServletException if an error occurs
 	 */
 	public void init() throws ServletException {
-		super.init();
 		// Put your code here
 	}
 

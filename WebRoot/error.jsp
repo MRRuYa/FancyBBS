@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<p><%=session.getAttribute("error") %></p>
 	   	</div>
 	    <div class="error-div-cuowudiaozhuan">
-			<a href="<%=request.getAttribute("lastpage") %>" onclick="location.href='javascript:history.go(-1);'">返回上一页</a>
+			<a href="<%=request.getAttribute("lastpage") %>" >返回上一页</a><!-- onclick="location.href='javascript:history.go(-1);'" -->
 	   	</div>
     </div>
   </body>

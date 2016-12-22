@@ -5,7 +5,6 @@ import java.util.List;
 
 import database.BBSDatabase;
 import entity.User;
-import tool.ToolSession;
 import tool.ToolUser;
 
 public class OperatingUser {
@@ -14,25 +13,29 @@ public class OperatingUser {
 	// 插入一个用户
 	public static boolean insertAUser(User user) {
 		user = ToolUser.completionUser(user);
-		int i = bbsDatabase.executeUpdate(ToolUser.entityToStringInsert(user).toString());
+		int i = bbsDatabase.executeUpdate(ToolUser.entityToString(user).toString());
 		return i > 0;
 	}
 
-	// 根据ID删除一个用户
-	public static boolean deleteAUserById(User user) {
-		int i = bbsDatabase.executeUpdate("delete form user where id='" + user.getId() + "';");
-		return i > 0;
-	}
-	
-	// 根据Account删除一个用户
-	public static boolean deleteAUserByAccount(User user) {
-		int i = bbsDatabase.executeUpdate("delete form user where account='" + user.getAccount() + "';");
-		return i > 0;
+	// 删除一个用户
+	public static boolean deleteAUser(User user) {
+
+		return false;
 	}
 
 	// 修改一个用户
 	public static boolean modifyAUser(User user) {
-		int i = bbsDatabase.executeUpdate(ToolUser.entityToStringModify(user).toString());
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("update user set ");
+		stringBuilder.append(" password='" + user.getPassword() + "',");
+		stringBuilder.append(" nickname='" + user.getNickname() + "',");
+		stringBuilder.append(" email='" + user.getEmail() + "',");
+		stringBuilder.append(" photo='" + user.getPhoto() + "',");
+		stringBuilder.append(" sex='" + user.getSex() + "',");
+		stringBuilder.append(" grade='" + user.getGrade() + "',");
+		stringBuilder.append(" point='" + user.getPoint() + "'");
+		stringBuilder.append(" where account='" + user.getAccount() + "';");
+		int i = bbsDatabase.executeUpdate(stringBuilder.toString());
 		return i > 0;
 	}
 
@@ -61,7 +64,8 @@ public class OperatingUser {
 	// 根据用户id获取一个详细的用户信息
 	public static User getAUserById(int i) {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from user where id=" + i + ";");
-		return ToolUser.resultSetToList(resultSet).get(0);
+		List<User> list = ToolUser.resultSetToList(resultSet);
+		return list.isEmpty() ? null : list.get(0);
 	}
 	
 	// 获取系统所有用户信息

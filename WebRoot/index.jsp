@@ -59,12 +59,6 @@
 					</li>
 				</ul>
 			</div>
-			<div class="index-div-control1">
-				<!--搜索按钮-->
-				<form>
-					<input class="index-form-control1" type="text" placeholder="输入关键字回车" />
-				</form>
-			</div>
 			<div class="indec-div-ulmain2">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href=""><span class="glyphicon glyphicon-envelope"></span>
@@ -103,7 +97,9 @@
 
 					<%
 						for (Topic topic:list) {
-							Session session2 = OperatingSession.getSessionById(topic.getsId());	//获取topic所在session
+						Session sessiontemp = new Session();
+						sessiontemp.setId(1);
+							Session session2 = OperatingSession.getASessionById(sessiontemp);	//获取topic所在session
 							if (topic.getFlag() == 1) {		//先输出置顶
 					%>
 					<div class="div-main-body">
@@ -232,7 +228,7 @@
 		</div>
 		<!--中层框架 end-->
 
-		<!--底部	 start-->
+		<!--底部	
 		<div class="index-div-bottommian1">
 			<div class="index-div-bottom">
 				Copyright &copy 2016 <br /> <span><a href="#">关于我们FancyBBS</a>
@@ -242,7 +238,7 @@
 				QQ群XXXX鲁IC备XXX号<br /> Powered by FancyBBS 页面执行时间
 			</div>
 		</div>
-		<!--底部	 end-->
+		底部	 end-->
 	</div>
 </body>
 </html>
