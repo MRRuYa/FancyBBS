@@ -63,7 +63,7 @@ List<Topic> list = OperatingTopic.getAllTopic();	//获取topic结果集
 				</div>
 
 				<%
-					for (int i =0; i<5; i++) {
+					for (int i =0; i<(list.size()>10?10:list.size()); i++) {
 						Topic topic = list.get(i);
 						Session session2 = OperatingSession.getASessionByATopic(topic);
 						if (topic.getFlag() == 1) {		//先输出置顶
@@ -108,7 +108,7 @@ List<Topic> list = OperatingTopic.getAllTopic();	//获取topic结果集
 					}
 				%>
 				<%
-					for (int i =0; i<90; i++) {
+					for (int i =0; i<(list.size()>30?30:list.size()); i++) {
 						Topic topic = list.get(i);
 						Session session2 = OperatingSession.getASessionByATopic(topic);
 						if (topic.getFlag() == 0) {		//正常帖子排序
@@ -163,8 +163,6 @@ List<Topic> list = OperatingTopic.getAllTopic();	//获取topic结果集
 	        		<div class="div-main-footer div-JD-section-body-bottom"></div>
 	      		</div>
 	      	</div>
-        </div>
-        <div class="div-contentright"> 
         	<div class="div-main">
         		<div class="div-main-footer div-JD-section-body-bottom">广告</div>
 	        	<div class="div-main-body">

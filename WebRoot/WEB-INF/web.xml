@@ -41,6 +41,41 @@
     <servlet-name>AddReply</servlet-name>
     <servlet-class>servlet.AddReply</servlet-class>
   </servlet>
+  <servlet>
+    <description>TopTopic</description>
+    <display-name>TopTopic</display-name>
+    <servlet-name>TopTopic</servlet-name>
+    <servlet-class>servlet.TopTopic</servlet-class>
+  </servlet>
+  <servlet>
+    <description>TopTopic</description>
+    <display-name>TopTopic</display-name>
+    <servlet-name>c</servlet-name>
+    <servlet-class>servlet.c</servlet-class>
+  </servlet>
+  <servlet>
+    <description>DeleteTopic</description>
+    <display-name>DeleteTopic</display-name>
+    <servlet-name>DeleteTopic</servlet-name>
+    <servlet-class>servlet.DeleteTopic</servlet-class>
+  </servlet>
+  <servlet>
+    <description>DeleteReply</description>
+    <display-name>DeleteReply</display-name>
+    <servlet-name>DeleteReply</servlet-name>
+    <servlet-class>servlet.DeleteReply</servlet-class>
+  </servlet>
+  <servlet>
+    <description>CancelTopTopic</description>
+    <display-name>CancelTopTopic</display-name>
+    <servlet-name>CancelTopTopic</servlet-name>
+    <servlet-class>servlet.CancelTopTopic</servlet-class>
+  </servlet>
+
+
+
+
+
 
 
 
@@ -75,8 +110,28 @@
     <servlet-name>AddReply</servlet-name>
     <url-pattern>/AddReply</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TopTopic</servlet-name>
+    <url-pattern>/TopTopic</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteTopic</servlet-name>
+    <url-pattern>/DeleteTopic</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteReply</servlet-name>
+    <url-pattern>/DeleteReply</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CancelTopTopic</servlet-name>
+    <url-pattern>/CancelTopTopic</url-pattern>
+  </servlet-mapping>
 
   <welcome-file-list>
     <welcome-file>welcome.jsp</welcome-file>
   </welcome-file-list>
+  
+  <session-config>
+  	<session-timeout>15</session-timeout>
+  </session-config>
 </web-app>

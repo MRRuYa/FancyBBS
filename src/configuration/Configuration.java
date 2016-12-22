@@ -1,7 +1,6 @@
 package configuration;
 
 import java.sql.Timestamp;
-
 import entity.Reply;
 import entity.Session;
 import entity.Topic;

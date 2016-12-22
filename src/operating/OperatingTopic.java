@@ -2,12 +2,10 @@ package operating;
 
 import java.sql.ResultSet;
 import java.util.List;
-
 import database.BBSDatabase;
 import entity.Session;
 import entity.Topic;
 import entity.User;
-import tool.ToolSession;
 import tool.ToolTopic;
 
 public class OperatingTopic {
@@ -52,9 +50,9 @@ public class OperatingTopic {
 	}
 	
 	// 通过一个用户获取topic 倒序
-	public static List<Topic> getATopicByAUser(User user) {
+	public static List<Topic> getAllTopicByAUser(User user) {
 		int i = user.getId();
-		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where uId=" + i + "order by id desc;");
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where uId='" + i + "' order by id desc;");
 		return ToolTopic.resultSetToList(resultSet);
 	}
 	
@@ -63,4 +61,19 @@ public class OperatingTopic {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where sId="+session.getId()+" order by id desc;");
 		return ToolTopic.resultSetToList(resultSet);
 	}
+	
+	//设置帖子置顶
+	public static boolean setTopTopic(Topic topic) {
+		topic =getATopicById(topic);
+		topic.setFlag(1);
+		return modifyATopic(topic);
+	}
+	
+	//设置帖子取消置顶
+	public static boolean cancelTopTopic(Topic topic) {
+		topic =getATopicById(topic);
+		topic.setFlag(0);
+		return modifyATopic(topic);
+	}
+	
 }

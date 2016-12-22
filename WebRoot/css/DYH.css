@@ -338,3 +338,27 @@ p1{
     padding-left: 20px;
 }
 /*****Ω⁄µ„topic∞ÂøÈ-∂≈”Ó∫∆*****/
+
+/*****userhome.css-∂≈”Ó∫∆*****/
+.col-md-6 {
+    width: 20%;
+	float: left;
+	position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+	box-sizing:border-box;
+}
+.col-md-7 {
+    width: 80%;
+	float: right;
+	position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+	box-sizing:border-box;
+}
+.div-xx-row {
+	height: 110px;
+}
+/*****userhome.css-∂≈”Ó∫∆*****/

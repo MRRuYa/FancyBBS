@@ -16,7 +16,7 @@ public class ToolUser {
 		User user2 = Configuration.getDefaultUser();
 		user.setAccount(user.getAccount() == null ? user2.getAccount() : user.getAccount());
 		user.setPassword(user.getPassword() == null ? user2.getPassword() : user.getPassword());
-		user.setNickname(user.getNickname() == null ? user2.getNickname() : user.getNickname());
+		user.setNickname(user.getNickname() == null ? user.getAccount() : user.getNickname());
 		user.setEmail(user.getEmail() == null ? user2.getEmail() : user.getEmail());
 		user.setPhoto(user.getPhoto() == null ? user2.getPhoto() : user.getPhoto());
 		user.setSex(user.getSex() == null ? user2.getSex() : user.getSex());

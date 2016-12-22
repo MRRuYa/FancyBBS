@@ -2,15 +2,12 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import operating.OperatingUser;
-
 import entity.User;
 
 public class CheckRegister extends HttpServlet {
@@ -91,21 +88,29 @@ public class CheckRegister extends HttpServlet {
 		user.setPassword(password);
 		
 		String vcode1 = (String)session.getAttribute("vcode");		//获取后台生成验证码
-		/*
+		
 		if (vcod == vcode1) {	//判断验证码是否正确
-			out.println("验证码不正确");
-			out.println("<br />");
-			out.println("3秒后刷新跳转到登录页面");
-			response.setHeader("Refresh", "3;url=/FancyBBS/register.jsp");
-		}*/
+			session.setAttribute("error",	"验证码不正确");
+			request.setAttribute("lastpage", "register.jsp");
+			
+			response.getWriter().print("forward:<br />");
+			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+		}
 		
 		if (OperatingUser.verificationAUserName(user)) {		//检测用户名是否存在
 			session.setAttribute("error",	"用户名已经存在");
-			response.sendRedirect("error.jsp");
+			request.setAttribute("lastpage", "register.jsp");
+			
+			response.getWriter().print("forward:<br />");
+			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
 		} else {		//插入用户
-			response.sendRedirect("index.jsp");		//跳转到主页
-			request.setAttribute("user", user);		//传递用户对象
-			OperatingUser.insertAUser(user);			//注册用户
+			OperatingUser.insertAUser(user);		//插入用户
+			User user2 = OperatingUser.getAUser(user);		//获取用户全部信息
+			
+			session.setAttribute("user", user2);		//传递用户对象
+			
+			response.getWriter().print("forward:<br />");		//跳转到主页面
+			getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 		
 		out.flush();

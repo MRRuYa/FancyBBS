@@ -2,14 +2,11 @@ package operating;
 
 import java.sql.ResultSet;
 import java.util.List;
-
 import database.BBSDatabase;
 import entity.Reply;
-import entity.Session;
 import entity.Topic;
 import entity.User;
 import tool.ToolReply;
-import tool.ToolSession;
 
 public class OperatingReply {
 	private static BBSDatabase bbsDatabase = BBSDatabase.getDatabase();
@@ -48,7 +45,7 @@ public class OperatingReply {
 	// 通过一个用户获取回复倒序
 	public static List<Reply> getAllReplyByAUser(User user) {
 		int i = user.getId();
-		ResultSet resultSet = bbsDatabase.executeQuery("select * from reply where uId="+ i +" order by id desc;");
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from reply where uId='"+ i +"' order by id desc;");
 		return ToolReply.resultSetToList(resultSet);
 	}
 	//获取对应topic的reply

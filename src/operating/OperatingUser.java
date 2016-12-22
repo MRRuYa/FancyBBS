@@ -2,10 +2,8 @@ package operating;
 
 import java.sql.ResultSet;
 import java.util.List;
-
 import database.BBSDatabase;
 import entity.User;
-import tool.ToolSession;
 import tool.ToolUser;
 
 public class OperatingUser {

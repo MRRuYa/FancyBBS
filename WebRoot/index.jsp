@@ -7,14 +7,16 @@
 	+ request.getServerName() + ":" + request.getServerPort()
 	+ path + "/";
 	
-	User user = OperatingUser.getAUserById(1);	//test user
-	/*
+	User user = OperatingUser.getAUserById(1);	//默认用户，防止没有session对象传入时候出现问题
 	try {
-		user = (User) session.getAttribute("user");
-	} catch(Exception e) {
-		session.setAttribute("error", "未登录");
-		response.sendRedirect("login.jsp");
-	}*/
+		user = (User)session.getAttribute("user");		//获取session对象
+	} catch (Exception e) {
+		session.setAttribute("error", "用户登陆错误");
+		session.setAttribute("lastpage", "login.jsp");
+		
+		response.sendRedirect("error.jsp");
+	}
+
 	List<Topic> list = OperatingTopic.getAllTopic();
 %>
 
@@ -61,13 +63,10 @@
 			</div>
 			<div class="indec-div-ulmain2">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href=""><span class="glyphicon glyphicon-envelope"></span>
-					</a></li>
 					<li class="dropdown" onMouseMove="xianshi()" onMouseOut="yincang()">
-						<a href="index.jsp" class="dropdown-toggle"> <%=user.getAccount()%>
+						<a href="index.jsp" class="dropdown-toggle"> <%=user.getNickname()%>
 							<b class="caret"></b> </a>
-						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"
-							onMouseOver="xianshi()">
+						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"	onMouseOver="xianshi()">
 							<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a></li>
 							<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a>
 							</li>
@@ -97,18 +96,37 @@
 
 					<%
 						for (Topic topic:list) {
-						Session sessiontemp = new Session();
-						sessiontemp.setId(1);
-							Session session2 = OperatingSession.getASessionById(sessiontemp);	//获取topic所在session
+							User user2 = OperatingUser.getAUserById(topic.getuId());		//获取发帖人
+							Session session2 = OperatingSession.getSessionById(topic.getsId());	//获取topic所在session						
 							if (topic.getFlag() == 1) {		//先输出置顶
 					%>
 					<div class="div-main-body">
 						<!-- 内容 -->
 						<div class="div-JD-list">
 							<div class="div-JD-section-first">
+								<%
+									if (user.getGrade() > 1) {		//管理员可以取消置顶
+								%>
+									<div class="div-JD-section-right">	<!-- 删除按钮 -->
+										<span class="div-badge div-badge-node">
+										<a href="CancelTopTopic?tId=<%=topic.getId()%>">取消</a></span>
+									</div>	<!-- 删除按钮 -->									
+								<%
+									}
+								%>	
+								<%
+									if (user.getGrade() > 1 || user.getId() == user2.getId()) {		//本人和管理员可以删除
+								%>									
+									<div class="div-JD-section-right">	<!-- 删除按钮 -->
+										<span class="div-badge div-badge-node">
+										<a href="DeleteTopic?tId=<%=topic.getId()%>">删除</a></span>
+									</div>	<!-- 删除按钮 -->	
+								<%
+									}
+								%>	
 								<a class="div-JD-section-left"
-									href="userhome.jsp?uId=<%=user.getId()%>"> <img
-									class="div-JD-img" src="<%=user.getPhoto()%>" alt="admin" />
+									href="userhome.jsp?uId=<%=user2.getId()%>"> <img
+									class="div-JD-img" src="<%=user2.getPhoto()%>" alt="admin" />
 									<!-- 用户头像 --> </a>
 								<div class="div-JD-section-body">
 									<h4 class="div-JD-section-body-head">
@@ -125,8 +143,8 @@
 									<p class="div-JD-section-body-bottom"><!-- 获取topic所在session -->
 										<span> <a href="article.jsp?sId=<%=session2.getId()%>"><%=session2.getName()%>
 											<!-- 版块标题 --> </span>&nbsp;•&nbsp; <span> <a
-											href="userhome.jsp?uId=<%=user.getId()%>"><%=user.getNickname()%></a>
-											<!-- 用户 --> </span>&nbsp;•&nbsp; <span>7 天前</span>&nbsp;•&nbsp;
+											href="userhome.jsp?uId=<%=user2.getId()%>"><%=user2.getNickname()%></a>
+											<!-- 用户 --> </span>&nbsp;•&nbsp; <span><%=topic.getLastReplayTime() %></span>&nbsp;•&nbsp;
 										<!-- 最后用户 -->
 										<span>最后回复来自 <a
 											href="userhome.jsp?uId=<%=topic.getLastReplyUseID()%>"><%=OperatingUser.getAUserById(topic.getLastReplyUseID())
@@ -143,6 +161,7 @@
 					%>
 					<%
 						for (Topic topic:list) {
+							User user2 = OperatingUser.getAUserById(topic.getuId());		//获取发帖人
 							Session session2 = OperatingSession.getSessionById(topic.getsId());	//获取topic所在session
 							if (topic.getFlag() == 0) {		//正常帖子排序
 					%>
@@ -150,9 +169,29 @@
 						<!-- 内容 -->
 						<div class="div-JD-list">
 							<div class="div-JD-section-first">
+								<%
+									if (user.getGrade() > 1) {	//管理员可以置顶
+								%>
+								<div class="div-JD-section-right">	<!-- 置顶按钮 -->
+									<span class="div-badge div-badge-node">
+									<a href="TopTopic?tId=<%=topic.getId()%>">置顶</a></span>
+								</div>	<!-- 置顶按钮 -->								
+								<%
+									}
+								%>	
+								<%
+									if (user.getGrade() > 1 || user.getId() == user2.getId()) {	//本人可以删除
+								%>								
+								<div class="div-JD-section-right">	<!-- 删除按钮 -->
+									<span class="div-badge div-badge-node">
+									<a href="DeleteTopic?tId=<%=topic.getId()%>">删除</a></span>
+								</div>	<!-- 删除按钮 -->
+								<%
+									}
+								%>	
 								<a class="div-JD-section-left"
-									href="userhome.jsp?uId=<%=user.getId()%>"> <img
-									class="div-JD-img" src="<%=user.getPhoto()%>" alt="admin" />
+									href="userhome.jsp?uId=<%=user2.getId()%>"> <img
+									class="div-JD-img" src="<%=user2.getPhoto()%>" alt="admin" />
 									<!-- 用户头像 --> </a>
 								<div class="div-JD-section-body">
 									<h4 class="div-JD-section-body-head">
@@ -169,8 +208,8 @@
 									<p class="div-JD-section-body-bottom"><!-- 获取topic所在session -->
 										<span> <a href="article.jsp?sId=<%=session2.getId()%>"><%=session2.getName()%>
 											<!-- 版块标题 --> </span>&nbsp;•&nbsp; <span> <a
-											href="userhome.jsp?uId=<%=user.getId()%>"><%=user.getNickname()%></a>
-											<!-- 用户 --> </span>&nbsp;•&nbsp; <span>7 天前</span>&nbsp;•&nbsp;
+											href="userhome.jsp?uId=<%=user2.getId()%>"><%=user2.getNickname()%></a>
+											<!-- 用户 --> </span>&nbsp;•&nbsp; <span><%=topic.getLastReplayTime() %></span>&nbsp;•&nbsp;
 										<!-- 最后用户 -->
 										<span>最后回复来自 
 										<a	href="userhome.jsp?uId=<%=topic.getLastReplyUseID()%>"><%=OperatingUser.getAUserById(topic.getLastReplyUseID()).getNickname()%></a>
@@ -222,6 +261,13 @@
 		        		</div>
 		        		<div class="div-main-footer div-JD-section-body-bottom"></div>
 		      		</div>
+		      		
+		      		<div class="div-main">
+		        		<div class="div-main-footer div-JD-section-body-bottom">广告</div>
+			        	<div class="div-main-body">
+			          		<img alt="广告" src="img/guanggao.png" width="270px" height="300px" />
+			      		</div>
+			      	</div>
 		      	</div>
 			</div>
 			<!--中层框架右边 end-->

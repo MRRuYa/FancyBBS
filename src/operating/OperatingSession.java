@@ -2,13 +2,10 @@ package operating;
 
 import java.sql.ResultSet;
 import java.util.List;
-
 import database.BBSDatabase;
 import entity.Session;
 import entity.Topic;
-import entity.User;
 import tool.ToolSession;
-import tool.ToolUser;
 
 public class OperatingSession {
 	private static BBSDatabase bbsDatabase = BBSDatabase.getDatabase();

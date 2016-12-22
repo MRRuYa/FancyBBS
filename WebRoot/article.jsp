@@ -9,15 +9,22 @@
 <%@page import="database.BBSDatabase"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-	User user = OperatingUser.getAUserById(2);	//test user
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 	int sId = Integer.parseInt(request.getParameter("sId"));
 	
-	//User user = (User)session.getAttribute("user");		//获取当前USER对象
-	
+	User user = OperatingUser.getAUserById(1);	//默认用户，防止没有session对象传入时候出现问题
+	try {
+		user = (User)session.getAttribute("user");		//获取session对象
+	} catch (Exception e) {
+		session.setAttribute("error", "用户登陆错误");
+		session.setAttribute("lastpage", "login.jsp");
+		
+		response.sendRedirect("error.jsp");
+	}
+		
 	Session session2 = OperatingSession.getSessionById(sId); 		//通过url的id值获取session	
 	List<Topic> list = OperatingTopic.getTopicBySession(session2);
 %>
@@ -62,18 +69,12 @@
 					</li>
 				</ul>
 			</div>
-			<div class="index-div-control1">
-				<!--搜索按钮-->
-				<form>
-					<input class="index-form-control1" type="text" placeholder="输入关键字回车" />
-				</form>
-			</div>
 			<div class="indec-div-ulmain2">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href=""><span class="glyphicon glyphicon-envelope"></span>
 					</a></li>
 					<li class="dropdown" onMouseMove="xianshi()" onMouseOut="yincang()">
-						<a href="index.jsp" class="dropdown-toggle"> <%=user.getAccount()%>
+						<a href="index.jsp" class="dropdown-toggle"> <%=user.getNickname() %>
 							<b class="caret"></b> </a>
 						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"
 							onMouseOver="xianshi()">
@@ -122,14 +123,39 @@
 
 					<%
 						for (Topic topic : list) {
-							if (topic.getFlag() == 1) {
+							User user2 = OperatingUser.getAUserById(topic.getuId());		//获取发帖人
+							if (topic.getFlag() == 1) {		//先输出置顶的帖子
 					%>
 					<div class="div-main-body">
 						<!-- 内容 -->
 						<div class="div-JD-list">
+								<div class="div-JD-section-right">
+									<span class="div-badge div-badge-node"><%=topic.getReplyCount() %></span>	<!-- 回复数 -->
+								</div>
 							<div class="div-JD-section-first">
-								<a class="div-JD-section-left" href="userhome.jsp?uId=<%=user.getId()%>"> 
-									<img class="div-JD-img" src="<%=user.getPhoto() %>" alt="<%=user.getNickname() %>" /> 	<!-- 用户头像 -->
+								<%
+									if (user.getGrade() > 1) {		//管理员可以取消置顶
+								%>
+									<div class="div-JD-section-right">	<!-- 删除按钮 -->
+										<span class="div-badge div-badge-node">
+										<a href="CancelTopTopic?tId=<%=topic.getId()%>">取消</a></span>
+									</div>	<!-- 删除按钮 -->									
+								<%
+									}
+								%>
+								<%
+									if (user.getGrade() > 1 || user2.getId() == user.getId()) {		//本人或管理员可以删除
+								%>								
+								<div class="div-JD-section-right">	<!-- 删除按钮 -->
+									<span class="div-badge div-badge-node">
+									<a href="DeleteTopic?tId=<%=topic.getId()%>">删除</a></span>
+								</div>	<!-- 删除按钮 -->
+								<%
+									}
+								%>								
+							
+								<a class="div-JD-section-left" href="userhome.jsp?uId=<%=user2.getId()%>"> 
+									<img class="div-JD-img" src="<%=user2.getPhoto() %>" alt="<%=user2.getNickname() %>" /> 	<!-- 用户头像 -->
 								</a>
 								<div class="div-JD-section-body">
 									<h4 class="div-JD-section-body-head">
@@ -142,16 +168,18 @@
 											}
 										 %>
 									</h4>
+									
 									<p class="div-JD-section-body-bottom">
 										<span> 
 											<a href="article.jsp?sId=<%=sId%>"><%=session2.getName() %></a> 	<!-- 版块标题 -->
 										</span>&nbsp;•&nbsp; 
 										<span>
-											<a href="userhome.jsp?uId=<%=user.getId()%>"><%=user.getNickname() %></a> <!-- 用户 -->
+											<a href="userhome.jsp?uId=<%=user2.getId()%>"><%=user2.getNickname() %></a> <!-- 用户 -->
 										</span>&nbsp;•&nbsp; 
 										<span><%=topic.getLastReplayTime() %></span>&nbsp;•&nbsp;<!-- 最后用户 -->
 										<span>最后回复来自 <a href="userhome.jsp?uId=<%=topic.getLastReplyUseID() %>"><%=OperatingUser.getAUserById(topic.getLastReplyUseID()).getNickname() %></a> </span>
 									</p>
+									
 								</div>
 							</div>
 						</div>
@@ -162,12 +190,38 @@
 					%>
 					<%
 						for (Topic topic : list) {
+							User user2 = OperatingUser.getAUserById(topic.getuId());		//获取发帖人
 							if (topic.getFlag() == 0) {
 					%>
 					<div class="div-main-body">
 						<!-- 内容 -->
 						<div class="div-JD-list">
+							<div class="div-JD-section-right">
+								<span class="div-badge div-badge-node"><%=topic.getReplyCount() %></span>	<!-- 回复数 -->
+							</div>
 							<div class="div-JD-section-first">
+								
+								<%
+									if (user.getGrade() > 1) {		//管理员可以置顶
+								%>
+								<div class="div-JD-section-right">	<!-- 置顶按钮 -->
+									<span class="div-badge div-badge-node">
+									<a href="TopTopic?tId=<%=topic.getId()%>">置顶</a></span>
+								</div>	<!-- 置顶按钮 -->
+								<%
+									}
+								%>	
+								<%
+									if (user.getGrade() > 1 || user2.getId() == user.getId()) {		//本人或管理员可以删除
+								%>								
+								<div class="div-JD-section-right">	<!-- 删除按钮 -->
+									<span class="div-badge div-badge-node">
+									<a href="DeleteTopic?tId=<%=topic.getId()%>">删除</a></span>
+								</div>	<!-- 删除按钮 -->
+								<%
+									}
+								%>								
+							
 								<a class="div-JD-section-left" href="userhome.jsp?uId=<%=user.getId()%>"> 
 									<img class="div-JD-img" src="<%=user.getPhoto() %>" alt="<%=user.getNickname() %>" /> 	<!-- 用户头像 -->
 								</a>
@@ -187,7 +241,7 @@
 											<a href="article.jsp?sId=<%=sId%>"><%=session2.getName() %></a> 	<!-- 版块标题 -->
 										</span>&nbsp;•&nbsp; 
 										<span>
-											<a href="userhome.jsp?uId=<%=user.getId()%>"><%=user.getNickname() %></a> <!-- 用户 -->
+											<a href="userhome.jsp?uId=<%=user2.getId()%>"><%=user2.getNickname() %></a> <!-- 用户 -->
 										</span>&nbsp;•&nbsp; 
 										<span><%=topic.getLastReplayTime() %></span>&nbsp;•&nbsp;<!-- 最后用户 -->
 										<span>最后回复来自 <a href="userhome.jsp?uId=<%=topic.getLastReplyUseID() %>"><%=OperatingUser.getAUserById(topic.getLastReplyUseID()).getNickname() %></a> </span>
@@ -208,15 +262,51 @@
 			<!--中层框架右边 start-->
 			<div class="div-contentright">
 				<div class="div-main">
-					<div class="div-main-head1">biaoti</div>
-					<div class="div-main-body">biaoti</div>
-				</div>
+		        	<div class="div-main-body">
+		          		<div class="div-row">
+		            		<div class="col-md-1"> <a href="userhome.jsp?uId=<%=user.getId()%>"> <img class="div-article-img" src="<%=user.getPhoto() %>" /> </a> </div>
+		            			<div class="col-md-2">
+					              <ul class="div-list-unstyled">
+					                <li><a href="userhome.jsp?uId=<%=user.getId()%>" ><%=user.getAccount() %></a></li>
+					                <li>昵称：<%=user.getNickname() %></li>
+					                <li>积分：<%=user.getPoint() %></li>
+					                <li>权限：
+					                <%
+					                if(user.getGrade()==1) { %>
+					                	会员
+					               <%	
+					                } else if (user.getGrade()==2) {
+					                %>
+					                	管理员
+					                <%	
+					                } else {
+					                %>
+					                	未知
+					                <%
+					                }
+					                %>
+					                </li>
+					              </ul>
+		            			</div>
+		          			</div>
+		          			
+		        		</div>
+		        		<div class="div-main-footer div-JD-section-body-bottom"></div>
+		      		</div>
+		      		
+		      		<div class="div-main">
+		        		<div class="div-main-footer div-JD-section-body-bottom">广告</div>
+			        	<div class="div-main-body">
+			          		<img alt="广告" src="img/guanggao.png" width="270px" height="300px" />
+			      		</div>
+			      	</div>
+		      	</div>
 			</div>
 			<!--中层框架右边 end-->
 		</div>
 		<!--中层框架 end-->
 
-		<!--底部	 start-->
+		<!--底部	 start
 		<div class="index-div-bottommian1">
 			<div class="index-div-bottom">
 				Copyright &copy 2016 <br /> <span><a href="#">关于我们FancyBBS</a>
@@ -226,7 +316,7 @@
 				QQ群XXXX鲁IC备XXX号<br /> Powered by FancyBBS 页面执行时间
 			</div>
 		</div>
-		<!--底部	 end-->
+		底部	 end-->
 	</div>
 </body>
 </html>
