@@ -90,42 +90,48 @@
 
 <body>
 <!--菜单层 start-->
-<div class="index-div-menu">
-	<div class="index-div-menu1">
-		<!--菜单栏-->
-		<div class="index-div-ulmain">
-			<ul id="index-ul-mainNav">
-				<li><a class="index-a-logo">FancyBBS</a>
-				</li>
-				<li><a href="index.jsp">首页</a>
-				</li>
-				<li><a href="node.jsp">版块</a>
-				</li>
-				<li><a href="add.jsp">发表</a>
-				</li>
-			</ul>
-		</div>
-		<div class="indec-div-ulmain2">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href=""><span class="glyphicon glyphicon-envelope"></span>
-				</a></li>
-				<li class="dropdown" onMouseMove="xianshi()" onMouseOut="yincang()">
-					<a href="index.jsp" class="dropdown-toggle"> <%=user.getNickname() %>
-						<b class="caret"></b> </a>
-					<ul id="uldown" class="dropdown-menu" id="dropdown-menu"
-						onMouseOver="xianshi()">
-						<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a></li>
-						<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a>
-						</li>
-						<li class="divider"></li>
-						<li><a href="LoginOut">退出</a>
-						</li>
-					</ul>
-			</ul>
+	<div class="index-div-menu">
+		<div class="index-div-menu1">
+			<!--菜单栏-->
+			<div class="index-div-ulmain">
+				<ul id="index-ul-mainNav">
+					<li><a class="index-a-logo">FancyBBS</a>
+					</li>
+					<li><a href="index.jsp">首页</a>
+					</li>
+					<li><a href="node.jsp">版块</a>
+					</li>
+					<li><a href="add.jsp">发表</a>
+					</li>
+					
+				</ul>
+			</div>
+			<div class="indec-div-ulmain2">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown" onMouseMove="xianshi()" onMouseOut="yincang()">
+						<a href="index.jsp" class="dropdown-toggle"> <%=user.getNickname()%>
+							<b class="caret"></b> </a>
+						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"	onMouseOver="xianshi()">
+							<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a></li>
+							<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a></li>
+							<li class="divider"></li>
+							<%
+							if (user.getGrade() > 1) {
+							%>
+								<li><a href="yonghuguanli.jsp">用户管理</a></li>
+								<li><a href="bankuaiguanli.jsp">版块管理</a></li>
+								<li class="divider"></li>
+							<%
+							}
+							 %>
+							<li><a href="LoginOut">退出</a>
+							</li>
+						</ul>
+				</ul>
+			</div>
 		</div>
 	</div>
-</div>
-<!--菜单层 end-->
+	<!--菜单层 end-->
 
 <!--中层框架 start-->
 <div class="div-content"> 

@@ -9,15 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import operating.OperatingTopic;
-import entity.Topic;
+import operating.OperatingUser;
 
-public class TopTopic extends HttpServlet {
+import entity.User;
+
+public class ChangeUserPassword extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TopTopic() {
+	public ChangeUserPassword() {
 		super();
 	}
 
@@ -76,19 +77,31 @@ public class TopTopic extends HttpServlet {
 		response.setCharacterEncoding("utf-8");		//设置编码格式
 		response.setContentType("text/html;charset=utf-8");		
 		
-		PrintWriter out = response.getWriter();		//获取输出流
-		//HttpSession session = request.getSession();		//获取session对象
+		int uId = Integer.parseInt(request.getParameter("uId"));		//获取用户id 
+		String password = request.getParameter("password");		//获取用户密码
+		String password2 = request.getParameter("password2");		//获取更改后的用户密码
 		
-		int tId = Integer.parseInt(request.getParameter("tId"));		//获取帖子id
+		HttpSession session = request.getSession();		//获取session对象
+		PrintWriter out = response.getWriter();
 		
-		Topic topic = OperatingTopic.getATopicById(tId);
+		User user1 = OperatingUser.getAUserById(uId);	//获取需要更改的对象
+		user1.setPassword(password);
 		
-		topic.setFlag(1);	//取消置顶
-		
-		OperatingTopic.modifyATopic(topic);		//更新
-		
-		response.getWriter().print("forward:<br />");
-		getServletConfig().getServletContext().getRequestDispatcher("/article.jsp?sId=" + topic.getsId()).forward(request, response);	
+		if (OperatingUser.verificationAUser(user1)) {		//密码是否则正确
+			user1.setPassword(password2);
+			
+			OperatingUser.modifyAUser(user1);		//更新
+			session.setAttribute("user", user1);
+			
+			response.getWriter().print("forward:<br />");		//跳转
+			getServletConfig().getServletContext().getRequestDispatcher("/usermessage3.jsp?uId=" + uId).forward(request, response);
+		} else {
+			session.setAttribute("error",	"输入密码不正确");
+			request.setAttribute("lastpage", "usermessage3.jsp?uId=" + uId);
+			
+			response.getWriter().print("forward:<br />");		//跳转
+			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+		}
 		
 		out.flush();
 		out.close();

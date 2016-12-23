@@ -13,12 +13,13 @@ public class OperatingUser {
 	public static boolean insertAUser(User user) {
 		user = ToolUser.completionUser(user);
 		int i = bbsDatabase.executeUpdate(ToolUser.entityToStringInsert(user).toString());
+		//System.out.print(ToolUser.entityToStringInsert(user).toString());		//打印输出
 		return i > 0;
 	}
 
 	// 根据ID删除一个用户
 	public static boolean deleteAUserById(User user) {
-		int i = bbsDatabase.executeUpdate("delete form user where id='" + user.getId() + "';");
+		int i = bbsDatabase.executeUpdate("delete from user where id='" + user.getId() + "';");
 		return i > 0;
 	}
 	

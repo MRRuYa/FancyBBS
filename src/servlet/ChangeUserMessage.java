@@ -2,22 +2,20 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import operating.OperatingUser;
+import entity.User;
 
-import operating.OperatingTopic;
-import entity.Topic;
-
-public class TopTopic extends HttpServlet {
+public class ChangeUserMessage extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TopTopic() {
+	public ChangeUserMessage() {
 		super();
 	}
 
@@ -76,20 +74,32 @@ public class TopTopic extends HttpServlet {
 		response.setCharacterEncoding("utf-8");		//设置编码格式
 		response.setContentType("text/html;charset=utf-8");		
 		
+		int uId = Integer.parseInt(request.getParameter("uId"));		//获取用户id 
+		String nickName1 = request.getParameter("nickName");		//获取更改后的用户昵称
+		String email1 = request.getParameter("email");	//获取更改后的用户邮箱
+		String sex1 = request.getParameter("sex");	//获取更改后的用户邮箱
+		
+		HttpSession session = request.getSession();		//获取session对象
+		
+		//System.out.print(nickName1);	//测试输出
+		//System.out.print(email1);	//测试输出
+		//System.out.print(sex1);	//测试输出
+		
+		User user1 = OperatingUser.getAUserById(uId);	//获取需要更改的对象
+		user1.setNickname(nickName1);
+		user1.setEmail(email1);
+		user1.setSex(sex1);
+		
+		//System.out.print(user1.toString());	//测试输出
+		//System.out.print(ToolUser.entityToStringModify(user1).toString());	//测试输出
+	
+		OperatingUser.modifyAUser(user1);		//更新
+		session.setAttribute("user", user1);
+		
 		PrintWriter out = response.getWriter();		//获取输出流
-		//HttpSession session = request.getSession();		//获取session对象
-		
-		int tId = Integer.parseInt(request.getParameter("tId"));		//获取帖子id
-		
-		Topic topic = OperatingTopic.getATopicById(tId);
-		
-		topic.setFlag(1);	//取消置顶
-		
-		OperatingTopic.modifyATopic(topic);		//更新
-		
-		response.getWriter().print("forward:<br />");
-		getServletConfig().getServletContext().getRequestDispatcher("/article.jsp?sId=" + topic.getsId()).forward(request, response);	
-		
+		response.getWriter().print("forward:<br />");		//跳转到主页面
+		getServletConfig().getServletContext().getRequestDispatcher("/usermessage.jsp?uId=" + uId).forward(request, response);
+
 		out.flush();
 		out.close();
 	}

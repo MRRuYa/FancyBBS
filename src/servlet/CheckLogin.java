@@ -70,10 +70,8 @@ public class CheckLogin extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		request.setCharacterEncoding("GBK");		//设置编码格式
-		response.setCharacterEncoding("GBK");		//设置编码格式
-		
+		request.setCharacterEncoding("utf-8");		//设置编码格式
+		response.setCharacterEncoding("utf-8");		//设置编码格式
 		response.setContentType("text/html;charset=utf-8");		
 		
 		User user=new User();		//创建用户对象，用于判断
@@ -94,8 +92,11 @@ public class CheckLogin extends HttpServlet {
 			session.setAttribute("error",	"验证码不正确");
 			request.setAttribute("lastpage", "login.jsp");
 			
-			response.getWriter().print("forward:<br />");
-			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/error.jsp");  
+            return;  
+            
+			//response.getWriter().print("forward:<br />");
+			//getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
 			//response.sendRedirect("error.jsp");
 		}
 		
@@ -105,30 +106,49 @@ public class CheckLogin extends HttpServlet {
 				User user2 = OperatingUser.getAUser(user);
 				session.setAttribute("user", user2);		//传递用户对象
 				
-				if (user2.getGrade() > 1) {	//管理员权限	
-					response.getWriter().print("forward:<br />");
-					getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-				} else if (user2.getGrade() > 1) {
-					response.getWriter().print("forward:<br />");
-					getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-				} else {
+				if (user2.getGrade() > 1) {	//管理员权限
+					response.sendRedirect(request.getContextPath()+"/index.jsp");  
+		            return;  
+
+					//response.getWriter().print("forward:<br />");
+					//getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+				} else if (user2.getGrade() == 1) {
+					response.sendRedirect(request.getContextPath()+"/index.jsp");  
+		            return;  
 					
+					//response.getWriter().print("forward:<br />");
+					//getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+				} else {
+					session.setAttribute("error",	"账户异常，请联系管理员");
+					request.setAttribute("lastpage", "welcome.jsp");
+					
+					response.sendRedirect(request.getContextPath()+"/error.jsp");  
+		            return;  
+					
+					//response.getWriter().print("forward:<br />");
+					//getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
 				}
 				
 			} else {
 				session.setAttribute("error",	"密码不正确");
 				request.setAttribute("lastpage", "login.jsp");
 				
-				response.getWriter().print("forward:<br />");
-				getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+				response.sendRedirect(request.getContextPath()+"/error.jsp");  
+	            return;  
+				
+				//response.getWriter().print("forward:<br />");
+				//getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
 				//response.sendRedirect("http://localhost:8080/FancyBBS/error.jsp");
 			}
 		} else {
 			session.setAttribute("error",	"用户名不存在");
 			request.setAttribute("lastpage", "login.jsp");
 			
-			response.getWriter().print("forward:<br />");
-			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/error.jsp");  
+            return;  
+            
+			//response.getWriter().print("forward:<br />");
+			//getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
 			//response.sendRedirect("http://localhost:8080/FancyBBS/error.jsp");
 		}
 	}

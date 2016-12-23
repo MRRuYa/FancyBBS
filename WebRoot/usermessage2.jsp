@@ -2,6 +2,7 @@
 <%@page import="operating.*"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
+	String realPath = request.getRealPath("/");// 取得互联网程序的绝对地址
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
@@ -90,6 +91,7 @@
         };
     </script>
     <!-- 表单验证js -->
+    
 <body>
 	<!--菜单层 start-->
 	<div class="index-div-menu">
@@ -147,52 +149,52 @@
 				<div class="sqy-div-panel-body">
 					<ul class="sqy-nav">
 						<li class="sqy-active">
-							<a class="sqy-nav-a" >基本信息</a></li>
+							<a class="sqy-nav-a2" href="usermessage.jsp?uId=<%=user.getId() %>">基本信息</a></li>
 						<li class="sqy-active">
-							<a class="sqy-nav-a2" href="usermessage2.jsp?uId=<%=user.getId() %>">修改头像</a>
+							<a class="sqy-nav-a">修改头像</a>
 						</li>
 						<li class="sqy-active">
 							<a class="sqy-nav-a2" href="usermessage3.jsp?uId=<%=user.getId() %>">修改密码</a>
 						</li>
 					</ul>
 					<div class="sqy-setting">
-						<form class="sqy-form" action="ChangeUserMessage?uId=<%=user.getId() %>" method="post" onSubmit="return checkSave()">
-							<div class="sqy-form-group">
-								<label class="sqy-col-md-2 sqy-control-label" for="account">用户名</label>
-								<div class="sqy-col-md-6">
-									<input class="sqy-form-control" id="account" name="account" size="50" type="text" disabled="disabled" value="<%=user.getAccount()%>" />
+				
+						<form class="sqy-form" enctype="multipart/form-data" action=" ChangeUserPhoto?uId=<%=user.getId() %>"	 method="post" >
+							<fieldset>
+								<div class="sqy-form-group">
+									<label class="sqy-col-md-2 sqy-control-label">当前头像</label>
+									<div class="sqy-col-md-8">
+										<img class="large_avatar"	src="<%=user.getPhoto()%>">
+										<img class="middle_avatar"	 src="<%=user.getPhoto()%>">
+										<img class="small_avatar" src="<%=user.getPhoto()%>">
+										<div class="sqy-alert sqy-alert-info sqy-alert-avatar">
+											<strong>注意</strong> 仅仅支持 512k 以内的 JPG
+											图片文件作为头像，推荐使用正方形的图片以获得最佳效果。
+										</div>
+									</div>
 								</div>
-							</div>
-							
-							<div class="sqy-form-group">
-								<label class="sqy-col-md-2 sqy-control-label" for="nickName">用户昵称</label>
-								<div class="sqy-col-md-6">
-									<input class="sqy-form-control" id="nickName" name="nickName" size="50" type="text" value="<%=user.getNickname()%>" /> 
+		
+								<div class="sqy-form-group">
+									<label class="sqy-col-md-2 sqy-control-label" for="avatar_file">选择图片</label>
+									<div class="sqy-col-md-6">
+										<input type="file" id="avatar_file" name="avatar_file"  />
+									</div>
 								</div>
-							</div>
-							
-							<div class="sqy-form-group">
-								<label class="sqy-col-md-2 sqy-control-label" for="email">电子邮件</label>
-								<div class="sqy-col-md-6">
-									<input class="sqy-form-control" id="email" name="email"	 size="50" type="text" value="<%=user.getEmail() %>" />
+		
+								<div class="sqy-form-group">
+									<div class="sqy-col-sm-6">
+										<input type="submit" class="sqy-div-btn sqy-btn-primary" id="submit" name="upload" value="上传新头像"  />
+									</div>
+									<br>
+    								<!--  <div id="preview" class="usermessage2-dj-preview"> 
+    								<div id="tip1"></div>
+									<div id="tip2"></div>
+									</div>-->
 								</div>
-							</div>
-							
-							<div class="sqy-form-group">
-								<label class="sqy-col-md-2 sqy-control-label" for="sex">用户性别</label>
-								<div class="sqy-col-md-6">
-									<input class="sqy-form-control" id="sex" name="sex" size="50"  type="text" value="<%=user.getSex() %>" placeholder="输入 男 或 女"  /> 
-								</div>
-							</div>
-							
-							<div class="sqy-form-group">
-								<div class="sqy-col-md-6">
-									<button type="submit" class="sqy-div-btn sqy-btn-primary">保存</button>
-								</div>
-							</div>
-							
+							</fieldset>
 						</form>
-					</div>
+		
+					</div>										
 				</div>
 			</div>
 			<!-- 内容结束 -->

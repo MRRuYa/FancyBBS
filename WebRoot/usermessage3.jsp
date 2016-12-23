@@ -46,47 +46,31 @@
 <!-- 表单验证js -->
     <script type="text/javascript">
 		function checkSave() {	
-			var account = document.getElementById("account").value;	//记录用户名
-			var nickName = document.getElementById("nickName").value;	//记录用户昵称
-			var email = document.getElementById("email").value;	//记录用户email
-			var sex = document.getElementById("sex").value;	//记录用户性别
+			var password = document.getElementById("password").value;	//现有密码
+			var password1 = document.getElementById("password1").value;	//新密码
+			var password2 = document.getElementById("password2").value;	//新密码确认
 			
-			var nickName1 = /^[1-3]$/;		//昵称1-20字符
-			var email1 = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;	//验证email					
-			var sex = /^['男'|'女']$/;
-			 
-			
-			if (nickName1.test(nickNmae) != true) {		//验证昵称是否符合要求
-				alert("昵称应为1-20位字符组成");
+			if (password == null || password == '') {
+				alert("请输入现有密码");
 				return false;
-			}
-			
-			if (email1.test(email) != true) {		//验证昵称是否符合要求
-				alert("邮箱格式不正确");
-				return false;
-			} 
-			
-			if (sex1.test(sex) != true) {		//验证性别
-				alert("性别只有男女");
-				return false;	
-			}
-			
-			if (nickName == null || nickName == '') {
-				alert("请输入昵称");
-				return false;
-			}else {
-				if (email == null || email == '') {
-					alert("请输入电子邮箱");
+			} else {
+				if (password1 == null || password2 == '') {
+					alert("请输入新密码");
 					return false;
 				} else {
-					if (sex == null || sex == '') {
-						alert("请输入性别");
+					if (password2 == null || password2 == '') {
+						alert("请输入新密码");
 						return false;
-					} else{
-						return true;						
+					} else {
+						if (password2 != password1) {
+							alert("两次输入的密码不正确");
+							return false;
+						} else {
+							return true;
+						}
 					}
 				}
-			}		      	
+			}	      	
         };
     </script>
     <!-- 表单验证js -->
@@ -147,50 +131,40 @@
 				<div class="sqy-div-panel-body">
 					<ul class="sqy-nav">
 						<li class="sqy-active">
-							<a class="sqy-nav-a" >基本信息</a></li>
+							<a class="sqy-nav-a2" href="usermessage.jsp?uId=<%=user.getId() %>">基本信息</a></li>
 						<li class="sqy-active">
 							<a class="sqy-nav-a2" href="usermessage2.jsp?uId=<%=user.getId() %>">修改头像</a>
 						</li>
 						<li class="sqy-active">
-							<a class="sqy-nav-a2" href="usermessage3.jsp?uId=<%=user.getId() %>">修改密码</a>
+							<a class="sqy-nav-a" >修改密码</a>
 						</li>
 					</ul>
 					<div class="sqy-setting">
-						<form class="sqy-form" action="ChangeUserMessage?uId=<%=user.getId() %>" method="post" onSubmit="return checkSave()">
+						<form action="ChangeUserPassword?uId=<%=user.getId() %>" class="sqy-form"	method="post" onSubmit="return checkSave()">
 							<div class="sqy-form-group">
-								<label class="sqy-col-md-2 sqy-control-label" for="account">用户名</label>
+								<label class="sqy-col-md-2 sqy-control-label" for="password">当前密码</label>
 								<div class="sqy-col-md-6">
-									<input class="sqy-form-control" id="account" name="account" size="50" type="text" disabled="disabled" value="<%=user.getAccount()%>" />
+									<input class="sqy-form-control" id="password" name="password"   size="50" type="password"> 
 								</div>
 							</div>
-							
 							<div class="sqy-form-group">
-								<label class="sqy-col-md-2 sqy-control-label" for="nickName">用户昵称</label>
+								<label class="sqy-col-md-2 sqy-control-label" for="password">新密码</label>
 								<div class="sqy-col-md-6">
-									<input class="sqy-form-control" id="nickName" name="nickName" size="50" type="text" value="<%=user.getNickname()%>" /> 
+									<input class="sqy-form-control" id="password1" name="password1" size="50" type="password">
 								</div>
 							</div>
-							
 							<div class="sqy-form-group">
-								<label class="sqy-col-md-2 sqy-control-label" for="email">电子邮件</label>
+								<label class="sqy-col-md-2 sqy-control-label" for="password">密码确认</label>
 								<div class="sqy-col-md-6">
-									<input class="sqy-form-control" id="email" name="email"	 size="50" type="text" value="<%=user.getEmail() %>" />
+									<input class="sqy-form-control" id="password2" name="password2" 	size="50" type="password"> 
 								</div>
 							</div>
-							
+		
 							<div class="sqy-form-group">
-								<label class="sqy-col-md-2 sqy-control-label" for="sex">用户性别</label>
-								<div class="sqy-col-md-6">
-									<input class="sqy-form-control" id="sex" name="sex" size="50"  type="text" value="<%=user.getSex() %>" placeholder="输入 男 或 女"  /> 
+								<div class="sqy-col-sm-offset-3 sqy-col-sm-9">
+									<button type="submit" name="commit"	class="sqy-div-btn sqy-btn-primary">修改密码</button>
 								</div>
 							</div>
-							
-							<div class="sqy-form-group">
-								<div class="sqy-col-md-6">
-									<button type="submit" class="sqy-div-btn sqy-btn-primary">保存</button>
-								</div>
-							</div>
-							
 						</form>
 					</div>
 				</div>

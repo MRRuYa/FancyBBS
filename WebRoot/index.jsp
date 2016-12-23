@@ -59,6 +59,7 @@
 					</li>
 					<li><a href="add.jsp">发表</a>
 					</li>
+					
 				</ul>
 			</div>
 			<div class="indec-div-ulmain2">
@@ -68,9 +69,17 @@
 							<b class="caret"></b> </a>
 						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"	onMouseOver="xianshi()">
 							<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a></li>
-							<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a>
-							</li>
+							<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a></li>
 							<li class="divider"></li>
+							<%
+							if (user.getGrade() > 1) {
+							%>
+								<li><a href="yonghuguanli.jsp">用户管理</a></li>
+								<li><a href="bankuaiguanli.jsp">版块管理</a></li>
+								<li class="divider"></li>
+							<%
+							}
+							 %>
 							<li><a href="LoginOut">退出</a>
 							</li>
 						</ul>
@@ -247,6 +256,10 @@
 					                %>
 					                	管理员
 					                <%	
+					                } else if (user.getGrade() == 3) {
+					                %>
+					                	Holy!God~
+					                <%
 					                } else {
 					                %>
 					                	未知

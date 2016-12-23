@@ -1,12 +1,31 @@
 /********************reset********************/
 body,div,dl,dt,dd,ul,ol,li,pre,h1,h2,h3,h4,h5,h6, 
-form,fieldset,input,textarea,p,blockquote,th,td { 
+form,fieldset,input,textarea,p,blockquote,th{ 
   padding: 0; 
   margin: 0; 
 } 
+tr{
+  border:1px solid transparent;
+  border-color:#ddd;
+}
+td{
+  padding:5px 3px;
+  border:1px solid transparent;
+  border-color:#ddd;
+}
 table { 
+  width:100%;
   border-collapse: collapse; 
   border-spacing: 0; 
+  text-align:center;
+  color:#333;
+  border:1px solid transparent;
+  border-radius:4px;
+  border-color:#ddd;
+  box-shadow:0 1px 1px rgba(0,0,0,.05);
+  padding:5px;
+  margin:0px 0px 10px 0px;
+
 } 
 fieldset,img { 
   border: 0; 
@@ -201,8 +220,7 @@ p1{
 	height:50px;
 	border-radius:6px;
 	vertical-align:middle;
-	background-color:#777;
-	padding-right:10px;
+	margin-right:10px;
 }
 /*****节点页面盒子内部版块-杜宇浩*****/
 
@@ -249,9 +267,9 @@ p1{
     margin-left:-15px;
 }
 .div-article-img{
-	width:100px;
-	height:100px;
-	border-radius:6px;
+	width:80px;
+	height:80px;
+	border-radius:5px;
 }
 .col-md-2{
 	width:58.33333333%;
@@ -360,5 +378,10 @@ p1{
 }
 .div-xx-row {
 	height: 110px;
+}
+.img-djtest-userhome {
+	width: 100px;
+	height: 100px;
+	border-radius: 6px;
 }
 /*****userhome.css-杜宇浩*****/

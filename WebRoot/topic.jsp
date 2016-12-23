@@ -1,11 +1,5 @@
-<%@page import="operating.OperatingReply"%>
-<%@page import="entity.Reply"%>
-<%@page import="operating.OperatingSession"%>
-<%@page import="entity.Session"%>
-<%@page import="operating.OperatingTopic"%>
-<%@page import="entity.Topic"%>
-<%@page import="operating.OperatingUser"%>
-<%@page import="entity.User"%>
+<%@page import="operating.*"%>
+<%@page import="entity.*"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
@@ -30,7 +24,6 @@
 	User user2 = OperatingUser.getAUserById(topic1.getLastReplyUseID());	//获取最后回复发帖人user
 	
 	List<Reply> replylist = OperatingReply.getReplyByTopic(topic1);		//获取该帖子的回帖
-	
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -118,28 +111,37 @@ window.onload = function()	{
 			<!--菜单栏-->
 			<div class="index-div-ulmain">
 				<ul id="index-ul-mainNav">
-					<li><a class="index-a-logo">FancyBBS</a></li>
-					<li><a href="index.jsp">首页</a></li>
-					<li><a href="node.jsp">版块</a></li>
-					<li><a href="add.jsp">发表</a></li>
+					<li><a class="index-a-logo">FancyBBS</a>
+					</li>
+					<li><a href="index.jsp">首页</a>
+					</li>
+					<li><a href="node.jsp">版块</a>
+					</li>
+					<li><a href="add.jsp">发表</a>
+					</li>
+					
 				</ul>
 			</div>
 			<div class="indec-div-ulmain2">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href=""><span class="glyphicon glyphicon-envelope"></span>
-					</a>
-					</li>
 					<li class="dropdown" onMouseMove="xianshi()" onMouseOut="yincang()">
-						<a href="index.jsp" class="dropdown-toggle"> <%=user.getNickname() %>
+						<a href="index.jsp" class="dropdown-toggle"> <%=user.getNickname()%>
 							<b class="caret"></b> </a>
-						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"
-							onMouseOver="xianshi()">
-							<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a>
-							</li>
-							<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a>
-							</li>
+						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"	onMouseOver="xianshi()">
+							<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a></li>
+							<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a></li>
 							<li class="divider"></li>
-							<li><a href="LoginOut">退出</a></li>
+							<%
+							if (user.getGrade() > 1) {
+							%>
+								<li><a href="yonghuguanli.jsp">用户管理</a></li>
+								<li><a href="bankuaiguanli.jsp">版块管理</a></li>
+								<li class="divider"></li>
+							<%
+							}
+							 %>
+							<li><a href="LoginOut">退出</a>
+							</li>
 						</ul>
 				</ul>
 			</div>
@@ -189,9 +191,7 @@ window.onload = function()	{
 				<div class="div-main">	<!-- div中 -->
 					<div class="div-main-head1">		<!-- 标题 -->
 						<h5>
-							<span><%=topic1.getReplyCount() %></span> <span> 回复 | 直到<%=topic1.getLastReplayTime() %></span> <a
-								href="#" class="div-JD-section-right"> <span
-								class="div-JD-section-body-bottom">添加回复</span> </a>
+							<span><%=topic1.getReplyCount() %></span> <span> 回复 | 直到<%=topic1.getLastReplayTime() %></span>
 						</h5>
 					</div>		<!-- 标题 -->
 					<%
@@ -204,8 +204,18 @@ window.onload = function()	{
 						<div class="div-row">
 							<div class="col-md-4">
 								<a href="userhome.jsp?uId=<%=usertemp.getId()%>"> <img class="div-topic-img" src="<%=usertemp.getPhoto() %>"	 alt="<%=usertemp.getNickname()%>"> </a>
-							</div>
+							</div>									
 							<div class="col-md-5 div-topic-reply-body">
+								<% 
+										if (user.getId() == usertemp.getId() || user.getGrade() >1) {	//本人或管理员查看
+									%>
+										<div class="div-JD-section-right">	<!-- 删除按钮 -->
+											<span class="div-badge div-badge-node">
+											<a href="DeleteReply?id=<%=reply.getId()%>">删除</a></span>
+										</div>	<!-- 删除按钮 -->
+									<%
+										}
+									%>
 								<h5>
 									<span> <a href="userhome.jsp?uId=<%=usertemp.getId()%>"><%=usertemp.getNickname() %></a>&nbsp;&nbsp;<%=reply.getTime() %> </span> <span
 										class="div-JD-section-right"># - <%=floor %></span>

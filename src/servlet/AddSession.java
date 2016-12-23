@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,15 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import operating.OperatingReply;
+import operating.OperatingSession;
 import operating.OperatingTopic;
+import tool.ToolSession;
+import entity.Reply;
+import entity.Session;
 import entity.Topic;
+import entity.User;
 
-public class TopTopic extends HttpServlet {
+public class AddSession extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TopTopic() {
+	public AddSession() {
 		super();
 	}
 
@@ -70,6 +77,9 @@ public class TopTopic extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");		//设置编码格式
@@ -79,17 +89,22 @@ public class TopTopic extends HttpServlet {
 		PrintWriter out = response.getWriter();		//获取输出流
 		//HttpSession session = request.getSession();		//获取session对象
 		
-		int tId = Integer.parseInt(request.getParameter("tId"));		//获取帖子id
+		String name = request.getParameter("name");		//获取版块名称
+		String profile = request.getParameter("profile");		//获取版块主题
 		
-		Topic topic = OperatingTopic.getATopicById(tId);
+		Session session2 = new Session();
+		session2.setName(name);
+		session2.setProfile(profile);
+		session2.setClickCount(0);
+		session2.setMasterId(1);
+		session2.setTopicCount(0);
 		
-		topic.setFlag(1);	//取消置顶
-		
-		OperatingTopic.modifyATopic(topic);		//更新
+		OperatingSession.insertASession(session2);		
+		System.out.println(ToolSession.entityToStringInsert(session2).toString());
 		
 		response.getWriter().print("forward:<br />");
-		getServletConfig().getServletContext().getRequestDispatcher("/article.jsp?sId=" + topic.getsId()).forward(request, response);	
-		
+		getServletConfig().getServletContext().getRequestDispatcher("/bankuaiguanli.jsp").forward(request, response);	
+
 		out.flush();
 		out.close();
 	}

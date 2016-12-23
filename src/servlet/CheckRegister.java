@@ -89,12 +89,15 @@ public class CheckRegister extends HttpServlet {
 		
 		String vcode1 = (String)session.getAttribute("vcode");		//获取后台生成验证码
 		
-		if (vcod == vcode1) {	//判断验证码是否正确
+		if (vcod.equals(vcode1) == false) {	//判断验证码是否正确
 			session.setAttribute("error",	"验证码不正确");
 			request.setAttribute("lastpage", "register.jsp");
 			
-			response.getWriter().print("forward:<br />");
-			getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/error.jsp");  
+            return;  
+			
+			//response.getWriter().print("forward:<br />");
+			//getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
 		}
 		
 		if (OperatingUser.verificationAUserName(user)) {		//检测用户名是否存在

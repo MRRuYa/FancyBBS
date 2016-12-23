@@ -15,7 +15,7 @@ try {
 	response.sendRedirect("error.jsp");
 }
 
-List<User> userlist = OperatingUser.getAllUser();
+List<Session> sessionlist = OperatingSession.getAllSession();
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -33,6 +33,7 @@ List<User> userlist = OperatingUser.getAllUser();
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/login-register.css" />
 	<link rel="stylesheet" type="text/css" href="css/DYH.css" />
+	<link rel="stylesheet" type="text/css" href="css/SQY.css" />
 
   </head>
  	<script type="text/javascript">
@@ -43,6 +44,26 @@ List<User> userlist = OperatingUser.getAllUser();
 			document.getElementById("uldown").style.display = "none";
 		}
 	</script>
+	<!-- 表单验证js -->
+    <script type="text/javascript">
+		function checkSave() {	
+			var name = document.getElementById("name").value;	//记录板块名字
+			var profile = document.getElementById("profile").value;	//记录板块名字
+			
+			if (name == null || name == '') {
+				alert("请输入版块名称");
+				return false;
+			}else {
+				if (profile == null || profile == '') {
+					alert("请输入版块主题");
+					return false;
+				} else {
+					return true;
+				}
+			}		      	
+        };
+    </script>
+    <!-- 表单验证js -->
   <body>
 	<!--菜单层 start-->
 	<div class="index-div-menu">
@@ -88,26 +109,22 @@ List<User> userlist = OperatingUser.getAllUser();
 	</div>
 	<!--菜单层 end-->
 	
-	<div class="kuangjia-div-main">	<!-- 框架开始-->
+	<div class="div-content">	<!--中层框架 start-->
+		<div class="div-contentleft">	<!--中层框架左边 start-->
+			
 	  <div class="div-main">
-	   <div class="div-main-head1 div-title">用户信息</div>
+	   <div class="div-main-head1 div-title">板块信息</div>
 	   <div class="div-main-body">
 		<table>
 	      <tr>
-	        <td>编号</td>
-	        <td>用户名</td>
-	        <td>密码</td>
-	        <td>昵称</td>
-	        <td>email</td>
-	        <td>头像</td>
-	        <td>性别</td>
-	        <td>等级权限</td>
-	        <td>注册日期</td>
-	        <td>积分</td>
+	        <td>板块ID</td>
+	        <td>版块名字</td>
+	        <td>版块主题</td>
+	        <td>发帖数</td>
             <td>操作</td>
 	      </tr>
 	      <%
-	      	for (User usertemp : userlist) {
+	      	for (Session sessiontemp : sessionlist) {
 	      
 	      	/*
 	      	for (int i=0; i<userlist.size(); i++) {
@@ -115,17 +132,11 @@ List<User> userlist = OperatingUser.getAllUser();
 	      		usertemp = userlist.get(i);	//userlist[i]*/
 	      %>
 	      		<tr>
-			        <td><%=usertemp.getId() %></td>
-			        <td><%=usertemp.getAccount() %></td>
-			        <td><%=usertemp.getPassword() %></td>
-			        <td><%=usertemp.getNickname() %></td>
-			        <td><%=usertemp.getEmail() %></td>
-			        <td><%=usertemp.getPhoto() %></td>
-			        <td><%=usertemp.getSex() %></td>
-			        <td><%=usertemp.getGrade() %></td>
-			        <td><%=usertemp.getRegistrationdate() %></td>
-			        <td><%=usertemp.getPoint() %></td>
-                    <td><a href="DeleteUser?uId=<%=usertemp.getId()%>">删除</a></td>
+			        <td><%=sessiontemp.getId() %></td>
+			        <td><%=sessiontemp.getName() %></td>
+			        <td><%=sessiontemp.getProfile() %></td>
+			        <td><%=sessiontemp.getTopicCount() %></td>
+                    <td><a href="DeleteSession?sId=<%=sessiontemp.getId()%>">删除</a></td>
 			      </tr>
 			<%
 	      	}
@@ -133,6 +144,39 @@ List<User> userlist = OperatingUser.getAllUser();
 	    </table>
 	   </div>
 	  </div>
-	</div>	<!-- 框架结束-->
+	
+		</div>	<!--中层框架左边 end-->
+		<div class="div-contentright">	<!--中层框架右边 start-->	
+		<div class="div-main">
+		<div class="div-main-head1 div-title">用户信息</div>
+	   	<div class="div-main-body">
+					<div class="sqy-setting">
+						<form class="sqy-form"	action="AddSession" method="post" onSubmit="return checkSave()">
+							<div class="sqy-form-group">
+								<label class="sqy-col-md-2 sqy-control-label" for="name">板块名字</label>
+								<div class="sqy-col-md-6">
+									<input class="sqy-form-control" id="name" name="name" size="50" type="text" />
+								</div>
+							</div>
+
+							<div class="sqy-form-group">
+								<label class="sqy-col-md-2 sqy-control-label" for="profile">版块内容</label>
+								<div class="sqy-col-md-6">
+									<input class="sqy-form-control" id="profile" name="profile"	size="50" type="text" />
+								</div>
+							</div>
+
+							<div class="sqy-form-group">
+								<div class="sqy-col-md-6">
+									<button type="submit" class="sqy-div-btn sqy-btn-primary">添加版块</button>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+					</div>
+		</div>	<!--中层框架右边 end-->
+	</div>	<!--中层框架 end-->
   </body>
 </html>

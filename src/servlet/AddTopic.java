@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import operating.OperatingSession;
 import operating.OperatingTopic;
+import tool.ToolSession;
+import tool.ToolTopic;
 
+import entity.Session;
 import entity.Topic;
 import entity.User;
 
@@ -74,33 +79,47 @@ public class AddTopic extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("GBK");		//ÉèÖÃ±àÂë¸ñÊ½
-		response.setCharacterEncoding("GBK");		//ÉèÖÃ±àÂë¸ñÊ½
+		request.setCharacterEncoding("utf-8");		//è®¾ç½®ç¼–ç æ ¼å¼
+		response.setCharacterEncoding("utf-8");		//è®¾ç½®ç¼–ç æ ¼å¼
 		response.setContentType("text/html;charset=utf-8");		
-		PrintWriter out = response.getWriter();		//»ñÈ¡Êä³öÁ÷
-		HttpSession session = request.getSession();		//»ñÈ¡session¶ÔÏó
-		//User user = (User)session.getAttribute("user");		//»ñÈ¡ÓÃ»§¶ÔÏó
+		PrintWriter out = response.getWriter();		//è·å–è¾“å‡ºæµ
+		HttpSession session = request.getSession();		//è·å–sessionå¯¹è±¡
+		User user = (User)session.getAttribute("user");		//è·å–å‘å¸–ç”¨æˆ·å¯¹è±¡
 		
-		String topic = request.getParameter("topic");		//»ñÈ¡Ìû×Ó±êÌâ
-		String node_id = request.getParameter("node_id");		//»ñÈ¡Ìû×ÓËùÔÚ°æ¿éid
+		String topic = request.getParameter("topic");		//è·å–å¸–å­æ ‡é¢˜
+		String node_id = request.getParameter("node_id");		//è·å–å¸–å­æ‰€åœ¨ç‰ˆå—id
 		int sId = Integer.parseInt(node_id);
-		//int uId = user.getId();		//»ñÈ¡·¢ÌûÈËid
-		String contents = request.getParameter("contents");		//»ñÈ¡Ìû×ÓÄÚÈİ
 		
-		Topic Topic = new Topic();
-		Topic.setTopic(topic);
-		Topic.setsId(sId);
-		//Topic.setuId(uId);
+		int uId = user.getId();		//è·å–å‘å¸–äººid
+		String contents = request.getParameter("contents");		//è·å–å¸–å­å†…å®¹
 		
-		//OperatingTopic.insertATopic(Topic);
+		Topic topic1 = new Topic();
 		
-		out.println(topic);
-		out.println("<br />");
-		out.println(sId);
-		out.println("<br />");
-		out.println(contents);
+		topic1.setsId(sId);
+		topic1.setuId(uId);
+		topic1.setReplyCount(0);
+		topic1.setTopic(topic);
+		topic1.setContents(contents);
+		topic1.setTime(new Timestamp(System.currentTimeMillis()));
+		topic1.setFlag(0);
+		topic1.setClickCount(0);
+		topic1.setLastReplyUseID(sId);
+		topic1.setLastReplayTime(new Timestamp(System.currentTimeMillis()));
 		
-		//response.sendRedirect("index.jsp");		//Ìø×ªµ½Ö÷Ò³
+		Session session2 = OperatingSession.getASessionByATopic(topic1);
+		int topicCount = session2.getTopicCount();
+		session2.setTopicCount(topicCount + 1);
+		
+		OperatingTopic.insertATopic(topic1);	//æ’å…¥å¸–å­
+		//System.out.println(ToolTopic.entityToStringModify(topic1).toString());		//è¾“å‡ºæµ‹è¯•
+		//System.out.println(ToolSession.entityToStringModify(session2).toString());		//è¾“å‡ºæµ‹è¯•
+		OperatingSession.modifyASession(session2);	//æ›´æ–°å¸–å­
+		
+		response.getWriter().print("forward:<br />");		//è·³è½¬åˆ°å¸–å­æ‰€åœ¨ç‰ˆå—
+		getServletConfig().getServletContext().getRequestDispatcher("/article.jsp?sId=" + sId).forward(request, response);	
+		
+		out.flush();
+		out.close();
 	}
 
 	/**

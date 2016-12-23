@@ -7,6 +7,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import operating.OperatingReply;
+import operating.OperatingTopic;
+
+import entity.Reply;
+import entity.Topic;
+import entity.User;
 
 public class DeleteReply extends HttpServlet {
 
@@ -53,20 +61,7 @@ public class DeleteReply extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the GET method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+		this.doPost(request, response);
 	}
 
 	/**
@@ -81,18 +76,30 @@ public class DeleteReply extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");		//设置编码格式
+		response.setCharacterEncoding("utf-8");		//设置编码格式
+		response.setContentType("text/html;charset=utf-8");		
+		
+		PrintWriter out = response.getWriter();		//获取输出流
+		HttpSession session = request.getSession();		//获取session对象
+		
+		User user = (User)session.getAttribute("user");		//创建用户对象，用于判断
+		int id = Integer.parseInt(request.getParameter("id"));		//回复的id
+		
+		Reply reply = OperatingReply.getAReplyById(id);
+		int tId = reply.gettId();	//所在帖子的id
+		
+		Topic topic = OperatingTopic.getATopicById(tId);		//所在帖子-1回复
+		int replyContent = topic.getReplyCount();
+		topic.setReplyCount(replyContent - 1);
+	
+		OperatingReply.deleteAReply(reply);
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the POST method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
+		OperatingTopic.modifyATopic(topic);	//更新主题
+		
+		response.getWriter().print("forward:<br />");
+		getServletConfig().getServletContext().getRequestDispatcher("/topic.jsp?id=" + tId).forward(request, response);	
+
 		out.flush();
 		out.close();
 	}

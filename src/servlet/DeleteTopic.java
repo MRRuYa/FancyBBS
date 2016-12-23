@@ -7,6 +7,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import operating.OperatingSession;
+import operating.OperatingTopic;
+
+import entity.Session;
+import entity.Topic;
+import entity.User;
 
 public class DeleteTopic extends HttpServlet {
 
@@ -53,20 +61,7 @@ public class DeleteTopic extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the GET method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+		this.doPost(request, response);
 	}
 
 	/**
@@ -81,18 +76,26 @@ public class DeleteTopic extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the POST method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
+		request.setCharacterEncoding("utf-8");		//设置编码格式
+		response.setCharacterEncoding("utf-8");		//设置编码格式
+		response.setContentType("text/html;charset=utf-8");		
+		PrintWriter out = response.getWriter();		//获取输出流
+		//HttpSession session = request.getSession();		//获取session对象
+		
+		int tId = Integer.parseInt( request.getParameter("tId"));
+		Topic topic2 = OperatingTopic.getATopicById(tId);
+		
+		int sId = topic2.getsId();		//帖子所在版块帖子数-1
+		Session session = OperatingSession.getSessionById(sId);
+		int topicCount = session.getTopicCount();
+		session.setTopicCount(topicCount - 1); 
+		
+		OperatingTopic.deleteATopic(topic2);
+		OperatingSession.modifyASession(session);
+		
+		response.getWriter().print("forward:<br />");		//跳转到帖子所在版块
+		getServletConfig().getServletContext().getRequestDispatcher("/article.jsp?sId=" + topic2.getsId()).forward(request, response);	
+		
 		out.flush();
 		out.close();
 	}

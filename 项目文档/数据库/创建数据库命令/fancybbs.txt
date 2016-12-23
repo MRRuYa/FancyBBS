@@ -75,8 +75,8 @@ create table topic(
  clickCount int,
  lastReplyUseID int unsigned,
  lastReplayTime datetime,
- foreign key(sId) references user(id) on delete cascade,
- foreign key(uId) references session(id) on delete cascade,
+ foreign key(uId) references user(id) on delete cascade,
+ foreign key(sId) references session(id) on delete cascade,
  foreign key(lastReplyUseID) references user(id) on delete cascade
 );
 

@@ -17,7 +17,9 @@ public class ToolTopic {
 		topic.setTopic(topic.getTopic() == null ? topic2.getTopic() : topic.getTopic());
 		topic.setContents(topic.getContents() == null ? topic2.getContents() : topic.getContents());
 		topic.setTime(new Timestamp(System.currentTimeMillis()));
-		topic.setTime(new Timestamp(System.currentTimeMillis()));
+		topic.setReplyCount(0);
+		topic.setLastReplyUseID(topic.getuId());
+		topic.setLastReplayTime(new Timestamp(System.currentTimeMillis()));
 		return topic;
 	}
 
@@ -35,7 +37,6 @@ public class ToolTopic {
 		stringBuilder.append("'" + topic.getFlag() + "',");
 		stringBuilder.append("'" + topic.getClickCount() + "',");
 		stringBuilder.append("'" + topic.getLastReplyUseID() + "',");
-		stringBuilder.append("'" + topic.getLastReplayTime() + "',");
 		stringBuilder.append("'" + topic.getLastReplayTime() + "'");
 		stringBuilder.append(");");
 		return stringBuilder;
@@ -48,13 +49,13 @@ public class ToolTopic {
 		stringBuilder.append(" sId='" + topic.getsId() + "',");
 		stringBuilder.append(" uId='" + topic.getuId() + "',");
 		stringBuilder.append(" replyCount='" + topic.getReplyCount() + "',");
+		stringBuilder.append(" topic='" + topic.getTopic() + "',");
+		stringBuilder.append(" contents='" + topic.getContents() + "',");
+		stringBuilder.append(" time='" + topic.getTime() + "',");
 		stringBuilder.append(" flag='" + topic.getFlag() + "',");
 		stringBuilder.append(" clickCount='" + topic.getClickCount() + "',");
 		stringBuilder.append(" lastReplyUseID='" + topic.getLastReplyUseID() + "',");
-		stringBuilder.append(" time='" + topic.getTime() + "',");
-		stringBuilder.append(" lastReplayTime='" + topic.getLastReplayTime() + "',");
-		stringBuilder.append(" topic='" + topic.getTopic() + "',");
-		stringBuilder.append(" topic='" + topic.getContents() + "',");
+		stringBuilder.append(" lastReplayTime='" + topic.getLastReplayTime() + "'");
 		stringBuilder.append(" where id='" + topic.getId() + "';");
 		return stringBuilder;
 	}

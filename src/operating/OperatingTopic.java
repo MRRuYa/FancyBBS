@@ -13,14 +13,13 @@ public class OperatingTopic {
 
 	// 插入一个话题
 	public static boolean insertATopic(Topic topic) {
-		topic = ToolTopic.completionTopic(topic);
 		int i = bbsDatabase.executeUpdate(ToolTopic.entityToStringInsert(topic).toString());
 		return i > 0;
 	}
 
 	// 删除一个话题
 	public static boolean deleteATopic(Topic topic) {
-		int i = bbsDatabase.executeUpdate("delete form topic where id='" + topic.getId() + "';");
+		int i = bbsDatabase.executeUpdate("delete from topic where id='" + topic.getId() + "';");
 		return i > 0;
 	}
 

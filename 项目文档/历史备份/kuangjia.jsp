@@ -14,8 +14,6 @@ try {
 	
 	response.sendRedirect("error.jsp");
 }
-
-List<User> userlist = OperatingUser.getAllUser();
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -88,51 +86,11 @@ List<User> userlist = OperatingUser.getAllUser();
 	</div>
 	<!--菜单层 end-->
 	
-	<div class="kuangjia-div-main">	<!-- 框架开始-->
-	  <div class="div-main">
-	   <div class="div-main-head1 div-title">用户信息</div>
-	   <div class="div-main-body">
-		<table>
-	      <tr>
-	        <td>编号</td>
-	        <td>用户名</td>
-	        <td>密码</td>
-	        <td>昵称</td>
-	        <td>email</td>
-	        <td>头像</td>
-	        <td>性别</td>
-	        <td>等级权限</td>
-	        <td>注册日期</td>
-	        <td>积分</td>
-            <td>操作</td>
-	      </tr>
-	      <%
-	      	for (User usertemp : userlist) {
-	      
-	      	/*
-	      	for (int i=0; i<userlist.size(); i++) {
-	      		User usertemp = new User();	//
-	      		usertemp = userlist.get(i);	//userlist[i]*/
-	      %>
-	      		<tr>
-			        <td><%=usertemp.getId() %></td>
-			        <td><%=usertemp.getAccount() %></td>
-			        <td><%=usertemp.getPassword() %></td>
-			        <td><%=usertemp.getNickname() %></td>
-			        <td><%=usertemp.getEmail() %></td>
-			        <td><%=usertemp.getPhoto() %></td>
-			        <td><%=usertemp.getSex() %></td>
-			        <td><%=usertemp.getGrade() %></td>
-			        <td><%=usertemp.getRegistrationdate() %></td>
-			        <td><%=usertemp.getPoint() %></td>
-                    <td><a href="DeleteUser?uId=<%=usertemp.getId()%>">删除</a></td>
-			      </tr>
-			<%
-	      	}
-	       %>
-	    </table>
-	   </div>
-	  </div>
-	</div>	<!-- 框架结束-->
+	<div class="div-content">	<!--中层框架 start-->
+		<div class="div-contentleft">	<!--中层框架左边 start-->
+		</div>	<!--中层框架左边 end-->
+		<div class="div-contentright">	<!--中层框架右边 start-->	
+		</div>	<!--中层框架右边 end-->
+	</div>	<!--中层框架 end-->
   </body>
 </html>

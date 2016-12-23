@@ -20,6 +20,8 @@ public class ToolUser {
 		user.setEmail(user.getEmail() == null ? user2.getEmail() : user.getEmail());
 		user.setPhoto(user.getPhoto() == null ? user2.getPhoto() : user.getPhoto());
 		user.setSex(user.getSex() == null ? user2.getSex() : user.getSex());
+		user.setGrade(1);
+		user.setPoint(50);
 		user.setRegistrationdate(new Timestamp(System.currentTimeMillis()));
 		return user;
 	}
@@ -28,7 +30,7 @@ public class ToolUser {
 	public static StringBuilder entityToStringInsert(User user) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(
-				"insert into user(account,password,nickname,email,photo,sex,grade,registrationdate,point) values(");
+				"insert into user(account,password,nickName,email,photo,sex,grade,registrationdate,point) values(");
 		stringBuilder.append("'" + user.getAccount() + "',");
 		stringBuilder.append("'" + user.getPassword() + "',");
 		stringBuilder.append("'" + user.getNickname() + "',");
@@ -37,7 +39,6 @@ public class ToolUser {
 		stringBuilder.append("'" + user.getSex() + "',");
 		stringBuilder.append("'" + user.getGrade() + "',");
 		stringBuilder.append("'" + user.getRegistrationdate() + "',");
-		stringBuilder.append("'" + user.getPoint() + "',");
 		stringBuilder.append("'" + user.getPoint() + "'");
 		stringBuilder.append(");");
 		return stringBuilder;
@@ -53,8 +54,8 @@ public class ToolUser {
 		stringBuilder.append(" photo='" + user.getPhoto() + "',");
 		stringBuilder.append(" sex='" + user.getSex() + "',");
 		stringBuilder.append(" grade='" + user.getGrade() + "',");
-		stringBuilder.append(" point='" + user.getPoint() + "',");
-		stringBuilder.append(" where account='" + user.getAccount() + "';");
+		stringBuilder.append(" point='" + user.getPoint() + "'");
+		stringBuilder.append("where account='" + user.getAccount() + "';");
 		return stringBuilder;
 	}
 

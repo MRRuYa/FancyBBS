@@ -9,15 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import operating.OperatingReply;
 import operating.OperatingTopic;
+import operating.OperatingUser;
+import entity.Reply;
 import entity.Topic;
+import entity.User;
 
-public class TopTopic extends HttpServlet {
+public class DeleteUser extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TopTopic() {
+	public DeleteUser() {
 		super();
 	}
 
@@ -77,19 +81,17 @@ public class TopTopic extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");		
 		
 		PrintWriter out = response.getWriter();		//获取输出流
-		//HttpSession session = request.getSession();		//获取session对象
+		HttpSession session = request.getSession();		//获取session对象
 		
-		int tId = Integer.parseInt(request.getParameter("tId"));		//获取帖子id
+		int uId = Integer.parseInt(request.getParameter("uId"));		//获取用户id
 		
-		Topic topic = OperatingTopic.getATopicById(tId);
+		User user2 = OperatingUser.getAUserById(uId);
 		
-		topic.setFlag(1);	//取消置顶
-		
-		OperatingTopic.modifyATopic(topic);		//更新
+		OperatingUser.deleteAUserById(user2);
 		
 		response.getWriter().print("forward:<br />");
-		getServletConfig().getServletContext().getRequestDispatcher("/article.jsp?sId=" + topic.getsId()).forward(request, response);	
-		
+		getServletConfig().getServletContext().getRequestDispatcher("/yonghuguanli.jsp").forward(request, response);	
+
 		out.flush();
 		out.close();
 	}

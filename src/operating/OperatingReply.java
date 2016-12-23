@@ -20,7 +20,7 @@ public class OperatingReply {
 
 	// 删除一个回复
 	public static boolean deleteAReply(Reply reply) {
-		int i = bbsDatabase.executeUpdate("delete form user where session='" + reply.getId() + "';");
+		int i = bbsDatabase.executeUpdate("delete from reply where id='" + reply.getId() + "';");
 		return i > 0;
 	}
 
@@ -35,6 +35,12 @@ public class OperatingReply {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from reply where id='" + reply.getId() + "';");
 		return ToolReply.resultSetToList(resultSet).get(0);
 	}
+	
+	// 根据ID获取一个详细的回复信息
+		public static Reply getAReplyById(int i) {
+			ResultSet resultSet = bbsDatabase.executeQuery("select * from reply where id='" + i + "';");
+			return ToolReply.resultSetToList(resultSet).get(0);
+		}
 
 	// 获取系统所有回复信息
 	public static List<Reply> getAllReply() {

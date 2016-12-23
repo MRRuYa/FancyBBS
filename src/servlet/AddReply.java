@@ -2,11 +2,20 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import operating.OperatingReply;
+import operating.OperatingTopic;
+
+import entity.Reply;
+import entity.Topic;
+import entity.User;
 
 public class AddReply extends HttpServlet {
 
@@ -53,20 +62,7 @@ public class AddReply extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the GET method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+		doPost(request, response);
 	}
 
 	/**
@@ -81,18 +77,37 @@ public class AddReply extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");		//设置编码格式
+		response.setCharacterEncoding("utf-8");		//设置编码格式
+		response.setContentType("text/html;charset=utf-8");		
+		
+		PrintWriter out = response.getWriter();		//获取输出流
+		HttpSession session = request.getSession();		//获取session对象
+		
+		User user = (User)session.getAttribute("user");		//创建用户对象，用于判断
+		int tId = Integer.parseInt(request.getParameter("tId"));		//主贴的id
+		int uId = user.getId();		//回复人的id
+		String contents = request.getParameter("contents");		//回复内容
+		
+		Reply reply = new Reply();
+		reply.settId(tId);
+		reply.setuId(uId);
+		reply.setContent(contents);
+		reply.setTime(new Timestamp(System.currentTimeMillis()));
+		
+		Topic topic = OperatingTopic.getATopicById(tId);
+		int replyCount = topic.getReplyCount();		//回复前帖子的回复数
+		
+		topic.setReplyCount(replyCount + 1);
+		topic.setLastReplyUseID(uId);
+		topic.setLastReplayTime(new Timestamp(System.currentTimeMillis()));
+		
+		OperatingReply.insertAReply(reply);		//插入reply
+		OperatingTopic.modifyATopic(topic);		//更新topic				
+		
+		response.getWriter().print("forward:<br />");
+		getServletConfig().getServletContext().getRequestDispatcher("/topic.jsp?id=" + tId).forward(request, response);	
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the POST method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
 		out.flush();
 		out.close();
 	}

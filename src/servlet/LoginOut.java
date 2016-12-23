@@ -75,11 +75,15 @@ public class LoginOut extends HttpServlet {
 		
 		response.setContentType("text/html;charset=utf-8");	
 		PrintWriter out = response.getWriter();
+
+		request.getSession().invalidate();		//Çå¿Õsession
+		
+		//ServletÌø×ª
+		response.getWriter().print("forward:<br />");
+		getServletConfig().getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
+		
 		out.flush();
 		out.close();
-		
-		request.getSession().invalidate();		//Çå¿Õsession
-		response.sendRedirect("welcome.jsp");
 	}
 
 	/**

@@ -19,12 +19,13 @@ public class OperatingSession {
 
 	// 删除一个会话
 	public static boolean deleteASession(Session session) {
-		int i = bbsDatabase.executeUpdate("delete form user where session='" + session.getId() + "';");
+		int i = bbsDatabase.executeUpdate("delete from session where id='" + session.getId() + "';");
 		return i > 0;
 	}
 
 	// 修改一个会话
 	public static boolean modifyASession(Session session) {
+		session = ToolSession.completionTopic(session);	//补全
 		int i = bbsDatabase.executeUpdate(ToolSession.entityToStringModify(session).toString());
 		return i > 0;
 	}

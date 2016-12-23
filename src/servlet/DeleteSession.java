@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import operating.OperatingTopic;
-import entity.Topic;
+import operating.OperatingSession;
+import entity.Session;
 
-public class TopTopic extends HttpServlet {
+public class DeleteSession extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TopTopic() {
+	public DeleteSession() {
 		super();
 	}
 
@@ -79,17 +79,15 @@ public class TopTopic extends HttpServlet {
 		PrintWriter out = response.getWriter();		//获取输出流
 		//HttpSession session = request.getSession();		//获取session对象
 		
-		int tId = Integer.parseInt(request.getParameter("tId"));		//获取帖子id
+		int sId = Integer.parseInt(request.getParameter("sId"));
+
+		Session session2 = OperatingSession.getSessionById(sId);
 		
-		Topic topic = OperatingTopic.getATopicById(tId);
-		
-		topic.setFlag(1);	//取消置顶
-		
-		OperatingTopic.modifyATopic(topic);		//更新
+		OperatingSession.deleteASession(session2);			
 		
 		response.getWriter().print("forward:<br />");
-		getServletConfig().getServletContext().getRequestDispatcher("/article.jsp?sId=" + topic.getsId()).forward(request, response);	
-		
+		getServletConfig().getServletContext().getRequestDispatcher("/bankuaiguanli.jsp").forward(request, response);	
+
 		out.flush();
 		out.close();
 	}

@@ -14,6 +14,7 @@ public class ToolSession {
 	public static Session completionTopic(Session session) {
 		Session session2 = Configuration.getDefaultSession();
 		session.setName(session.getName() == null ? session2.getName() : session.getName());
+		session.setMasterId(1);
 		session.setProfile(session.getProfile() == null ? session2.getProfile() : session.getProfile());
 		return session;
 	}
@@ -21,7 +22,7 @@ public class ToolSession {
 	// 将实体类转化为String
 	public static StringBuilder entityToStringInsert(Session session) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("insert into session (databaseChineseName,masterId,profile,topicCount,clickCount values(");
+		stringBuilder.append("insert into session (name,masterId,profile,topicCount,clickCount) values(");
 		stringBuilder.append("'" + session.getName() + "',");
 		stringBuilder.append("'" + session.getMasterId() + "',");
 		stringBuilder.append("'" + session.getProfile() + "',");
@@ -34,12 +35,12 @@ public class ToolSession {
 	// 将实体类转化为String
 	public static StringBuilder entityToStringModify(Session session) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("update user set ");
+		stringBuilder.append("update session set ");
 		stringBuilder.append(" name='" + session.getName() + "',");
-		stringBuilder.append(" profile='" + session.getProfile() + "',");
 		stringBuilder.append(" masterId='" + session.getMasterId() + "',");
+		stringBuilder.append(" profile='" + session.getProfile() + "',");
 		stringBuilder.append(" topicCount='" + session.getTopicCount() + "',");
-		stringBuilder.append(" clickCount='" + session.getClickCount() + "',");
+		stringBuilder.append(" clickCount='" + session.getClickCount() + "'");
 		stringBuilder.append(" where id='" + session.getId() + "';");
 		return stringBuilder;
 	}

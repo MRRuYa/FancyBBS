@@ -50,10 +50,7 @@ word-wrap:break-word;
 word-break:normal;
 padding:15px;
 }
-.sqy-nav-tabs{
-	height:30px;
-margin-bottom:20px;
-border-bottom:1px solid #ddd;}
+
 .sqy-li{
 float:left;
 margin-bottom:-1px;
@@ -66,18 +63,56 @@ line-height:1.42857143;
 border:1px solid transparent;
 border-radius:4px 4px 0 0;
 }
+/*顶部标题*/
 .sqy-active{
 	float: left;
-   margin-right: 2px;
-    border: 1px solid #ddd;
-    
-    padding:10px 15px;
+	margin-right: 2px;
+	margin-bottom: -1px;  
+	position: relative;
+	display: block;
+	list-style: none;
 }
 .sqy-nav{
 	position:relative;
 	display:block;
-	padding:10px 15px;
+	height: 42px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom:20px;
+	z-index: 1;
 }
+.sqy-nav-a {
+	z-index: 2;
+	box-sizing: border-box;
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+	margin-right: 2px;
+	color: #555;
+	border-left: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 2px solid #FFF;
+	border-radius: 4px 4px 0px 0px;
+}
+.sqy-nav-a2 {
+	box-sizing: border-box;
+	position: relative;
+	display: block;
+	padding: 13px 15px;
+	border-radius: 4px 4px 0px 0px;
+	margin-right: 2px;
+	color: #23527c;
+}
+.sqy-nav-a2:hover {
+	box-sizing: border-box;
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+	background: #F3F3F3;
+	margin-right: 2px;
+	color: #23527c;
+}
+/*顶部标题*/
 .sqy-a{
 color:#555;
 cursor:default;
@@ -103,7 +138,7 @@ display: block;
 }
 .sqy-setting{
 margin-top:20px;
-min-height:300px；
+min-height:300px;
 }
 .sqy-form{
 padding:0;
@@ -114,25 +149,28 @@ margin-bottom:15px;
 margin-right:-15px;
 margin-left:-15px;
 }
-.sqy-col-md-2{
-width:16.66666667%;
-float:left;
-position:relative;
-min-height:1px;
-padding-right:15px;
-padding-left:15px;
-}
+
 .sqy-col-md-8{
     position: relative;
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
     }
+/*lable*/
 .sqy-control-label{
     padding-top: 10px;
     margin-bottom: 0;
     text-align: right;
 }
+.sqy-col-md-2{
+	width:20%;
+	float:left;
+	position:relative;
+	min-height:1px;
+	padding-right:15px;
+	padding-left:15px;
+}
+/*lable*/
 .sqy-col-md-6{
 
 float:left;
@@ -206,3 +244,29 @@ border: 1px solid transparent;
 border-radius: 4px;
 }
 /*****节点分页面板块-申爸爸*****/
+/*usermessage2.jsp 图片大小三张*/
+.large_avatar {
+	width: 100px;
+	height: 100px;
+}
+.middle_avatar {
+	width: 48px;
+	height: 48px;
+}
+
+.small_avatar {
+	width: 24px;
+	height: 24px;
+}
+.usermessage2-dj-preview {
+	position: relative;
+	top: 10px;
+	left: 20px;
+	border: 1 solid #808080;
+	background: #E0E0E0;
+	width: 600px;
+	height: 20px;
+	color: #F00;
+	padding: 5px;
+}
+/*usermessage2.jsp 图片大小三张*/
