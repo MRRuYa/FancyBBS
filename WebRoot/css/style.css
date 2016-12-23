@@ -73,7 +73,6 @@ body {
 	box-sizing: border-box;
 	position: relative; top: 65px;
 	
-	background:#F00;
 	min-height: 1000px;	
 }
 .div-maincontener {  /*页面框体+底部*/
@@ -102,7 +101,6 @@ body {
 	position: relative;
 	float: left;
 	
-	background:#F00;
 }
 .div-contentright {		/*页面框体右边部分*/
 	width: 320px;
@@ -113,7 +111,6 @@ body {
 	position: relative;
 	float: right;
 	
-	background:#0F0;
 }
 /********************页面通用元素********************/
 

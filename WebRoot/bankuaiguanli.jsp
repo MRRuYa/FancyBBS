@@ -148,7 +148,7 @@ List<Session> sessionlist = OperatingSession.getAllSession();
 		</div>	<!--中层框架左边 end-->
 		<div class="div-contentright">	<!--中层框架右边 start-->	
 		<div class="div-main">
-		<div class="div-main-head1 div-title">用户信息</div>
+		<div class="div-main-head1 div-title">添加版块</div>
 	   	<div class="div-main-body">
 					<div class="sqy-setting">
 						<form class="sqy-form"	action="AddSession" method="post" onSubmit="return checkSave()">
