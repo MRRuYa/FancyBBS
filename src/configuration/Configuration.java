@@ -13,7 +13,7 @@ public class Configuration {
 	public static String databaseHostName = "localhost";
 	public static String databaseName = "fancybbs";
 	public static String databaseUserName = "root";
-	public static String databaseUserPassword = "7511";
+	public static String databaseUserPassword = "123456";
 	public static int connectionSecond1 = 60;
 	/////////////////// FancyBBSÊı¾İ¿âÅäÖÃ½áÊø////////////////////////////
 
