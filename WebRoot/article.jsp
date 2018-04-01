@@ -10,22 +10,20 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 	int sId = Integer.parseInt(request.getParameter("sId"));
-	
-	User user = OperatingUser.getAUserById(1);	//默认用户，防止没有session对象传入时候出现问题
+
+	User user = OperatingUser.getAUserById(1); //默认用户，防止没有session对象传入时候出现问题
 	try {
-		user = (User)session.getAttribute("user");		//获取session对象
+		user = (User) session.getAttribute("user"); //获取session对象
 	} catch (Exception e) {
 		session.setAttribute("error", "用户登陆错误");
 		session.setAttribute("lastpage", "login.jsp");
-		
+
 		response.sendRedirect("error.jsp");
 	}
-		
-	Session session2 = OperatingSession.getSessionById(sId); 		//通过url的id值获取session	
+
+	Session session2 = OperatingSession.getSessionById(sId); //通过url的id值获取session	
 	List<Topic> list = OperatingTopic.getTopicBySession(session2);
 %>
 

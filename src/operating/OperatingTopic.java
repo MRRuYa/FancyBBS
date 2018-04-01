@@ -37,42 +37,42 @@ public class OperatingTopic {
 
 	// 获取系统所有话题信息
 	public static List<Topic> getAllTopic() {
-		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic order by id desc;");	//降序
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic order by id desc;"); // 降序
 		return ToolTopic.resultSetToList(resultSet);
 	}
-	
+
 	// 通过id值获取topic
 	public static Topic getATopicById(int i) {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where id=" + i + ";");
 		List<Topic> list = ToolTopic.resultSetToList(resultSet);
 		return list.isEmpty() ? null : list.get(0);
 	}
-	
+
 	// 通过一个用户获取topic 倒序
 	public static List<Topic> getAllTopicByAUser(User user) {
 		int i = user.getId();
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where uId='" + i + "' order by id desc;");
 		return ToolTopic.resultSetToList(resultSet);
 	}
-	
-	//获取板块id号为i的所有帖子
+
+	// 获取板块id号为i的所有帖子
 	public static List<Topic> getTopicBySession(Session session) {
-		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where sId="+session.getId()+" order by id desc;");
+		ResultSet resultSet = bbsDatabase.executeQuery("select * from topic where sId=" + session.getId() + " order by id desc;");
 		return ToolTopic.resultSetToList(resultSet);
 	}
-	
-	//设置帖子置顶
+
+	// 设置帖子置顶
 	public static boolean setTopTopic(Topic topic) {
-		topic =getATopicById(topic);
+		topic = getATopicById(topic);
 		topic.setFlag(1);
 		return modifyATopic(topic);
 	}
-	
-	//设置帖子取消置顶
+
+	// 设置帖子取消置顶
 	public static boolean cancelTopTopic(Topic topic) {
-		topic =getATopicById(topic);
+		topic = getATopicById(topic);
 		topic.setFlag(0);
 		return modifyATopic(topic);
 	}
-	
+
 }

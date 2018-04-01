@@ -1,81 +1,94 @@
 /********************reset********************/
-body,div,dl,dt,dd,ul,ol,li,pre,h1,h2,h3,h4,h5,h6, 
-form,fieldset,input,textarea,p,blockquote,th,td { 
-  padding: 0; 
-  margin: 0; 
-} 
-table { 
-  border-collapse: collapse; 
-  border-spacing: 0; 
-} 
-fieldset,img { 
-  border: 0; 
-} 
-address,caption,cite,code,dfn,em,strong,th,var { 
-  font-weight: normal; 
-  font-style: normal;
-} 
-ol,ul { 
-  list-style: none; 
-} 
-caption,th { 
-  text-align: left; 
-} 
-h2,h3,h4,h5,h6 { 
-  font-weight: normal; 
-  font-size: 100%; 
-} 
-q:before,q:after { 
-  content:”; 
-} 
-abbr,acronym { 
-  border: 0; 
+body,div,dl,dt,dd,ul,ol,li,pre,h1,h2,h3,h4,h5,h6,form,fieldset,input,textarea,p,blockquote,th,td
+	{
+	padding: 0;
+	margin: 0;
 }
-a{
-  text-decoration:none;
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-h1{
-  font:normal normal normal 40px "华文行楷";
-  text-align:center;
-  text-shadow: 1px 1px 7px #999;
+
+fieldset,img {
+	border: 0;
 }
-p{
-  text-align:left;
+
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-weight: normal;
+	font-style: normal;
+}
+
+ol,ul {
+	list-style: none;
+}
+
+caption,th {
+	text-align: left;
+}
+
+h2,h3,h4,h5,h6 {
+	font-weight: normal;
+	font-size: 100%;
+}
+
+q:before,q:after {
+	content: ”;
+}
+
+abbr,acronym {
+	border: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	font: normal normal normal 40px "华文行楷";
+	text-align: center;
+	text-shadow: 1px 1px 7px #999;
+}
+
+p {
+	text-align: left;
 }
 /********************reset结束********************/
 
 /************************************字体属性参考
   color:#096;/*字体颜色*/
-  /* font-size:35px;/*字号*/
-  /* font-style:normal;/*normal/italic斜体/oblique倾斜*/
-  /* font-weight:100;/*normal/bold粗体/bolder/lighter细/数值*/
-  /* font-variant:normal;/*normal/small-caps小写转换为小型的大写字母字体*/
-  /* font:font-style font-variant font-weight font-size font-family;*/
-  /* line-height:normal;/*行高：normal/长度值/百分比/数值*/
-  /* text-indent:2em;/*文本缩进 【长度值（2em）/百分比】*/
-  /* text-align:center;/*水平对齐方式 left/right/center/justify两端/*/
-  /* vertical-align:auto;/*垂直对齐方式 baseline默认与基线对齐/sub垂直对齐文本小标/super垂直对齐文本上标/top元素的顶端与行中最高文本的顶端对齐/text-top元素的顶端与行中最高文本的顶端对齐/middle垂直中部对齐/bottom元素顶端与行中最低原素的地段对齐/text-bottom元素顶端与行中最低文本的低端对齐/百分比/长度*/
-  /* text-transform:none;/*大小写none/capitalize第一个字母变成大写/uppercase每个单词转换为大写/lowercase每个单词转换为小写*/
-  /* word-spacing:normal;/*字符间距normal/长度/百分比*/
-  /* letter-spacing:normal;/*字符间隔 normal/长度/百分比*/
-  /* text-decoration:none;/*文本修饰 text-decoration:[text-decoration-line]|[text-decoration-style]|[text-decoration-color] 1.none/underline加下划线/overline上划线/line-through删除线/blink文本闪烁 2.solid实线/double双线/dotted电线/dashed虚线/wave波纹 3.颜色*/
-  /* text-shadow:none;/*文本阴影 none|<length水平><length垂直>[<length模糊度>][<color阴影颜色>]
+/* font-size:35px;/*字号*/
+/* font-style:normal;/*normal/italic斜体/oblique倾斜*/
+/* font-weight:100;/*normal/bold粗体/bolder/lighter细/数值*/
+/* font-variant:normal;/*normal/small-caps小写转换为小型的大写字母字体*/
+/* font:font-style font-variant font-weight font-size font-family;*/
+/* line-height:normal;/*行高：normal/长度值/百分比/数值*/
+/* text-indent:2em;/*文本缩进 【长度值（2em）/百分比】*/
+/* text-align:center;/*水平对齐方式 left/right/center/justify两端/*/
+/* vertical-align:auto;/*垂直对齐方式 baseline默认与基线对齐/sub垂直对齐文本小标/super垂直对齐文本上标/top元素的顶端与行中最高文本的顶端对齐/text-top元素的顶端与行中最高文本的顶端对齐/middle垂直中部对齐/bottom元素顶端与行中最低原素的地段对齐/text-bottom元素顶端与行中最低文本的低端对齐/百分比/长度*/
+/* text-transform:none;/*大小写none/capitalize第一个字母变成大写/uppercase每个单词转换为大写/lowercase每个单词转换为小写*/
+/* word-spacing:normal;/*字符间距normal/长度/百分比*/
+/* letter-spacing:normal;/*字符间隔 normal/长度/百分比*/
+/* text-decoration:none;/*文本修饰 text-decoration:[text-decoration-line]|[text-decoration-style]|[text-decoration-color] 1.none/underline加下划线/overline上划线/line-through删除线/blink文本闪烁 2.solid实线/double双线/dotted电线/dashed虚线/wave波纹 3.颜色*/
+/* text-shadow:none;/*文本阴影 none|<length水平><length垂直>[<length模糊度>][<color阴影颜色>]
  
  ***************************************/
- 
+
 /********************页面通用元素********************/
 body {
 	background: #E0E0E0;
 }
+
 .kuangjia-div-main {
 	width: 970px;
-	margin: 0px auto;	
+	margin: 0px auto;
 	box-sizing: border-box;
-	position: relative; top: 65px;
-	
-	min-height: 1000px;	
+	position: relative;
+	top: 65px;
+	min-height: 1000px;
 }
-.div-maincontener {  /*页面框体+底部*/
+
+.div-maincontener { /*页面框体+底部*/
 	height: auto;
 	widtth: 100%;
 	margin: 0px auto;
@@ -84,15 +97,16 @@ body {
 	position: relative;
 }
 
-.div-content {		/*页面框体*/
+.div-content { /*页面框体*/
 	width: 970px;
-	margin: 0px auto;	
+	margin: 0px auto;
 	box-sizing: border-box;
-	position: relative; top: 65px;
-	
-	height: 1000px;	
+	position: relative;
+	top: 65px;
+	height: 1000px;
 }
-.div-contentleft {		/*页面框体左边部分*/
+
+.div-contentleft { /*页面框体左边部分*/
 	width: 650px;
 	height: auto;
 	margin: 0px auto;
@@ -100,9 +114,9 @@ body {
 	box-sizing: border-box;
 	position: relative;
 	float: left;
-	
 }
-.div-contentright {		/*页面框体右边部分*/
+
+.div-contentright { /*页面框体右边部分*/
 	width: 320px;
 	height: auto;
 	margin: 0px auto;
@@ -110,34 +124,36 @@ body {
 	box-sizing: border-box;
 	position: relative;
 	float: right;
-	
 }
 /********************页面通用元素********************/
 
 /********************welcome.jsp********************/
 
 /*****菜单标签-代槿*****/
-.index-div-menu {	/*菜单框架*/
+.index-div-menu { /*菜单框架*/
 	width: 100%;
-  	height: 50px;
+	height: 50px;
 	box-shadow: 1px 1px 1px #999;
 	box-sizing: content-box;
 	position: fixed;
 	background: #333;
 	z-index: 100;
 }
-.index-div-menu1 {	/*菜单居中框架*/
+
+.index-div-menu1 { /*菜单居中框架*/
 	width: 950px;
 	height: 50px;
 	margin: 0px auto;
 	float: none;
 }
-.index-div-ulmain {	/*ul加入div控制位置*/
+
+.index-div-ulmain { /*ul加入div控制位置*/
 	width: auto;
 	height: auto;
 	float: left;
 }
-#index-ul-mainNav {	/*菜单选项ul*/
+
+#index-ul-mainNav { /*菜单选项ul*/
 	/*position: absolute;
 	left: 470px;
 	top: 0;
@@ -145,7 +161,8 @@ body {
 	height: 80px;*/
 	list-style: none;
 }
-#index-ul-mainNav li {	/*菜单选项li*/
+
+#index-ul-mainNav li { /*菜单选项li*/
 	padding-top: 0px;
 	padding-right: 15px;
 	padding-bottom: 0px;
@@ -155,105 +172,122 @@ body {
 	font-size: 18px;
 	list-style: none;
 }
+
 .index-a-logo {
-	font-weight:bold;	
-}
-#index-ul-mainNav li a {	/*菜单的超链接选项*/
-    display: block;
-    height: 50px;
-    line-height: 50px;
-    margin-left: 6px;
-    color: #9d9d9d;
-}
-#index-ul-mainNav li a:hover {	/*菜单的超链接选项被选中时*/
-    color: #fff;
+	font-weight: bold;
 }
 
-.index-div-control1 {	/*搜索标签div*/
-	position: relative; top: 9px; left: 5px;
+#index-ul-mainNav li a { /*菜单的超链接选项*/
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	margin-left: 6px;
+	color: #9d9d9d;
+}
+
+#index-ul-mainNav li a:hover { /*菜单的超链接选项被选中时*/
+	color: #fff;
+}
+
+.index-div-control1 { /*搜索标签div*/
+	position: relative;
+	top: 9px;
+	left: 5px;
 	width: 179px;
 	height: 40px;
 	display: inline-block;
 	margin-bottom: 0;
 	vertical-align: middle;
 }
-.index-form-control1 {	/*搜索标签表单控件*/
-    display: block;
-    width: 100%;
-    height: 34px;
+
+.index-form-control1 { /*搜索标签表单控件*/
+	display: block;
+	width: 100%;
+	height: 34px;
 	padding-left: 5px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
-.indec-div-ulmain2 {	/*登录注册按钮div*/
+.indec-div-ulmain2 { /*登录注册按钮div*/
 	width: auto;
 	height: auto;
 	float: right;
 }
-#index-ul-reandlo {		/*登录注册按钮ul*/
+
+#index-ul-reandlo { /*登录注册按钮ul*/
 	width: auto;
 	height: 50px;
 	list-style: none;
 }
-#index-ul-reandlo li {		/*登录注册按钮li*/
+
+#index-ul-reandlo li { /*登录注册按钮li*/
 	padding: 0 10px;
 	text-align: center;
 	float: left;
 	font-size: 16px;
 }
-#index-ul-reandlo li a {	/*登录注册按钮a*/
+
+#index-ul-reandlo li a { /*登录注册按钮a*/
 	display: block;
-    height: 50px;
-    line-height: 50px;
-    margin-left: 6px;
-    color: #9d9d9d;
+	height: 50px;
+	line-height: 50px;
+	margin-left: 6px;
+	color: #9d9d9d;
 }
+
 #index-ul-reandlo li a:hover {
 	color: #fff;
 }
 /*****菜单标签-代槿*****/
 
-
 /*****底部标签-朱振宗*****/
-.index-div-bottommian1 {	/**底部框架2*/
+.index-div-bottommian1 { /**底部框架2*/
 	width: 100%;
 	float: none;
-	margin: 0 auto;	
+	margin: 0 auto;
 	background: #333;
-	position: ; bottom: 0px;
+	position: ;
+	bottom: 0px;
 	box-shadow: 1px 1px 1px #999;
 	z-index: 100;
 }
-.index-div-bottommian {	/**底部框架*/
+
+.index-div-bottommian { /**底部框架*/
 	width: 100%;
 	float: none;
-	margin: 0 auto;	
+	margin: 0 auto;
 	background: #333;
-	position: absolute; bottom: 0px;
+	position: absolute;
+	bottom: 0px;
 	box-shadow: 1px 1px 1px #999;
 	z-index: 100;
 }
-.index-div-bottom {    /*底部*/
+
+.index-div-bottom { /*底部*/
 	text-align: center;
 	margin: 0 auto;
-	width: 950px; 
+	width: 950px;
 	height: 100px;
 	color: #68696d;
-} 
+}
+
 .index-div-bottom a {
 	color: #68696d;
 }
+
 .index-div-bottom a:hover {
 	color: #CCC;
 }
@@ -261,137 +295,155 @@ body {
 
 /***************index.jsp***************/
 .navbar-right {
-    float: right;
-    margin-right: -15px;
+	float: right;
+	margin-right: -15px;
 }
+
 .navbar-nav {
-    float: left;
-    margin: 0;
+	float: left;
+	margin: 0;
 }
+
 .navbar-nav {
-    margin: 7.5px -15px;
+	margin: 7.5px -15px;
 }
+
 .nav {
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
+	padding-left: 0;
+	margin-bottom: 0;
+	list-style: none;
 }
 /**/
-.navbar-nav > li {
-    float: left;
+.navbar-nav>li {
+	float: left;
 }
-.nav > li {
-    position: relative;
-    display: block;
-}
-.dropdown {
-    position: relative;
-}
-/**/
-.dropdown-toggle {	/*a标签*/
+
+.nav>li {
 	position: relative;
-    display: block;
-    padding: 10px 15px;
+	display: block;
+}
+
+.dropdown {
+	position: relative;
+}
+/**/
+.dropdown-toggle { /*a标签*/
+	position: relative;
+	display: block;
+	padding: 10px 15px;
 	background-color: transparent;
 	color: #9d9d9d;
 }
-.dropdown-toggle:hover {	/**/
+
+.dropdown-toggle:hover { /**/
 	color: #fff;
 }
-.navbar-nav > li > .dropdown-menu {
-    margin-top: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+
+.navbar-nav>li>.dropdown-menu {
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
+
 .navbar-right .dropdown-menu {
-    right: 0;
-    left: auto;
+	right: 0;
+	left: auto;
 }
+
 .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 100px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	display: none;
+	float: left;
+	min-width: 100px;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	font-size: 14px;
+	text-align: left;
+	list-style: none;
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, .15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
+
 .dropdown-menu a {
 	color: black;
-	font-size:15px;
+	font-size: 15px;
 	position: relative;
-    display: block;
-    padding: 10px 15px;
+	display: block;
+	padding: 10px 15px;
 	background-color: transparent;
 }
+
 .dropdown-menu a:hover {
 	color: #262626;
 	text-decoration: none;
-	background-color: #f5f5f5;	
+	background-color: #f5f5f5;
 }
+
 .dropdown-menu a:linked {
 	color: black;
 }
 /**/
 .dropdown {
-    position: relative;
+	position: relative;
 }
+
 .caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 2px;
-    vertical-align: middle;
-    border-top: 4px solid;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 2px;
+	vertical-align: middle;
+	border-top: 4px solid;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
 }
+
 .divider {
-    height: 1px;
-    margin: 1px 0;
-    overflow: hidden;
-    background-color: #e5e5e5;
+	height: 1px;
+	margin: 1px 0;
+	overflow: hidden;
+	background-color: #e5e5e5;
 }
 /***************index.jsp***************/
 
 /********************welcome.jsp********************/
 
 /********************add.jsp********************/
-.add-form-group {	/*表单*/
-    margin-bottom: 15px;
+.add-form-group { /*表单*/
+	margin-bottom: 15px;
 }
-.add-form-control {	/*表单控件*/
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
+.add-form-control { /*表单控件*/
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
 textarea.add-form-control {
-    height: auto;
+	height: auto;
 }
 /********************add.jsp********************/

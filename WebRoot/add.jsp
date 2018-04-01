@@ -10,15 +10,15 @@
 	
 	User user = OperatingUser.getAUserById(1);	//默认用户，防止没有session对象传入时候出现问题
 	try {
-		user = (User)session.getAttribute("user");		//获取session对象
+		user = (User) session.getAttribute("user"); //获取session对象
 	} catch (Exception e) {
 		session.setAttribute("error", "用户登陆错误");
 		session.setAttribute("lastpage", "login.jsp");
-		
+
 		response.sendRedirect("error.jsp");
 	}
-	
-	List<Session> list=OperatingSession.getAllSession();
+
+	List<Session> list = OperatingSession.getAllSession();
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">

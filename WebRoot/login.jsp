@@ -40,21 +40,19 @@ p.p-landr-tipmessage { /*提示消息*/
 			<!--菜单栏-->
 			<div class="index-div-ulmain">
 				<ul id="index-ul-mainNav">
-					<li><a class="index-a-logo" href="#">FancyBBS</a>
-					</li>
-					<li><a href="#">首页</a>
-					</li>
-					<li><a href="#">版块</a>
-					</li>
-					<li><a href="#">发表</a>
-					</li>
+					<li><a class="index-a-logo" href="#">FancyBBS</a></li>
+					<li><a href="#">首页</a></li>
+					<li><a href="#">版块</a></li>
+					<li><a href="#">发表</a></li>
 				</ul>
 			</div>
 			<div class="indec-div-ulmain2">
 				<ul id="index-ul-reandlo">
 					<!--登录注册-->
-					<li><a href="login.jsp">登录</a></li>
-					<li><a href="register.jsp">注册</a></li>
+					<li><a href="login.jsp">登录</a>
+					</li>
+					<li><a href="register.jsp">注册</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -80,17 +78,18 @@ p.p-landr-tipmessage { /*提示消息*/
 
 				<div class="div-logininandregister-inputmain">
 					<!--密码-->
-					<label id="loginlable1">密码</label> 
-					<!-- <a id="a-loginin-password"href="#">忘记密码?</a>--> 
-					<input name="password" id="login-password"	type="password" placeholder="请输入密码" />
+					<label id="loginlable1">密码</label>
+					<!-- <a id="a-loginin-password"href="#">忘记密码?</a>-->
+					<input name="password" id="login-password" type="password"
+						placeholder="请输入密码" />
 				</div>
 
 				<div class="div-logininandregister-inputmain">
 					<!--验证码-->
-					<label id="loginlable1">验证码</label> 
-					<input name="vcode"	 id="login-vcode" width="80px" type="text" placeholder="点击图片刷新" />
-					<a href="login.jsp">
-					<img id="rc" src="GetCaptcha" title="看不清？单击换一张图片" alt="点击更换" /> </a>
+					<label id="loginlable1">验证码</label> <input name="vcode"
+						id="login-vcode" width="80px" type="text" placeholder="点击图片刷新" />
+					<a href="login.jsp"> <img id="rc" src="GetCaptcha"
+						title="看不清？单击换一张图片" alt="点击更换" /> </a>
 				</div>
 				<div class="div-loginin-submit">
 					<!--提交按钮-->

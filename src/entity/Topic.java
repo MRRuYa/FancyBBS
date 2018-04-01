@@ -12,8 +12,8 @@ public class Topic {
 
 	}
 
-	public Topic(int id, int sId, int uId, int replyCount, int flag, int clickCount, int lastReplyUseID, String topic,
-			String contents, Timestamp time, Timestamp lastReplayTime) {
+	public Topic(int id, int sId, int uId, int replyCount, int flag, int clickCount, int lastReplyUseID, String topic, String contents,
+			Timestamp time, Timestamp lastReplayTime) {
 		super();
 		this.id = id;
 		this.sId = sId;
@@ -118,8 +118,8 @@ public class Topic {
 
 	@Override
 	public String toString() {
-		return "Topic [id=" + id + ", sId=" + sId + ", uId=" + uId + ", flag=" + flag + ", clickCount=" + clickCount
-				+ ", topic=" + topic + ", time=" + time + ", lastReplayTime=" + lastReplayTime + "]";
+		return "Topic [id=" + id + ", sId=" + sId + ", uId=" + uId + ", flag=" + flag + ", clickCount=" + clickCount + ", topic=" + topic
+				+ ", time=" + time + ", lastReplayTime=" + lastReplayTime + "]";
 	}
 
 }

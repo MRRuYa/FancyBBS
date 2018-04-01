@@ -69,8 +69,8 @@ public class Session {
 
 	@Override
 	public String toString() {
-		return "Session [id=" + id + ", masterId=" + masterId + ", name=" + name + ", topicCount=" + topicCount
-				+ ", clickCount=" + clickCount + "]";
+		return "Session [id=" + id + ", masterId=" + masterId + ", name=" + name + ", topicCount=" + topicCount + ", clickCount="
+				+ clickCount + "]";
 	}
 
 }

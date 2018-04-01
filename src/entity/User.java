@@ -12,8 +12,8 @@ public class User {
 
 	}
 
-	public User(int id, String account, String password, String nickname, String email, String photo, String sex,
-			int grade, int point, Timestamp registrationdate) {
+	public User(int id, String account, String password, String nickname, String email, String photo, String sex, int grade, int point,
+			Timestamp registrationdate) {
 		this.id = id;
 		this.account = account;
 		this.password = password;
@@ -108,8 +108,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", account=" + account + ", nickname=" + nickname + ", email=" + email + ", sex="
-				+ sex + ", registrationdate=" + registrationdate + "]";
+		return "User [id=" + id + ", account=" + account + ", nickname=" + nickname + ", email=" + email + ", sex=" + sex
+				+ ", registrationdate=" + registrationdate + "]";
 	}
 
 }

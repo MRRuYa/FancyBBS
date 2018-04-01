@@ -38,72 +38,86 @@ public class AddSession extends HttpServlet {
 
 	/**
 	 * The doDelete method of the servlet. <br>
-	 *
+	 * 
 	 * This method is called when a HTTP delete request is received.
 	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
+	 * @param request
+	 *            the request send by the client to the server
+	 * @param response
+	 *            the response send by the server to the client
+	 * @throws ServletException
+	 *             if an error occurred
+	 * @throws IOException
+	 *             if an error occurred
 	 */
-	public void doDelete(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	public void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// Put your code here
 	}
 
 	/**
 	 * The doGet method of the servlet. <br>
-	 *
+	 * 
 	 * This method is called when a form has its tag value method equals to get.
 	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
+	 * @param request
+	 *            the request send by the client to the server
+	 * @param response
+	 *            the response send by the server to the client
+	 * @throws ServletException
+	 *             if an error occurred
+	 * @throws IOException
+	 *             if an error occurred
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.doPost(request, response);
 	}
 
 	/**
 	 * The doPost method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to post.
 	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
+	 * This method is called when a form has its tag value method equals to
+	 * post.
+	 * 
+	 * @param request
+	 *            the request send by the client to the server
+	 * @param response
+	 *            the response send by the server to the client
+	 * @throws ServletException
+	 *             if an error occurred
+	 * @throws IOException
+	 *             if an error occurred
 	 */
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest
+	 * , javax.servlet.http.HttpServletResponse)
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");		//设置编码格式
-		response.setCharacterEncoding("utf-8");		//设置编码格式
-		response.setContentType("text/html;charset=utf-8");		
-		
-		PrintWriter out = response.getWriter();		//获取输出流
-		//HttpSession session = request.getSession();		//获取session对象
-		
-		String name = request.getParameter("name");		//获取版块名称
-		String profile = request.getParameter("profile");		//获取版块主题
-		
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8"); // 设置编码格式
+		response.setCharacterEncoding("utf-8"); // 设置编码格式
+		response.setContentType("text/html;charset=utf-8");
+
+		PrintWriter out = response.getWriter(); // 获取输出流
+		// HttpSession session = request.getSession(); //获取session对象
+
+		String name = request.getParameter("name"); // 获取版块名称
+		String profile = request.getParameter("profile"); // 获取版块主题
+
 		Session session2 = new Session();
 		session2.setName(name);
 		session2.setProfile(profile);
 		session2.setClickCount(0);
 		session2.setMasterId(1);
 		session2.setTopicCount(0);
-		
-		OperatingSession.insertASession(session2);		
+
+		OperatingSession.insertASession(session2);
 		System.out.println(ToolSession.entityToStringInsert(session2).toString());
-		
+
 		response.getWriter().print("forward:<br />");
-		getServletConfig().getServletContext().getRequestDispatcher("/bankuaiguanli.jsp").forward(request, response);	
+		getServletConfig().getServletContext().getRequestDispatcher("/bankuaiguanli.jsp").forward(request, response);
 
 		out.flush();
 		out.close();
@@ -111,24 +125,27 @@ public class AddSession extends HttpServlet {
 
 	/**
 	 * The doPut method of the servlet. <br>
-	 *
+	 * 
 	 * This method is called when a HTTP put request is received.
 	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
+	 * @param request
+	 *            the request send by the client to the server
+	 * @param response
+	 *            the response send by the server to the client
+	 * @throws ServletException
+	 *             if an error occurred
+	 * @throws IOException
+	 *             if an error occurred
 	 */
-	public void doPut(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// Put your code here
 	}
 
 	/**
-	 * Returns information about the servlet, such as 
-	 * author, version, and copyright. 
-	 *
+	 * Returns information about the servlet, such as author, version, and
+	 * copyright.
+	 * 
 	 * @return String information about this servlet
 	 */
 	public String getServletInfo() {
@@ -137,8 +154,9 @@ public class AddSession extends HttpServlet {
 
 	/**
 	 * Initialization of the servlet. <br>
-	 *
-	 * @throws ServletException if an error occurs
+	 * 
+	 * @throws ServletException
+	 *             if an error occurs
 	 */
 	public void init() throws ServletException {
 		// Put your code here
