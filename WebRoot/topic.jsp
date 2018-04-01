@@ -111,15 +111,11 @@ window.onload = function()	{
 			<!--菜单栏-->
 			<div class="index-div-ulmain">
 				<ul id="index-ul-mainNav">
-					<li><a class="index-a-logo">FancyBBS</a>
-					</li>
-					<li><a href="index.jsp">首页</a>
-					</li>
-					<li><a href="node.jsp">版块</a>
-					</li>
-					<li><a href="add.jsp">发表</a>
-					</li>
-					
+					<li><a class="index-a-logo">FancyBBS</a></li>
+					<li><a href="index.jsp">首页</a></li>
+					<li><a href="node.jsp">版块</a></li>
+					<li><a href="add.jsp">发表</a></li>
+
 				</ul>
 			</div>
 			<div class="indec-div-ulmain2">
@@ -127,21 +123,25 @@ window.onload = function()	{
 					<li class="dropdown" onMouseMove="xianshi()" onMouseOut="yincang()">
 						<a href="index.jsp" class="dropdown-toggle"> <%=user.getNickname()%>
 							<b class="caret"></b> </a>
-						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"	onMouseOver="xianshi()">
-							<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a></li>
-							<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a></li>
+						<ul id="uldown" class="dropdown-menu" id="dropdown-menu"
+							onMouseOver="xianshi()">
+							<li><a href="userhome.jsp?uId=<%=user.getId()%>">个人主页</a>
+							</li>
+							<li><a href="usermessage.jsp?uId=<%=user.getId()%>">个人资料</a>
+							</li>
 							<li class="divider"></li>
 							<%
-							if (user.getGrade() > 1) {
+								if (user.getGrade() > 1) {
 							%>
-								<li><a href="yonghuguanli.jsp">用户管理</a></li>
-								<li><a href="bankuaiguanli.jsp">版块管理</a></li>
-								<li class="divider"></li>
-							<%
-							}
-							 %>
-							<li><a href="LoginOut">退出</a>
+							<li><a href="yonghuguanli.jsp">用户管理</a>
 							</li>
+							<li><a href="bankuaiguanli.jsp">版块管理</a>
+							</li>
+							<li class="divider"></li>
+							<%
+								}
+							%>
+							<li><a href="LoginOut">退出</a></li>
 						</ul>
 				</ul>
 			</div>
@@ -156,146 +156,166 @@ window.onload = function()	{
 			<div class="div-contentleft">
 
 
-				<div class="div-main">	<!-- div上 -->
-					<div class="div-main-head2">	<!-- 标题 -->
+				<div class="div-main">
+					<!-- div上 -->
+					<div class="div-main-head2">
+						<!-- 标题 -->
 						<div class="div-JD-section-right">
-							<a href="userhome.jsp?uId=<%=user1.getId()%>"> <img class="div-topic-img" src="<%=user1.getPhoto() %>" alt="admin">
+							<a href="userhome.jsp?uId=<%=user1.getId()%>"> <img
+								class="div-topic-img" src="<%=user1.getPhoto()%>" alt="admin">
 							</a>
 						</div>
 						<p>
-							<a href="index,jsp">首页</a> / <a href="article.jsp?sId=<%=session1.getId()%>"><%=session1.getName() %></a>
+							<a href="index,jsp">首页</a> / <a
+								href="article.jsp?sId=<%=session1.getId()%>"><%=session1.getName()%></a>
 						</p>
-						<h2 class="div-title div-topic-title"><%=topic1.getTopic() %></h2>
-						<small class="div-JD-section-body-bottom"> 
-							<span>By
-								<a href="userhome.jsp?uId=<%=topic1.getLastReplyUseID()%>"><%=user1.getNickname() %></a> 
-							</span>&nbsp;•&nbsp; 
-							<span><%=topic1.getLastReplayTime() %></span>&nbsp;•&nbsp; 	<!-- 最后回复时间 -->
-							<!-- <span><%/*topic1.getClickCount()*/ %>次点击</span> 	 点击次数 -->
+						<h2 class="div-title div-topic-title"><%=topic1.getTopic()%></h2>
+						<small class="div-JD-section-body-bottom"> <span>By
+								<a href="userhome.jsp?uId=<%=topic1.getLastReplyUseID()%>"><%=user1.getNickname()%></a>
+						</span>&nbsp;•&nbsp; <span><%=topic1.getLastReplayTime()%></span>&nbsp;•&nbsp;
+							<!-- 最后回复时间 --> <!-- <span><%/*topic1.getClickCount()*/%>次点击</span> 	 点击次数 -->
 							<!--  <span>• 
 								<a	href="#" class="div-reply">回复</a> 
 							</span> 
 							<span> 
 								<a href="#" title="点击收藏">收藏</a> 
-							</span> -->
-							</small>
-					</div>		<!-- 标题 -->
-					
-					<div class="div-main-body">	<!-- 内容 -->
-						<p><%=topic1.getContents() %></p>
-					</div>	<!-- 内容 -->
+							</span> --> </small>
+					</div>
+					<!-- 标题 -->
+
+					<div class="div-main-body">
+						<!-- 内容 -->
+						<p><%=topic1.getContents()%></p>
+					</div>
+					<!-- 内容 -->
 					<div class="div-main-footer"></div>
-				</div>	<!-- div上 -->
-				
-				
-				<div class="div-main">	<!-- div中 -->
-					<div class="div-main-head1">		<!-- 标题 -->
+				</div>
+				<!-- div上 -->
+
+
+				<div class="div-main">
+					<!-- div中 -->
+					<div class="div-main-head1">
+						<!-- 标题 -->
 						<h5>
-							<span><%=topic1.getReplyCount() %></span> <span> 回复 | 直到<%=topic1.getLastReplayTime() %></span>
+							<span><%=topic1.getReplyCount()%></span> <span> 回复 | 直到<%=topic1.getLastReplayTime()%></span>
 						</h5>
-					</div>		<!-- 标题 -->
+					</div>
+					<!-- 标题 -->
 					<%
 						User usertemp = new User();
 						int floor = 1;
 						for (Reply reply : replylist) {
-							usertemp = OperatingUser.getAUserById(reply.getuId());	//获取此回复的用户
+							usertemp = OperatingUser.getAUserById(reply.getuId()); //获取此回复的用户
 					%>
 					<div class="div-main-body">
 						<div class="div-row">
 							<div class="col-md-4">
-								<a href="userhome.jsp?uId=<%=usertemp.getId()%>"> <img class="div-topic-img" src="<%=usertemp.getPhoto() %>"	 alt="<%=usertemp.getNickname()%>"> </a>
-							</div>									
+								<a href="userhome.jsp?uId=<%=usertemp.getId()%>"> <img
+									class="div-topic-img" src="<%=usertemp.getPhoto()%>"
+									alt="<%=usertemp.getNickname()%>"> </a>
+							</div>
 							<div class="col-md-5 div-topic-reply-body">
-								<% 
-										if (user.getId() == usertemp.getId() || user.getGrade() >1) {	//本人或管理员查看
-									%>
-										<div class="div-JD-section-right">	<!-- 删除按钮 -->
-											<span class="div-badge div-badge-node">
-											<a href="DeleteReply?id=<%=reply.getId()%>">删除</a></span>
-										</div>	<!-- 删除按钮 -->
-									<%
-										}
-									%>
+								<%
+									if (user.getId() == usertemp.getId() || user.getGrade() > 1) { //本人或管理员查看
+								%>
+								<div class="div-JD-section-right">
+									<!-- 删除按钮 -->
+									<span class="div-badge div-badge-node"> <a
+										href="DeleteReply?id=<%=reply.getId()%>">删除</a>
+									</span>
+								</div>
+								<!-- 删除按钮 -->
+								<%
+									}
+								%>
 								<h5>
-									<span> <a href="userhome.jsp?uId=<%=usertemp.getId()%>"><%=usertemp.getNickname() %></a>&nbsp;&nbsp;<%=reply.getTime() %> </span> <span
-										class="div-JD-section-right"># - <%=floor %></span>
+									<span> <a href="userhome.jsp?uId=<%=usertemp.getId()%>"><%=usertemp.getNickname()%></a>&nbsp;&nbsp;<%=reply.getTime()%>
+									</span> <span class="div-JD-section-right"># - <%=floor%></span>
 								</h5>
-								<p><%=reply.getContent() %></p>
+								<p><%=reply.getContent()%></p>
 							</div>
 						</div>
 					</div>
-					
+
 					<%
-					floor++;
+						floor++;
 						}
-					 %>
-				</div>	<!-- div中 -->
-				
-				<div class="div-main">	<!-- div下 -->
-					<div class="div-main-head1">		<!-- 标题 -->
+					%>
+				</div>
+				<!-- div中 -->
+
+				<div class="div-main">
+					<!-- div下 -->
+					<div class="div-main-head1">
+						<!-- 标题 -->
 						<h5>
 							<span>回复</span>
 						</h5>
-					</div>		<!-- 标题 -->
-					
-					<div class="div-main-body">		<!-- 内容 -->
-						<form action="AddReply?tId=<%=topic1.getId() %>" method="post" onSubmit="return checkadd()">
+					</div>
+					<!-- 标题 -->
+
+					<div class="div-main-body">
+						<!-- 内容 -->
+						<form action="AddReply?tId=<%=topic1.getId()%>" method="post"
+							onSubmit="return checkadd()">
 							<div class="add-form-group">
-	                        	<textarea class="add-form-control" id="contents" name="contents"  rows="10" ></textarea>
-	                   	 	</div>
-	                   	 	<button type="submit" >回复</button>
-	                   	 </form>							
-					</div>		
-				</div>	<!-- 内容 -->
-			</div><!-- div下 -->
+								<textarea class="add-form-control" id="contents" name="contents"
+									rows="10"></textarea>
+							</div>
+							<button type="submit">回复</button>
+						</form>
+					</div>
+				</div>
+				<!-- 内容 -->
+			</div>
+			<!-- div下 -->
 			<!--中层框架左边 end-->
 
 			<!--中层框架右边 start-->
 			<div class="div-contentright">
 				<div class="div-main">
-		        	<div class="div-main-body">
-		          		<div class="div-row">
-		            		<div class="col-md-1"> <a href="userhome.jsp?uId=<%=user.getId()%>"> <img class="div-article-img" src="<%=user.getPhoto() %>" /> </a> </div>
-		            			<div class="col-md-2">
-					              <ul class="div-list-unstyled">
-					                <li><a href="userhome.jsp?uId=<%=user.getId()%>" ><%=user.getAccount() %></a></li>
-					                <li>昵称：<%=user.getNickname() %></li>
-					                <li>积分：<%=user.getPoint() %></li>
-					                <li>权限：
-					                <%
-					                if(user.getGrade()==1) { %>
-					                	会员
-					               <%	
-					                } else if (user.getGrade()==2) {
-					                %>
-					                	管理员
-					                <%	
-					                } else {
-					                %>
-					                	未知
-					                <%
-					                }
-					                %>
-					                </li>
-					              </ul>
-		            			</div>
-		          			</div>
-		          			
-		        		</div>
-		        		<div class="div-main-footer div-JD-section-body-bottom"></div>
-		      		</div>
-		      		
-		      		<div class="div-main">
-		        		<div class="div-main-footer div-JD-section-body-bottom">广告</div>
-			        	<div class="div-main-body">
-			          		<img alt="广告" src="img/guanggao.png" width="270px" height="300px" />
-			      		</div>
-			      	</div>
-		      	</div>
+					<div class="div-main-body">
+						<div class="div-row">
+							<div class="col-md-1">
+								<a href="userhome.jsp?uId=<%=user.getId()%>"> <img
+									class="div-article-img" src="<%=user.getPhoto()%>" /> </a>
+							</div>
+							<div class="col-md-2">
+								<ul class="div-list-unstyled">
+									<li><a href="userhome.jsp?uId=<%=user.getId()%>"><%=user.getAccount()%></a>
+									</li>
+									<li>昵称：<%=user.getNickname()%></li>
+									<li>积分：<%=user.getPoint()%></li>
+									<li>权限： <%
+										if (user.getGrade() == 1) {
+									%> 会员 <%
+										} else if (user.getGrade() == 2) {
+									%> 管理员 <%
+										} else {
+									%> 未知 <%
+										}
+									%>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+					<div class="div-main-footer div-JD-section-body-bottom"></div>
+				</div>
+
+				<div class="div-main">
+					<div class="div-main-footer div-JD-section-body-bottom">广告</div>
+					<div class="div-main-body">
+						<img alt="广告" src="img/guanggao.png" width="270px" height="300px" />
+					</div>
+				</div>
 			</div>
-			<!--中层框架右边 end-->
 		</div>
-		<!--中层框架 end-->
+		<!--中层框架右边 end-->
+	</div>
+	<!--中层框架 end-->
 
 </body>
 </html>
