@@ -1,1 +1,2 @@
 # FancyBBS
+## read me
