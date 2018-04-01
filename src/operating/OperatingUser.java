@@ -13,8 +13,7 @@ public class OperatingUser {
 	public static boolean insertAUser(User user) {
 		user = ToolUser.completionUser(user);
 		int i = bbsDatabase.executeUpdate(ToolUser.entityToStringInsert(user).toString());
-		// System.out.print(ToolUser.entityToStringInsert(user).toString());
-		// //打印输出
+		//System.out.print(ToolUser.entityToStringInsert(user).toString());		//打印输出
 		return i > 0;
 	}
 
@@ -23,7 +22,7 @@ public class OperatingUser {
 		int i = bbsDatabase.executeUpdate("delete from user where id='" + user.getId() + "';");
 		return i > 0;
 	}
-
+	
 	// 根据Account删除一个用户
 	public static boolean deleteAUserByAccount(User user) {
 		int i = bbsDatabase.executeUpdate("delete form user where account='" + user.getAccount() + "';");
@@ -57,13 +56,13 @@ public class OperatingUser {
 		List<User> list = ToolUser.resultSetToList(resultSet);
 		return list.isEmpty() ? user : list.get(0);
 	}
-
+	
 	// 根据用户id获取一个详细的用户信息
 	public static User getAUserById(int i) {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from user where id=" + i + ";");
 		return ToolUser.resultSetToList(resultSet).get(0);
 	}
-
+	
 	// 获取系统所有用户信息
 	public static List<User> getAllUser() {
 		ResultSet resultSet = bbsDatabase.executeQuery("select * from user;");

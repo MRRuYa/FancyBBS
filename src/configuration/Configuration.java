@@ -8,16 +8,16 @@ import entity.User;
 
 public class Configuration {
 
-	// ///////////////// FancyBBS数据库配置开始////////////////////////////
+	/////////////////// FancyBBS数据库配置开始////////////////////////////
 	public static String databaseChineseName = "FancyBBS数据库";
 	public static String databaseHostName = "localhost";
 	public static String databaseName = "fancybbs";
 	public static String databaseUserName = "root";
 	public static String databaseUserPassword = "123456";
 	public static int connectionSecond1 = 60;
-	// ///////////////// FancyBBS数据库配置结束////////////////////////////
+	/////////////////// FancyBBS数据库配置结束////////////////////////////
 
-	// ///////////////// 默认User信息配置开始////////////////////////////
+	/////////////////// 默认User信息配置开始////////////////////////////
 	private static int userId;
 	private static String userAccount = "account";
 	private static String userPassword = "123456";
@@ -44,10 +44,9 @@ public class Configuration {
 		user.setRegistrationdate(userRegistrationdate);
 		return user;
 	}
+	/////////////////// 默认User信息配置结束////////////////////////////
 
-	// ///////////////// 默认User信息配置结束////////////////////////////
-
-	// ///////////////// 默认Session信息配置开始////////////////////////////
+	/////////////////// 默认Session信息配置开始////////////////////////////
 	private static String sessionName = "";
 	private static String sessionProfile = "";
 	private static int sessionId;
@@ -66,10 +65,9 @@ public class Configuration {
 		session.setClickCount(sessionClickCount);
 		return session;
 	}
+	/////////////////// 默认Session信息配置结束////////////////////////////
 
-	// ///////////////// 默认Session信息配置结束////////////////////////////
-
-	// ///////////////// 默认Topic信息配置开始////////////////////////////
+	/////////////////// 默认Topic信息配置开始////////////////////////////
 	private static String topic = "";
 	private static String topicContents = "";
 	private static int topicId;
@@ -98,10 +96,9 @@ public class Configuration {
 		topic.setLastReplayTime(topicLastReplayTime);
 		return topic;
 	}
+	/////////////////// 默认Topic信息配置结束////////////////////////////
 
-	// ///////////////// 默认Topic信息配置结束////////////////////////////
-
-	// ///////////////// 默认Reply信息配置开始////////////////////////////
+	/////////////////// 默认Reply信息配置开始////////////////////////////
 	private static String replyContent = "";
 	private static int replyId;
 	private static int replyTId;
@@ -118,6 +115,6 @@ public class Configuration {
 		reply.setContent(replyContent);
 		return reply;
 	}
-	// ///////////////// 默认Reply信息配置结束////////////////////////////
+	/////////////////// 默认Reply信息配置结束////////////////////////////
 
 }

@@ -29,7 +29,8 @@ public class ToolUser {
 	// 将实体类转化为String
 	public static StringBuilder entityToStringInsert(User user) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("insert into user(account,password,nickName,email,photo,sex,grade,registrationdate,point) values(");
+		stringBuilder.append(
+				"insert into user(account,password,nickName,email,photo,sex,grade,registrationdate,point) values(");
 		stringBuilder.append("'" + user.getAccount() + "',");
 		stringBuilder.append("'" + user.getPassword() + "',");
 		stringBuilder.append("'" + user.getNickname() + "',");
@@ -81,4 +82,5 @@ public class ToolUser {
 		}
 		return list;
 	}
+
 }
